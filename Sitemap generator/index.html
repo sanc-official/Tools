@@ -4,163 +4,167 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SiteMap Studio｜Web制作提案用サイトマップ作成ツール</title>
+  <title>SiteMap Studio | Web制作提案用サイトマップ作成ツール</title>
   <!-- © 2025 Sanc-Official / Satoshi Sasaki - s.sasaki@sanc-official.com -->
   <!-- Developed by Sanc-Official. Unauthorized copying or redistribution is prohibited. -->
   <meta name="author" content="Satoshi Sasaki / Sanc-Official">
   <meta name="copyright" content="© 2025 Sanc-Official">
-  <meta name="contact" content="s.sasaki@sanc-official.com">
   <link rel="icon" type="image/svg+xml"
-    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='14' fill='%232d7dd2'/><text x='32' y='46' font-family='Georgia,serif' font-size='46' font-weight='700' text-anchor='middle' fill='white' letter-spacing='-2'>S</text></svg>">
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='14' fill='%232563EB'/><text x='32' y='46' font-family='Georgia,serif' font-size='50' font-weight='900' text-anchor='middle' fill='white'>S</text></svg>">
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Space+Mono:wght@400;700&display=swap');
-
-    :root {
-      --bg: #f4f5f7;
-      --surface: #ffffff;
-      --surface2: #f0f1f4;
-      --border: #dde0e8;
-      --accent: #2d7dd2;
-      --accent2: #e8406b;
-      --accent3: #1dab60;
-      --text: #1a1a2e;
-      --text2: #6b7280;
-      --radius: 10px;
-      --shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-    }
-
-    * {
+    *,
+    *::before,
+    *::after {
       box-sizing: border-box;
       margin: 0;
-      padding: 0;
+      padding: 0
+    }
+
+    :root {
+      --primary: #2563EB;
+      --primary-light: #EFF6FF;
+      --primary-mid: #BFDBFE;
+      --gray-50: #F8FAFC;
+      --gray-100: #F1F5F9;
+      --gray-200: #E2E8F0;
+      --gray-300: #CBD5E1;
+      --gray-400: #94A3B8;
+      --gray-500: #64748B;
+      --gray-600: #475569;
+      --gray-900: #0F172A;
+      --white: #FFFFFF;
+      --radius: 8px;
+      --radius-lg: 12px;
+      --shadow: 0 2px 8px rgba(0, 0, 0, .07);
+      --shadow-md: 0 4px 16px rgba(0, 0, 0, .10);
     }
 
     body {
-      font-family: 'Noto Sans JP', sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      min-height: 100vh;
+      font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+      background: var(--gray-50);
+      color: var(--gray-900);
+      height: 100vh;
       display: flex;
       flex-direction: column;
+      overflow: hidden;
+      font-size: 14px;
     }
 
-    /* HEADER */
-    header {
+    /* ── HEADER ── */
+    .app-header {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 14px 24px;
-      background: var(--surface);
-      border-bottom: 1px solid var(--border);
+      padding: 0 20px;
+      height: 52px;
+      background: var(--white);
+      border-bottom: 1px solid var(--gray-200);
+      flex-shrink: 0;
       gap: 12px;
-      flex-wrap: wrap;
     }
 
-    .logo {
-      font-family: 'Space Mono', monospace;
-      font-size: 16px;
+    .header-brand {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .header-brand h1 {
+      font-size: 15px;
+      font-weight: 800;
+      letter-spacing: -.02em;
+      color: var(--gray-900)
+    }
+
+    .brand-badge {
+      font-size: 10px;
       font-weight: 700;
-      color: var(--accent);
-      letter-spacing: -0.5px;
+      padding: 2px 8px;
+      background: var(--primary-light);
+      color: var(--primary);
+      border-radius: 999px;
+      letter-spacing: .03em;
     }
 
-    .logo span {
-      color: var(--text2);
-      font-weight: 400;
-      font-size: 12px;
-      margin-left: 8px;
+    .brand-ver {
+      font-size: 10px;
+      font-weight: 600;
+      padding: 2px 7px;
+      background: var(--gray-100);
+      color: var(--gray-400);
+      border-radius: 999px;
+      border: 1px solid var(--gray-200);
     }
 
     .header-actions {
       display: flex;
       gap: 8px;
-      flex-wrap: wrap;
     }
 
     .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
       padding: 7px 14px;
-      border-radius: 6px;
       border: none;
-      cursor: pointer;
-      font-size: 12px;
-      font-family: 'Noto Sans JP', sans-serif;
+      border-radius: var(--radius);
+      font-size: 13px;
       font-weight: 500;
-      transition: all 0.2s;
+      cursor: pointer;
+      transition: all .15s;
+      white-space: nowrap;
+      font-family: inherit;
     }
 
     .btn-ghost {
       background: transparent;
-      border: 1px solid var(--border);
-      color: var(--text2);
+      color: var(--gray-600);
+      border: 1px solid var(--gray-200);
     }
 
     .btn-ghost:hover {
-      border-color: var(--accent);
-      color: var(--accent);
+      background: var(--gray-100);
     }
 
     .btn-primary {
-      background: var(--accent);
+      background: var(--primary);
       color: white;
     }
 
     .btn-primary:hover {
-      background: #7b73ff;
+      opacity: .88;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(37, 99, 235, .3);
     }
 
-    .btn-success {
-      background: var(--accent3);
-      color: #0d1a12;
-    }
-
-    .btn-success:hover {
-      background: #5ff590;
+    .btn-primary:active {
+      transform: translateY(0);
     }
 
     .btn-danger {
-      background: transparent;
-      border: 1px solid var(--accent2);
-      color: var(--accent2);
+      background: #FEF2F2;
+      color: #DC2626;
+      border: 1px solid #FECACA;
     }
 
     .btn-danger:hover {
-      background: var(--accent2);
+      background: #DC2626;
       color: white;
     }
 
-    /* AI BADGE */
-    .ai-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-      background: linear-gradient(135deg, #6c63ff22, #ff658422);
-      border: 1px solid #6c63ff44;
-      color: var(--accent);
-      padding: 5px 10px;
-      border-radius: 20px;
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 0.5px;
-    }
-
-    .ai-badge::before {
-      content: '✦';
-      font-size: 10px;
-    }
-
-    /* MAIN LAYOUT */
-    .main {
-      display: grid;
-      grid-template-columns: 300px 1fr;
+    /* ── BODY ── */
+    .app-body {
+      display: flex;
       flex: 1;
-      min-height: 0;
-      height: calc(100vh - 57px);
+      overflow: hidden;
     }
 
-    /* SIDEBAR */
+    /* ── SIDEBAR ── */
     .sidebar {
-      background: var(--surface);
-      border-right: 1px solid var(--border);
+      width: 360px;
+      flex-shrink: 0;
+      background: var(--white);
+      border-right: 1px solid var(--gray-200);
       display: flex;
       flex-direction: column;
       overflow: hidden;
@@ -168,806 +172,846 @@
 
     .sidebar-tabs {
       display: flex;
-      border-bottom: 1px solid var(--border);
+      border-bottom: 1px solid var(--gray-200);
+      flex-shrink: 0;
     }
 
-    .tab {
+    .sidebar-tab {
       flex: 1;
-      padding: 11px 8px;
-      background: none;
+      padding: 10px 4px;
       border: none;
-      color: var(--text2);
-      font-size: 11px;
-      font-family: 'Noto Sans JP', sans-serif;
+      background: transparent;
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--gray-400);
       cursor: pointer;
       border-bottom: 2px solid transparent;
-      transition: all 0.2s;
+      transition: all .15s;
     }
 
-    .tab.active {
-      color: var(--accent);
-      border-bottom-color: var(--accent);
-      background: #6c63ff0a;
+    .sidebar-tab.active {
+      color: var(--primary);
+      border-bottom-color: var(--primary);
     }
 
-    .sidebar-content {
+    .sidebar-tab:hover:not(.active) {
+      color: var(--gray-600);
+    }
+
+    .sidebar-body {
       flex: 1;
       overflow-y: auto;
       padding: 16px;
     }
 
-    .sidebar-content::-webkit-scrollbar {
-      width: 4px;
+    @media(pointer:fine) {
+      ::-webkit-scrollbar {
+        width: 5px
+      }
+
+      ::-webkit-scrollbar-track {
+        background: var(--gray-100)
+      }
+
+      ::-webkit-scrollbar-thumb {
+        background: var(--gray-300);
+        border-radius: 3px
+      }
+
+      ::-webkit-scrollbar-thumb:hover {
+        background: var(--gray-400)
+      }
     }
 
-    .sidebar-content::-webkit-scrollbar-track {
-      background: var(--surface);
+    /* ── FORM ── */
+    .form-section {
+      margin-bottom: 20px;
     }
 
-    .sidebar-content::-webkit-scrollbar-thumb {
-      background: var(--border);
-      border-radius: 2px;
-    }
-
-    .section-label {
-      font-size: 10px;
-      font-weight: 700;
-      color: var(--text2);
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      margin-bottom: 10px;
-      margin-top: 16px;
-    }
-
-    .section-label:first-child {
-      margin-top: 0;
-    }
-
-    .form-group {
-      margin-bottom: 12px;
-    }
-
-    .form-group label {
-      display: block;
+    .form-section-title {
       font-size: 11px;
-      color: var(--text2);
-      margin-bottom: 5px;
+      font-weight: 700;
+      color: var(--gray-400);
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      margin-bottom: 10px;
     }
 
-    .form-group input,
-    .form-group select,
-    .form-group textarea {
-      width: 100%;
-      background: var(--surface2);
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      color: var(--text);
-      padding: 8px 10px;
+    .form-field {
+      margin-bottom: 10px;
+    }
+
+    .form-label {
+      display: block;
       font-size: 12px;
-      font-family: 'Noto Sans JP', sans-serif;
+      font-weight: 500;
+      color: var(--gray-600);
+      margin-bottom: 4px;
+    }
+
+    .form-input,
+    .form-select {
+      width: 100%;
+      padding: 8px 10px;
+      border: 1px solid var(--gray-200);
+      border-radius: var(--radius);
+      font-size: 13px;
       outline: none;
-      transition: border-color 0.2s;
+      transition: border-color .15s;
+      color: var(--gray-900);
+      background: var(--white);
+      font-family: inherit;
     }
 
-    .form-group input:focus,
-    .form-group select:focus,
-    .form-group textarea:focus {
-      border-color: var(--accent);
+    .form-input:focus,
+    .form-select:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, .08);
     }
 
-    .form-group textarea {
-      resize: vertical;
-      min-height: 60px;
+    .form-input::placeholder {
+      color: var(--gray-300);
     }
 
-    .form-group select option {
-      background: var(--surface2);
-    }
-
-    /* COLOR SWATCHES */
-    .color-swatches {
+    /* ── COLOR CHIPS ── */
+    .color-row {
       display: flex;
       gap: 8px;
       flex-wrap: wrap;
     }
 
-    .swatch {
-      width: 28px;
-      height: 28px;
+    .color-chip {
+      width: 26px;
+      height: 26px;
       border-radius: 50%;
-      cursor: pointer;
       border: 2px solid transparent;
-      transition: all 0.2s;
+      cursor: pointer;
+      transition: all .15s;
+      outline: 2px solid transparent;
     }
 
-    .swatch.active,
-    .swatch:hover {
-      border-color: white;
+    .color-chip:hover {
       transform: scale(1.15);
     }
 
-    /* AI PANEL */
-    .ai-panel {
-      background: linear-gradient(135deg, #6c63ff12, #ff658408);
-      border: 1px solid #6c63ff33;
-      border-radius: var(--radius);
-      padding: 14px;
-      margin-bottom: 14px;
+    .color-chip.active {
+      outline-color: var(--gray-900);
+      outline-offset: 2px;
     }
 
-    .ai-panel-title {
-      font-size: 12px;
-      font-weight: 700;
-      color: var(--accent);
-      margin-bottom: 10px;
+    /* ── PAGE EDITOR ── */
+    .pages-header {
       display: flex;
       align-items: center;
-      gap: 6px;
+      justify-content: space-between;
+      margin-bottom: 10px;
     }
 
-    .ai-input-row {
+    .pages-header .form-section-title {
+      margin-bottom: 0;
+    }
+
+    .add-root-btn {
       display: flex;
-      gap: 6px;
-      margin-bottom: 8px;
-    }
-
-    .ai-input-row input {
-      flex: 1;
-      background: var(--surface2);
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      color: var(--text);
-      padding: 7px 10px;
+      align-items: center;
+      gap: 4px;
+      padding: 4px 10px;
+      border: 1px dashed var(--gray-300);
+      border-radius: var(--radius);
+      background: transparent;
+      color: var(--gray-500);
       font-size: 12px;
-      font-family: 'Noto Sans JP', sans-serif;
-      outline: none;
+      cursor: pointer;
+      transition: all .15s;
     }
 
-    .ai-input-row input:focus {
-      border-color: var(--accent);
+    .add-root-btn:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+      background: var(--primary-light);
     }
 
-    .ai-hint {
-      font-size: 10px;
-      color: var(--text2);
-    }
-
-    /* PAGE LIST */
-    .page-list {
+    .pe-list {
       display: flex;
       flex-direction: column;
       gap: 6px;
     }
 
-    .page-item {
-      background: var(--surface2);
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      padding: 8px 10px;
+    .pe-item {
+      border: 1px solid var(--gray-200);
+      border-radius: var(--radius);
+      background: var(--white);
+      overflow: hidden;
+      transition: border-color .15s;
+    }
+
+    .pe-item:hover {
+      border-color: var(--gray-300);
+    }
+
+    .pe-item-header {
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 6px;
+      padding: 7px 8px 7px 10px;
+      background: var(--gray-50);
+    }
+
+    .pe-icon-btn {
+      font-size: 18px;
+      background: none;
+      border: none;
       cursor: pointer;
-      transition: all 0.2s;
-      position: relative;
-    }
-
-    .page-item:hover {
-      border-color: var(--accent);
-    }
-
-    .page-item.selected {
-      border-color: var(--accent);
-      background: #6c63ff12;
-    }
-
-    .page-dot {
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
+      padding: 2px;
+      border-radius: 4px;
+      transition: background .15s;
+      line-height: 1;
       flex-shrink: 0;
     }
 
-    .page-item-label {
+    .pe-icon-btn:hover {
+      background: var(--gray-200);
+    }
+
+    .pe-name {
       flex: 1;
-      font-size: 12px;
-    }
-
-    .page-item-level {
-      font-size: 10px;
-      color: var(--text2);
-      background: var(--border);
-      padding: 1px 5px;
-      border-radius: 3px;
-    }
-
-    .page-item-delete {
-      background: none;
       border: none;
-      color: var(--text2);
+      background: transparent;
+      font-size: 13px;
+      font-weight: 600;
+      outline: none;
+      color: var(--gray-900);
+      min-width: 0;
+      font-family: inherit;
+    }
+
+    .pe-name::placeholder {
+      color: var(--gray-300);
+      font-weight: 400;
+    }
+
+    .pe-btns {
+      display: flex;
+      gap: 2px;
+      flex-shrink: 0;
+    }
+
+    .ib {
+      width: 24px;
+      height: 24px;
+      border: none;
+      background: transparent;
+      border-radius: 4px;
       cursor: pointer;
-      font-size: 14px;
-      padding: 0 2px;
-      opacity: 0;
-      transition: opacity 0.2s;
-    }
-
-    .page-item:hover .page-item-delete {
-      opacity: 1;
-    }
-
-    .page-item-delete:hover {
-      color: var(--accent2);
-    }
-
-    .add-page-btn {
+      font-size: 11px;
+      color: var(--gray-400);
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 6px;
+      transition: all .12s;
+      font-family: inherit;
+    }
+
+    .ib:hover {
+      background: var(--gray-200);
+      color: var(--gray-900);
+    }
+
+    .ib:disabled {
+      opacity: .3;
+      cursor: not-allowed;
+    }
+
+    .ib.add {
+      border: 1px solid #C7D2FE;
+      background: var(--primary-light);
+      color: var(--primary);
+    }
+
+    .ib.add:hover {
+      background: #DBEAFE;
+      color: #1D4ED8;
+      border-color: #93C5FD;
+    }
+
+    .ib.del {
+      border: 1px solid var(--gray-200);
+      background: var(--gray-50);
+      color: var(--gray-400);
+    }
+
+    .ib.del:hover {
+      background: #FEF2F2;
+      color: #DC2626;
+      border-color: #FECACA;
+    }
+
+    .pe-body {
+      padding: 5px 10px 8px;
+    }
+
+    .pe-desc {
       width: 100%;
-      padding: 9px;
-      background: transparent;
-      border: 1px dashed var(--border);
-      border-radius: 6px;
-      color: var(--text2);
+      border: none;
       font-size: 12px;
-      font-family: 'Noto Sans JP', sans-serif;
-      cursor: pointer;
-      transition: all 0.2s;
-      margin-top: 6px;
+      color: var(--gray-500);
+      resize: none;
+      outline: none;
+      background: transparent;
+      line-height: 1.6;
+      font-family: inherit;
+      min-height: 34px;
     }
 
-    .add-page-btn:hover {
-      border-color: var(--accent);
-      color: var(--accent);
+    .pe-desc::placeholder {
+      color: var(--gray-300);
     }
 
-    /* CANVAS */
-    .canvas-area {
+    .pe-children {
+      padding: 4px 8px 8px 16px;
+      border-top: 1px solid var(--gray-100);
       display: flex;
       flex-direction: column;
-      background: var(--bg);
-      overflow: hidden;
+      gap: 6px;
     }
 
-    .canvas-toolbar {
+    .pe-empty {
+      text-align: center;
+      color: var(--gray-400);
+      font-size: 13px;
+      padding: 36px 20px;
+      line-height: 1.8;
+    }
+
+    .add-root-bottom-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      width: 100%;
+      margin-top: 10px;
+      padding: 9px;
+      border: 1.5px dashed var(--gray-300);
+      border-radius: var(--radius);
+      background: transparent;
+      color: var(--gray-500);
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all .15s;
+      font-family: inherit;
+    }
+
+    .add-root-bottom-btn:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+      background: var(--primary-light);
+    }
+
+    /* ── AI TAB ── */
+    .ai-section {
+      margin-bottom: 20px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--gray-100);
+    }
+
+    .ai-section:last-child {
+      border-bottom: none;
+    }
+
+    .ai-section-title {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--gray-400);
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      margin-bottom: 10px;
+    }
+
+    .ai-status {
+      font-size: 12px;
+      min-height: 18px;
+      margin-top: 8px;
+    }
+
+    .kw-result {
+      margin-top: 8px;
+    }
+
+    .api-key-area {
+      padding: 10px;
+      background: var(--gray-50);
+      border: 1px solid var(--gray-200);
+      border-radius: var(--radius);
+      margin-top: 16px;
+    }
+
+    .api-key-area .form-label {
+      margin-bottom: 6px;
+    }
+
+    .api-key-row {
+      display: flex;
+      gap: 6px;
+    }
+
+    .api-key-row .form-input {
+      flex: 1;
+    }
+
+    /* ── PREVIEW ── */
+    .preview-panel {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      min-width: 0;
+    }
+
+    .preview-toolbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 8px 20px;
+      background: var(--white);
+      border-bottom: 1px solid var(--gray-200);
+      flex-shrink: 0;
+      gap: 12px;
+    }
+
+    .preview-label {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--gray-400);
+      text-transform: uppercase;
+      letter-spacing: .06em;
+    }
+
+    .preview-note {
+      font-size: 11px;
+      color: var(--gray-400);
+    }
+
+    .preview-content {
+      flex: 1;
+      overflow: auto;
+      background: #EEF6FF;
+      background-image: radial-gradient(circle at 20px 20px, rgba(37, 99, 235, .05) 2px, transparent 0);
+      background-size: 40px 40px;
+    }
+
+    /* ── SITEMAP PREVIEW ── */
+    .sm-wrap {
+      min-height: 100%;
+      padding: 28px 24px 60px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .sm-header {
+      margin-bottom: 24px;
+      padding: 20px 24px;
+      background: white;
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-md);
+      width: 100%;
+      max-width: 800px;
+    }
+
+    .sm-header-top {
       display: flex;
       align-items: center;
       gap: 10px;
-      padding: 10px 20px;
-      background: var(--surface);
-      border-bottom: 1px solid var(--border);
-      flex-wrap: wrap;
+      margin-bottom: 6px;
     }
 
-    .canvas-toolbar span {
-      font-size: 11px;
-      color: var(--text2);
-    }
-
-    .canvas-scroll {
-      flex: 1;
-      overflow: auto;
-      padding: 40px;
-    }
-
-    .canvas-scroll::-webkit-scrollbar {
-      width: 6px;
-      height: 6px;
-    }
-
-    .canvas-scroll::-webkit-scrollbar-track {
-      background: var(--bg);
-    }
-
-    .canvas-scroll::-webkit-scrollbar-thumb {
-      background: var(--border);
-      border-radius: 3px;
-    }
-
-    /* SITEMAP DIAGRAM */
-    .sitemap-wrapper {
-      min-width: 700px;
-      min-height: 400px;
-      position: relative;
-    }
-
-    .sitemap-header {
-      text-align: center;
-      margin-bottom: 40px;
-      padding: 20px;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .sitemap-header::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 3px;
-      background: var(--header-color, var(--accent));
-    }
-
-    .sitemap-title {
-      font-size: 20px;
-      font-weight: 700;
-      margin-bottom: 4px;
-    }
-
-    .sitemap-meta {
-      font-size: 12px;
-      color: var(--text2);
-    }
-
-    .tree-container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0;
-    }
-
-    /* Level rows */
-    .level-row {
-      display: flex;
-      justify-content: center;
-      gap: 16px;
-      position: relative;
-      width: 100%;
-      margin-bottom: 0;
-    }
-
-    .node-wrapper {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      position: relative;
-    }
-
-    .connector-v {
-      width: 2px;
-      height: 30px;
-      background: var(--border);
-    }
-
-    .connector-h-container {
-      position: relative;
-      display: flex;
-      align-items: flex-start;
-      justify-content: center;
-      width: 100%;
-      margin-bottom: 0;
-    }
-
-    .connector-h {
-      height: 2px;
-      background: var(--border);
-      position: absolute;
-      top: 0;
-    }
-
-    .node {
-      min-width: 130px;
-      max-width: 160px;
-      padding: 10px 14px;
-      border-radius: 8px;
-      border: 1.5px solid;
-      text-align: center;
-      cursor: pointer;
-      transition: all 0.2s;
-      position: relative;
-    }
-
-    .node:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 20px #0006;
-    }
-
-    .node.selected {
-      box-shadow: 0 0 0 2px white, 0 8px 20px #0006;
-    }
-
-    .node-icon {
+    .sm-site-name {
       font-size: 18px;
-      margin-bottom: 4px;
+      font-weight: 800;
+      color: var(--gray-900);
+      letter-spacing: -.02em;
     }
 
-    .node-label {
-      font-size: 12px;
-      font-weight: 500;
-    }
-
-    .node-type {
-      font-size: 10px;
-      opacity: 0.6;
-      margin-top: 2px;
-    }
-
-    .node-price {
-      font-size: 10px;
-      margin-top: 4px;
-      opacity: 0.8;
-      font-family: 'Space Mono', monospace;
-    }
-
-    /* Level 0 = root */
-    .node-l0 {
-      min-width: 160px;
-      padding: 14px 20px;
-      border-radius: 10px;
-    }
-
-
-    .node-l2 {
-      min-width: 110px;
-      padding: 8px 10px;
-    }
-
-    .node-l2 .node-label {
+    .sm-badge {
+      padding: 3px 12px;
+      border-radius: 999px;
       font-size: 11px;
-    }
-
-    /* TREE NODES */
-    .tree-wrap {
-      padding: 8px 0 40px;
-    }
-
-    .tree-node {
-      position: relative;
-    }
-
-    .tree-card {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 9px 14px;
-      background: #fff;
-      border: 1.5px solid #e2e4eb;
-      border-radius: 999px;
-      font-size: 13px;
-      font-weight: 600;
-      color: var(--text);
-      cursor: pointer;
-      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.07);
-      transition: box-shadow 0.15s, border-color 0.15s;
-      white-space: nowrap;
-      position: relative;
-      z-index: 1;
-    }
-
-    .tree-card:hover {
-      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.12);
-    }
-
-    .tree-card.selected {
-      border-color: var(--accent);
-      box-shadow: 0 0 0 3px rgba(91, 82, 232, 0.15);
-    }
-
-    .tree-card.level-0 {
-      border-color: var(--accent);
-      background: #f5f4ff;
-      font-size: 14px;
-    }
-
-    .tree-card .card-icon {
-      font-size: 16px;
-    }
-
-    .tree-card .card-name {
-      flex: 1;
-    }
-
-    .tree-card .card-badge {
-      font-size: 10px;
       font-weight: 700;
-      padding: 2px 7px;
-      border-radius: 999px;
-      background: #f0f0f8;
-      color: #888;
+      letter-spacing: .04em;
+      background: var(--primary-light);
+      color: var(--primary);
     }
 
-    .tree-card.level-0 .card-badge {
-      background: #e8e6ff;
-      color: var(--accent);
+    .sm-meta {
+      font-size: 12px;
+      color: var(--gray-400);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 4px;
     }
 
-    .tree-card.level-1 .card-badge {
-      background: #e6f7ef;
-      color: #1dab60;
+    .sm-note {
+      margin-top: 6px;
+      font-size: 11px;
+      color: var(--gray-400);
+      display: flex;
+      align-items: center;
+      gap: 4px;
     }
 
-    .tree-card.level-2 .card-badge {
-      background: #fde8ee;
-      color: #e8406b;
+    /* ── TREE ── */
+    .sm-tree {
+      width: 100%;
     }
 
-    /* 接続線 */
-    .tree-children {
+    .sm-tree ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      padding-left: 22px;
       position: relative;
-      margin-left: 28px;
-      padding-left: 20px;
-      border-left: 2px solid #e2e4eb;
-      margin-top: 0;
     }
 
-    .tree-child-item {
-      position: relative;
-      margin-top: 8px;
-    }
-
-    .tree-child-item::before {
+    .sm-tree ul::before {
       content: '';
       position: absolute;
-      left: -20px;
-      top: 50%;
-      width: 18px;
-      height: 2px;
-      background: #e2e4eb;
+      left: 0;
+      top: 0;
+      bottom: 14px;
+      width: 2px;
+      background: var(--sm-line, #BFDBFE);
+      border-radius: 1px;
     }
 
-    .tree-l0-wrap {
+    .sm-tree li {
+      position: relative;
       margin-bottom: 8px;
     }
 
-    .tree-l1-wrap {
-      margin-top: 8px;
+    .sm-tree li::before {
+      content: '';
+      position: absolute;
+      left: -22px;
+      top: 19px;
+      width: 18px;
+      height: 2px;
+      background: var(--sm-line, #BFDBFE);
     }
 
-    /* SITEMAP HEADER - light */
-    .sitemap-header {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 18px 22px;
-      margin-bottom: 28px;
-      border-top: 4px solid var(--header-color, var(--accent));
+    .sm-tree>ul::before {
+      display: none;
+    }
+
+    .sm-tree>ul>li::before {
+      display: none;
+    }
+
+    .sm-node-card {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 16px;
+      background: white;
+      border-radius: 10px;
       box-shadow: var(--shadow);
+      cursor: pointer;
+      border-left: 4px solid var(--sm-color, var(--primary));
+      transition: all .18s;
+      min-width: 140px;
+      max-width: 400px;
+      user-select: none;
     }
 
-    .sitemap-title {
-      font-size: 18px;
-      font-weight: 700;
-      color: var(--text);
-      margin-bottom: 4px;
+    .sm-node-card:hover {
+      transform: translateX(3px);
+      box-shadow: var(--shadow-md);
     }
 
-    .sitemap-meta {
-      font-size: 12px;
-      color: var(--text2);
+    .sm-node-icon {
+      font-size: 17px;
+      flex-shrink: 0;
     }
 
-    /* NODE overrides for light */
-    .node {
-      box-shadow: var(--shadow);
+    .sm-node-name {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--gray-900);
+      flex: 1;
     }
 
-    .node:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+    .sm-node-desc-hint {
+      font-size: 10px;
+      color: var(--gray-400);
+      white-space: nowrap;
     }
 
-    .node.selected {
-      box-shadow: 0 0 0 2px var(--text), 0 6px 16px rgba(0, 0, 0, 0.12);
+    .sm-toggle {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: var(--gray-100);
+      border: none;
+      cursor: pointer;
+      font-size: 9px;
+      color: var(--gray-500);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: all .15s;
     }
 
-    .empty-state {
+    .sm-toggle:hover {
+      background: var(--gray-200);
+    }
+
+    .sm-toggle.open {
+      background: var(--sm-color, var(--primary));
+      color: white;
+    }
+
+    .sm-node-children {
+      margin-top: 6px;
+      overflow: hidden;
+    }
+
+    .sm-tree>ul>li>.sm-node-card {
+      padding: 13px 20px;
+      border-radius: 12px;
+      border-left-width: 5px;
+    }
+
+    .sm-tree>ul>li>.sm-node-card .sm-node-name {
+      font-size: 15px;
+    }
+
+    .sm-tree>ul>li>.sm-node-card .sm-node-icon {
+      font-size: 20px;
+    }
+
+    .sm-empty {
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      height: 300px;
+      padding: 60px 20px;
+      color: var(--gray-400);
+      text-align: center;
+      gap: 10px;
+    }
+
+    .sm-empty .empty-icon {
+      font-size: 40px;
+      opacity: .4;
+    }
+
+    .sm-empty p {
+      font-size: 13px;
+      line-height: 1.9;
+    }
+
+    /* ── OVERLAYS ── */
+    .overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, .45);
+      display: none;
+      align-items: flex-start;
+      justify-content: center;
+      z-index: 1000;
+      padding: 20px;
+      backdrop-filter: blur(3px);
+    }
+
+    .overlay.show {
+      display: flex;
+    }
+
+    .overlay-box {
+      background: white;
+      border-radius: 16px;
+      padding: 22px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, .2);
+      max-width: 360px;
+      width: 90%;
+      max-height: calc(100vh - 40px);
+      overflow-y: auto;
+      margin-top: 40px;
+    }
+
+    .overlay-title {
+      font-size: 15px;
+      font-weight: 700;
+      margin-bottom: 14px;
+      color: var(--gray-900);
+    }
+
+    .overlay-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 8px;
+      margin-top: 16px;
+    }
+
+    /* icon picker */
+    .icon-grid {
+      display: grid;
+      grid-template-columns: repeat(8, 1fr);
+      gap: 5px;
+    }
+
+    .icon-option {
+      aspect-ratio: 1;
+      border: 1px solid transparent;
+      border-radius: 7px;
+      background: transparent;
+      font-size: 19px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all .12s;
+    }
+
+    .icon-option:hover {
+      background: var(--gray-100);
+      border-color: var(--gray-200);
+    }
+
+    .icon-option.selected {
+      background: var(--primary-light);
+      border-color: var(--primary);
+    }
+
+    /* sample modal */
+    .sample-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 4px;
+    }
+
+    .sample-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      padding: 16px 10px 12px;
+      border: 2px solid var(--gray-200);
+      border-radius: var(--radius-lg);
+      background: transparent;
+      cursor: pointer;
+      transition: all .15s;
+      text-align: center;
+      font-family: inherit;
+      width: 100%;
+    }
+
+    .sample-card:hover {
+      border-color: var(--primary);
+      background: var(--primary-light);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(37, 99, 235, .12);
+    }
+
+    .sc-icon {
+      font-size: 26px;
+      line-height: 1;
+    }
+
+    .sc-name {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--gray-900);
+    }
+
+    .sc-desc {
+      font-size: 11px;
+      color: var(--gray-400);
+      line-height: 1.4;
+    }
+
+    /* detail modal */
+    .dm-header {
+      display: flex;
+      align-items: flex-start;
       gap: 12px;
-      color: var(--text2);
+      margin-bottom: 14px;
     }
 
-    .empty-icon {
-      font-size: 48px;
-      opacity: 0.3;
+    .dm-icon {
+      font-size: 30px;
+      flex-shrink: 0;
+      line-height: 1;
     }
 
-    .empty-text {
-      font-size: 14px;
+    .dm-desc-box {
+      background: var(--gray-50);
+      border-radius: var(--radius);
+      padding: 12px 14px;
+      font-size: 13px;
+      color: var(--gray-500);
+      line-height: 1.8;
+      min-height: 50px;
+      white-space: pre-wrap;
     }
 
-    .empty-sub {
-      font-size: 12px;
-      opacity: 0.6;
-    }
-
-    /* TOAST */
+    /* ── TOAST ── */
     .toast {
       position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background: var(--surface2);
-      border: 1px solid var(--accent);
-      color: var(--text);
-      padding: 12px 18px;
-      border-radius: 8px;
+      bottom: 32px;
+      right: 24px;
+      padding: 11px 17px;
+      background: var(--gray-900);
+      color: white;
+      border-radius: var(--radius);
       font-size: 13px;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transform: translateY(80px);
       opacity: 0;
-      transform: translateY(10px);
-      transition: all 0.3s;
-      z-index: 100;
+      transition: all .3s cubic-bezier(.34, 1.56, .64, 1);
+      z-index: 2000;
       pointer-events: none;
     }
 
     .toast.show {
-      opacity: 1;
       transform: translateY(0);
-    }
-
-    /* MODAL */
-    .modal-overlay {
-      position: fixed;
-      inset: 0;
-      background: #0009;
-      z-index: 200;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.2s;
-    }
-
-    .modal-overlay.show {
       opacity: 1;
-      pointer-events: auto;
     }
 
-    .modal {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 24px;
-      width: 420px;
-      max-width: 90vw;
-      transform: scale(0.95);
-      transition: transform 0.2s;
-    }
+    /* ── PRINT ── */
+    @media print {
 
-    .modal-overlay.show .modal {
-      transform: scale(1);
-    }
-
-    .modal-title {
-      font-size: 16px;
-      font-weight: 700;
-      margin-bottom: 16px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .modal-actions {
-      display: flex;
-      gap: 8px;
-      justify-content: flex-end;
-      margin-top: 16px;
-    }
-
-    /* STATS BAR */
-    .stats-bar {
-      display: flex;
-      gap: 20px;
-      padding: 8px 20px;
-      background: var(--surface);
-      border-top: 1px solid var(--border);
-    }
-
-    .stat {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 11px;
-      color: var(--text2);
-    }
-
-    .stat strong {
-      color: var(--text);
-      font-family: 'Space Mono', monospace;
-    }
-
-    /* LOADING */
-    .loading-dots {
-      display: inline-flex;
-      gap: 4px;
-      align-items: center;
-    }
-
-    .loading-dots span {
-      width: 5px;
-      height: 5px;
-      background: var(--accent);
-      border-radius: 50%;
-      animation: bounce 0.8s infinite;
-    }
-
-    .loading-dots span:nth-child(2) {
-      animation-delay: 0.15s;
-    }
-
-    .loading-dots span:nth-child(3) {
-      animation-delay: 0.3s;
-    }
-
-    @keyframes bounce {
-
-      0%,
-      80%,
-      100% {
-        transform: scale(0.6);
-        opacity: 0.4;
+      .app-header,
+      .sidebar,
+      .preview-toolbar,
+      .toast,
+      .overlay {
+        display: none !important
       }
 
-      40% {
-        transform: scale(1);
-        opacity: 1;
-      }
-    }
-
-    /* PAGE DETAIL PANEL */
-    .detail-panel {
-      position: absolute;
-      right: 20px;
-      top: 60px;
-      width: 240px;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 14px;
-      z-index: 10;
-      box-shadow: 0 10px 30px #0006;
-      opacity: 0;
-      transform: translateX(20px);
-      pointer-events: none;
-      transition: all 0.2s;
-    }
-
-    .detail-panel.show {
-      opacity: 1;
-      transform: translateX(0);
-      pointer-events: auto;
-    }
-
-    .detail-panel-title {
-      font-size: 12px;
-      font-weight: 700;
-      margin-bottom: 12px;
-      color: var(--accent);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .detail-close {
-      background: none;
-      border: none;
-      color: var(--text2);
-      cursor: pointer;
-      font-size: 16px;
-    }
-
-    .detail-close:hover {
-      color: var(--text);
-    }
-
-    @media (max-width: 700px) {
-      .main {
-        grid-template-columns: 1fr;
+      .preview-content {
+        background: white !important;
+        overflow: visible !important
       }
 
-      .sidebar {
-        height: 50vh;
-        border-right: none;
-        border-bottom: 1px solid var(--border);
+      .sm-wrap {
+        padding: 20px !important
+      }
+
+      .sm-node-card {
+        box-shadow: none !important;
+        border-radius: 6px !important
+      }
+
+      .sm-node-children {
+        display: block !important;
+        overflow: visible !important
       }
     }
   </style>
@@ -976,793 +1020,687 @@
 <body>
 
   <!-- HEADER -->
-  <header>
-    <div style="display:flex;align-items:center;gap:12px">
-      <div class="logo">SiteMap Studio <span>β v1.0</span></div>
-      <div class="ai-badge">AI搭載</div>
+  <header class="app-header">
+    <div class="header-brand">
+      <h1>SiteMap Studio</h1>
+      <span class="brand-badge">AI搭載</span>
+      <span class="brand-ver">β v1.1</span>
     </div>
     <div class="header-actions">
-      <button class="btn btn-ghost" onclick="loadSample()">📂 サンプル</button>
+      <button class="btn btn-ghost" onclick="openSampleModal()">📂 サンプル</button>
       <button class="btn btn-ghost" onclick="resetAll()">🔄 リセット</button>
-      <button class="btn btn-ghost" onclick="exportHTML()">⬇️ HTML保存</button>
-      <button class="btn btn-success" onclick="exportXML()">🗂️ XML出力</button>
-      <button class="btn btn-primary" onclick="printPDF()">🖨️ PDF保存</button>
+      <button class="btn btn-ghost" onclick="printPDF()">🖨️ PDF保存</button>
+      <button class="btn btn-ghost" onclick="exportXML()">🗂️ XML出力</button>
+      <button class="btn btn-primary" onclick="exportHTML()">⬇️ HTML保存</button>
     </div>
   </header>
 
-  <!-- MAIN -->
-  <div class="main">
+  <!-- BODY -->
+  <div class="app-body">
 
     <!-- SIDEBAR -->
-    <div class="sidebar">
+    <aside class="sidebar">
       <div class="sidebar-tabs">
-        <button class="tab active" onclick="switchTab('pages', this)">📑 ページ構成</button>
-        <button class="tab" onclick="switchTab('settings', this)">⚙️ 設定</button>
-        <button class="tab" onclick="switchTab('ai', this)">✦ AI生成</button>
+        <button class="sidebar-tab active" onclick="switchTab('pages',this)">📑 ページ構成</button>
+        <button class="sidebar-tab" onclick="switchTab('settings',this)">⚙️ 設定</button>
+        <button class="sidebar-tab" onclick="switchTab('ai',this)">✦ AI生成</button>
       </div>
+      <div class="sidebar-body">
 
-      <!-- PAGES TAB -->
-      <div id="tab-pages" class="sidebar-content">
-        <div class="section-label">ページ一覧</div>
-        <div class="page-list" id="page-list"></div>
-        <button class="add-page-btn" onclick="openAddModal()">＋ ページを追加</button>
-
-        <div class="section-label" style="margin-top:20px">階層の目安</div>
-        <div style="display:flex;flex-direction:column;gap:6px">
-          <div style="display:flex;align-items:center;gap:8px;font-size:11px;color:var(--text2)">
-            <span style="width:12px;height:12px;background:#6c63ff;border-radius:2px;display:inline-block"></span> L0 =
-            トップ（1ページのみ）
+        <!-- TAB: ページ構成 -->
+        <div id="tab-pages">
+          <div class="pages-header">
+            <div class="form-section-title">ページ一覧　<span id="page-count"
+                style="font-weight:400;color:var(--gray-400)"></span></div>
+            <button class="add-root-btn" onclick="addRoot()">＋ ページを追加</button>
           </div>
-          <div style="display:flex;align-items:center;gap:8px;font-size:11px;color:var(--text2)">
-            <span style="width:12px;height:12px;background:#43e97b;border-radius:2px;display:inline-block"></span> L1 =
-            メインメニュー
+          <div id="pe-list" class="pe-list">
+            <div class="pe-empty">まだページがありません<br>「＋ ページを追加」から<br>始めましょう</div>
           </div>
-          <div style="display:flex;align-items:center;gap:8px;font-size:11px;color:var(--text2)">
-            <span style="width:12px;height:12px;background:#ff6584;border-radius:2px;display:inline-block"></span> L2 =
-            サブページ
-          </div>
-        </div>
-      </div>
-
-      <!-- SETTINGS TAB -->
-      <div id="tab-settings" class="sidebar-content" style="display:none">
-        <div class="section-label">プロジェクト情報</div>
-        <div class="form-group">
-          <label>サイト名</label>
-          <input type="text" id="site-name" placeholder="〇〇株式会社 コーポレートサイト" oninput="renderCanvas()">
-        </div>
-        <div class="form-group">
-          <label>クライアント名</label>
-          <input type="text" id="client-name" placeholder="〇〇株式会社" oninput="renderCanvas()">
-        </div>
-        <div class="form-group">
-          <label>制作会社名</label>
-          <input type="text" id="agency-name" placeholder="Sanc-Official" oninput="renderCanvas()">
-        </div>
-        <div class="form-group">
-          <label>作成日</label>
-          <input type="date" id="created-date" oninput="renderCanvas()">
-        </div>
-        <div class="form-group">
-          <label>備考・メモ</label>
-          <textarea id="memo" placeholder="提案の補足・注意事項など" oninput="renderCanvas()"></textarea>
+          <button class="add-root-bottom-btn" id="add-bottom" onclick="addRoot()" style="display:none">＋ ページを追加</button>
         </div>
 
-        <div class="section-label">テーマカラー</div>
-        <div class="color-swatches" id="color-swatches"></div>
-
-        <div class="section-label" style="margin-top:20px">表示オプション</div>
-        <div class="form-group">
-          <label style="display:flex;align-items:center;gap:8px;cursor:pointer">
-            <input type="checkbox" id="show-price" onchange="renderCanvas()" style="width:auto">
-            ページ単価を表示
-          </label>
-        </div>
-        <div class="form-group">
-          <label style="display:flex;align-items:center;gap:8px;cursor:pointer">
-            <input type="checkbox" id="show-icons" checked onchange="renderCanvas()" style="width:auto">
-            アイコンを表示
-          </label>
-        </div>
-      </div>
-
-      <!-- AI TAB -->
-      <div id="tab-ai" class="sidebar-content" style="display:none">
-        <div class="ai-panel">
-          <div class="ai-panel-title">✦ AIでページ構成を自動生成</div>
-          <div class="form-group">
-            <label>業種 / サイトタイプ</label>
-            <select id="ai-type">
-              <option value="">選択してください</option>
-              <option value="corp">コーポレートサイト</option>
-              <option value="clinic">医療クリニック</option>
-              <option value="ec">ECサイト</option>
-              <option value="recruit">採用サイト</option>
-              <option value="portfolio">ポートフォリオ</option>
-              <option value="restaurant">飲食店</option>
-              <option value="accounting">会計・士業事務所</option>
-              <option value="construction">建設・工務店</option>
-              <option value="rental">民泊・宿泊施設</option>
-            </select>
+        <!-- TAB: 設定 -->
+        <div id="tab-settings" style="display:none">
+          <div class="form-section">
+            <div class="form-section-title">サイト情報</div>
+            <div class="form-field">
+              <label class="form-label">サイト名</label>
+              <input id="f-sitename" class="form-input" type="text" placeholder="例：〇〇クリニック 採用サイト"
+                oninput="renderPreview()">
+            </div>
+            <div class="form-field">
+              <label class="form-label">クライアント名</label>
+              <input id="f-client" class="form-input" type="text" placeholder="例：〇〇クリニック" oninput="renderPreview()">
+            </div>
+            <div class="form-field">
+              <label class="form-label">作成日</label>
+              <input id="f-date" class="form-input" type="date" oninput="renderPreview()">
+            </div>
+            <div class="form-field">
+              <label class="form-label">制作会社名（任意）</label>
+              <input id="f-agency" class="form-input" type="text" placeholder="例：Sanc-Official"
+                oninput="renderPreview()">
+            </div>
           </div>
-          <div class="ai-input-row">
-            <input type="text" id="ai-keyword" placeholder="キーワード（例：眼科 採用）">
+          <div class="form-section">
+            <div class="form-section-title">テーマカラー</div>
+            <div class="color-row" id="color-chips"></div>
           </div>
-          <button class="btn btn-primary" style="width:100%;margin-top:4px" onclick="generateAI()">
-            ✦ 構成を自動生成
-          </button>
-          <p class="ai-hint" style="margin-top:8px">業種を選ぶだけで最適なページ構成が生成されます</p>
-        </div>
-
-        <!-- API KEY SETTING -->
-        <div class="section-label">🔑 Gemini API キー設定</div>
-        <div class="form-group">
-          <label>Google Gemini API Key</label>
-          <div style="display:flex;gap:6px">
-            <input type="password" id="api-key" placeholder="AIza..." style="flex:1">
-            <button class="btn btn-ghost" onclick="saveApiKey()" style="padding:7px 10px;flex-shrink:0">保存</button>
+          <div class="form-section">
+            <div class="form-section-title">メモ</div>
+            <textarea id="f-note" class="form-input" rows="3" placeholder="例：このサイトマップは提案資料です。内容は変更になる場合があります。"
+              oninput="renderPreview()" style="resize:vertical;line-height:1.6;font-size:13px"></textarea>
           </div>
-          <div style="font-size:10px;color:var(--text2);margin-top:4px">
-            取得先：<a href="https://aistudio.google.com" target="_blank"
-              style="color:var(--accent)">aistudio.google.com</a>
-            （無料）｜このブラウザにのみ保存されます。
+          <div class="api-key-area">
+            <div class="form-label">🔑 Gemini API キー</div>
+            <div class="api-key-row">
+              <input type="password" id="api-key" class="form-input" placeholder="AIza...">
+              <button class="btn btn-ghost" onclick="saveApiKey()">保存</button>
+            </div>
+            <div id="api-key-status" style="font-size:11px;color:var(--gray-400);margin-top:5px">
+              取得先：<a href="https://aistudio.google.com" target="_blank"
+                style="color:var(--primary)">aistudio.google.com</a>（無料）
+            </div>
           </div>
         </div>
-        <div id="api-key-status" style="font-size:11px;color:var(--text2);margin-bottom:12px"></div>
 
-        <!-- URL SCAN -->
-        <div class="section-label">🔗 URLからサイト構成を読み込み</div>
-        <div class="form-group">
-          <label>既存サイトのURL</label>
-          <input type="text" id="scan-url" placeholder="https://example.com">
+        <!-- TAB: AI生成 -->
+        <div id="tab-ai" style="display:none">
+          <!-- URLスキャン -->
+          <div class="ai-section">
+            <div class="ai-section-title">🌐 URLスキャン</div>
+            <div class="form-field">
+              <input id="scan-url" class="form-input" type="url" placeholder="https://example.com">
+            </div>
+            <button class="btn btn-primary" style="width:100%" onclick="scanURL()">🌐 URLをスキャン</button>
+            <div id="scan-status" class="ai-status"></div>
+          </div>
+          <!-- テンプレート -->
+          <div class="ai-section">
+            <div class="ai-section-title">🏗️ テンプレート生成</div>
+            <div class="form-field">
+              <select id="ai-type" class="form-select">
+                <option value="">業種を選択</option>
+                <option value="corp">コーポレートサイト</option>
+                <option value="clinic">医療クリニック</option>
+                <option value="recruit">採用サイト</option>
+                <option value="accounting">会計事務所</option>
+                <option value="construction">建設・工務店</option>
+                <option value="rental">民泊・レンタル</option>
+                <option value="ec">ECサイト</option>
+                <option value="portfolio">ポートフォリオ</option>
+                <option value="restaurant">飲食・カフェ</option>
+              </select>
+            </div>
+            <button class="btn btn-ghost" style="width:100%;border-color:var(--primary);color:var(--primary)"
+              onclick="generateTemplate()">✦ テンプレートを生成</button>
+          </div>
+          <!-- キーワード提案 -->
+          <div class="ai-section">
+            <div class="ai-section-title">🔍 SEOキーワード提案</div>
+            <div class="form-field">
+              <input id="kw-target" class="form-input" type="text" placeholder="例：眼科クリニック 採用サイト">
+            </div>
+            <button class="btn btn-ghost" style="width:100%;border-color:var(--primary);color:var(--primary)"
+              onclick="suggestKeywords()">✦ キーワードを提案</button>
+            <div id="kw-result" class="kw-result"></div>
+          </div>
         </div>
-        <button class="btn btn-primary" style="width:100%" onclick="scanURL()">
-          🌐 URLをスキャン
-        </button>
-        <div id="scan-status" style="font-size:11px;color:var(--text2);margin-top:8px;line-height:1.6"></div>
 
-        <!-- KEYWORD -->
-        <div class="section-label" style="margin-top:16px">📊 SEOキーワード提案</div>
-        <div class="form-group">
-          <label>対象ページ or テーマ</label>
-          <input type="text" id="kw-target" placeholder="例：眼科クリニック 採用ページ">
-        </div>
-        <button class="btn btn-primary" style="width:100%" onclick="suggestKeywords()">
-          🔍 キーワードをAI提案
-        </button>
-        <div id="kw-result" style="margin-top:10px"></div>
       </div>
-    </div>
+    </aside>
 
-    <!-- CANVAS -->
-    <div class="canvas-area" style="position:relative">
-      <div class="canvas-toolbar">
-        <span>プレビュー</span>
-        <div style="flex:1"></div>
-        <span id="page-count-label">0 ページ</span>
-        <span id="total-price-label"></span>
+    <!-- PREVIEW -->
+    <main class="preview-panel">
+      <div class="preview-toolbar">
+        <span class="preview-label">リアルタイムプレビュー</span>
+        <span class="preview-note">💡 ブロックをクリックで詳細確認</span>
       </div>
-      <div class="canvas-scroll">
-        <div class="sitemap-wrapper" id="canvas"></div>
+      <div class="preview-content">
+        <div id="preview-root"></div>
       </div>
-
-      <!-- DETAIL PANEL -->
-      <div class="detail-panel" id="detail-panel">
-        <div class="detail-panel-title">
-          <span>ページ詳細</span>
-          <button class="detail-close" onclick="closeDetail()">✕</button>
-        </div>
-        <div id="detail-content"></div>
-      </div>
-    </div>
-
+    </main>
   </div>
 
-  <!-- STATS BAR -->
-  <div class="stats-bar">
-    <div class="stat">総ページ数 <strong id="stat-pages">0</strong></div>
-    <div class="stat">L1 <strong id="stat-l1">0</strong></div>
-    <div class="stat">L2 <strong id="stat-l2">0</strong></div>
-    <div class="stat" id="stat-price-wrap">合計金額 <strong id="stat-price">¥0</strong></div>
+  <!-- ICON PICKER -->
+  <div id="icon-picker" class="overlay" onclick="closeIconPicker()">
+    <div class="overlay-box" onclick="event.stopPropagation()">
+      <div class="overlay-title">アイコンを選択</div>
+      <div class="icon-grid" id="icon-grid"></div>
+      <div class="overlay-actions">
+        <button class="btn btn-ghost" onclick="closeIconPicker()">キャンセル</button>
+        <button class="btn btn-primary" onclick="applyIcon()">選択</button>
+      </div>
+    </div>
   </div>
 
-  <!-- ADD PAGE MODAL -->
-  <div class="modal-overlay" id="modal-add">
-    <div class="modal">
-      <div class="modal-title">📄 ページを追加</div>
-      <div class="form-group">
-        <label>ページ名 *</label>
-        <input type="text" id="new-page-name" placeholder="例：サービス紹介">
+  <!-- SAMPLE MODAL -->
+  <div id="sample-modal" class="overlay" onclick="closeSampleModal()">
+    <div class="overlay-box" style="max-width:480px" onclick="event.stopPropagation()">
+      <div class="overlay-title">📂 サンプルを選択</div>
+      <p style="font-size:12px;color:var(--gray-400);margin-bottom:14px">業種を選ぶとサンプル構成を読み込みます</p>
+      <div class="sample-grid">
+        <button class="sample-card" onclick="loadSample('corp')"><span class="sc-icon">🏢</span><span
+            class="sc-name">コーポレート</span><span class="sc-desc">企業情報・サービス・採用</span></button>
+        <button class="sample-card" onclick="loadSample('clinic')"><span class="sc-icon">🏥</span><span
+            class="sc-name">医療クリニック</span><span class="sc-desc">診療案内・医師・予約</span></button>
+        <button class="sample-card" onclick="loadSample('recruit')"><span class="sc-icon">🚀</span><span
+            class="sc-name">採用サイト</span><span class="sc-desc">職種・インタビュー・エントリー</span></button>
+        <button class="sample-card" onclick="loadSample('accounting')"><span class="sc-icon">📊</span><span
+            class="sc-name">会計事務所</span><span class="sc-desc">サービス・スタッフ・相談</span></button>
+        <button class="sample-card" onclick="loadSample('construction')"><span class="sc-icon">🏗️</span><span
+            class="sc-name">建設・工務店</span><span class="sc-desc">施工事例・サービス</span></button>
+        <button class="sample-card" onclick="loadSample('rental')"><span class="sc-icon">🏡</span><span
+            class="sc-name">民泊・レンタル</span><span class="sc-desc">施設・予約・アクセス</span></button>
+        <button class="sample-card" onclick="loadSample('portfolio')"><span class="sc-icon">🎨</span><span
+            class="sc-name">ポートフォリオ</span><span class="sc-desc">作品集・プロフィール</span></button>
+        <button class="sample-card" onclick="loadSample('restaurant')"><span class="sc-icon">🍽️</span><span
+            class="sc-name">飲食・カフェ</span><span class="sc-desc">メニュー・予約・店舗情報</span></button>
       </div>
-      <div class="form-group">
-        <label>アイコン（絵文字）</label>
-        <input type="text" id="new-page-icon" placeholder="例：🏠" maxlength="4">
+      <div class="overlay-actions" style="margin-top:10px">
+        <button class="btn btn-ghost" onclick="closeSampleModal()">キャンセル</button>
       </div>
-      <div class="form-group">
-        <label>階層</label>
-        <select id="new-page-level">
-          <option value="1">L1 メインメニュー</option>
-          <option value="2">L2 サブページ</option>
-        </select>
+    </div>
+  </div>
+
+  <!-- DETAIL MODAL -->
+  <div id="detail-modal" class="overlay" onclick="closeDetailModal()">
+    <div class="overlay-box" style="max-width:420px" onclick="event.stopPropagation()">
+      <div class="dm-header">
+        <span class="dm-icon" id="dm-icon"></span>
+        <div>
+          <div style="font-size:11px;color:var(--gray-400);margin-bottom:3px">掲載コンテンツ</div>
+          <div id="dm-title" style="font-size:16px;font-weight:700;color:var(--gray-900)"></div>
+        </div>
       </div>
-      <div class="form-group">
-        <label>種別</label>
-        <select id="new-page-type">
-          <option value="通常">通常ページ</option>
-          <option value="LP">LP</option>
-          <option value="フォーム">フォーム</option>
-          <option value="ブログ">ブログ</option>
-          <option value="外部リンク">外部リンク</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label>制作単価（円）</label>
-        <input type="number" id="new-page-price" placeholder="例：50000">
-      </div>
-      <div class="form-group">
-        <label>メモ・SEOキーワード</label>
-        <textarea id="new-page-memo" placeholder="ページの目的やキーワードなど"></textarea>
-      </div>
-      <div class="modal-actions">
-        <button class="btn btn-ghost" onclick="closeModal('modal-add')">キャンセル</button>
-        <button class="btn btn-primary" onclick="addPage()">追加する</button>
+      <div id="dm-desc" class="dm-desc-box"></div>
+      <div class="overlay-actions">
+        <button class="btn btn-ghost" onclick="closeDetailModal()">閉じる</button>
       </div>
     </div>
   </div>
 
   <!-- TOAST -->
-  <div class="toast" id="toast"></div>
+  <div id="toast" class="toast"></div>
 
   <script>
-    // ===== STATE =====
+    // ============================================================
+    // DATA
+    // ============================================================
     const COLORS = [
-      { id: 'purple', main: '#6c63ff', sub: '#43e97b', sub2: '#ff6584' },
-      { id: 'blue', main: '#4a9eff', sub: '#38d9a9', sub2: '#ffa94d' },
-      { id: 'green', main: '#43e97b', sub: '#4a9eff', sub2: '#ff6584' },
-      { id: 'pink', main: '#ff6584', sub: '#fcc419', sub2: '#74c0fc' },
-      { id: 'orange', main: '#ffa94d', sub: '#63e6be', sub2: '#da77f2' },
+      { name: 'ブルー', value: '#2563EB', line: '#BFDBFE' },
+      { name: 'インディゴ', value: '#4F46E5', line: '#C7D2FE' },
+      { name: 'ティール', value: '#0D9488', line: '#99F6E4' },
+      { name: 'グリーン', value: '#16A34A', line: '#BBF7D0' },
+      { name: 'パープル', value: '#7C3AED', line: '#DDD6FE' },
+      { name: 'ピンク', value: '#DB2777', line: '#FBCFE8' },
+      { name: 'オレンジ', value: '#EA580C', line: '#FED7AA' },
+      { name: 'グレー', value: '#374151', line: '#D1D5DB' },
     ];
-    const SWATCH_COLORS = ['#6c63ff', '#4a9eff', '#43e97b', '#ff6584', '#ffa94d', '#da77f2', '#f783ac', '#63e6be'];
 
-    let state = {
-      pages: [],
-      themeColor: '#2d7dd2',
-      selectedPageId: null,
-    };
+    const ICONS = [
+      '📄', '🏠', '🏢', '👥', '🛍️', '📞', '📰', '⭐',
+      '🔧', '📊', '💡', '🎯', '🏆', '❓', '📷', '🎨',
+      '🌐', '📱', '💼', '🔑', '📍', '✉️', '🗂️', '📋',
+      '🔍', '📈', '💬', '🎁', '🚀', '⚡', '🌟', '🏥',
+      '🩺', '💊', '🦷', '👁️', '🍽️', '🏗️', '🏡', '🎪',
+    ];
 
-    let nextId = 1;
-
-    // ===== TEMPLATES =====
-    const AI_TEMPLATES = {
-      corp: [
-        { icon: '🏠', name: 'ホーム', level: 0, type: '通常' },
-        { icon: '🏢', name: '会社概要', level: 1, type: '通常' },
-        { icon: '💼', name: 'サービス', level: 1, type: '通常' },
-        { icon: '📰', name: 'お知らせ', level: 1, type: 'ブログ' },
-        { icon: '📞', name: 'お問い合わせ', level: 1, type: 'フォーム' },
-        { icon: '👥', name: '採用情報', level: 1, type: '通常' },
-        { icon: '📜', name: '沿革', level: 2, type: '通常' },
-        { icon: '👤', name: '代表挨拶', level: 2, type: '通常' },
-        { icon: '⭐', name: 'サービス詳細A', level: 2, type: 'LP' },
-        { icon: '⭐', name: 'サービス詳細B', level: 2, type: 'LP' },
-        { icon: '💡', name: '実績・事例', level: 2, type: '通常' },
-        { icon: '📋', name: 'プライバシーポリシー', level: 2, type: '通常' },
-      ],
-      clinic: [
-        { icon: '🏥', name: 'ホーム', level: 0, type: '通常' },
-        { icon: '🔬', name: '診療案内', level: 1, type: '通常' },
-        { icon: '👨‍⚕️', name: '医師紹介', level: 1, type: '通常' },
-        { icon: '🏨', name: 'クリニック案内', level: 1, type: '通常' },
-        { icon: '📅', name: 'ご予約', level: 1, type: 'フォーム' },
-        { icon: '📰', name: 'お知らせ', level: 1, type: 'ブログ' },
-        { icon: '💬', name: '患者様へ', level: 1, type: '通常' },
-        { icon: '👁️', name: '一般眼科', level: 2, type: '通常' },
-        { icon: '👓', name: 'コンタクト', level: 2, type: '通常' },
-        { icon: '🔭', name: 'レーシック', level: 2, type: 'LP' },
-        { icon: '🗺️', name: 'アクセス・地図', level: 2, type: '通常' },
-        { icon: '📋', name: '初診の方へ', level: 2, type: '通常' },
-      ],
-      recruit: [
-        { icon: '🚀', name: 'TOP', level: 0, type: 'LP' },
-        { icon: '💡', name: '仕事内容', level: 1, type: '通常' },
-        { icon: '🌍', name: '企業文化', level: 1, type: '通常' },
-        { icon: '👤', name: '社員インタビュー', level: 1, type: '通常' },
-        { icon: '💰', name: '福利厚生・給与', level: 1, type: '通常' },
-        { icon: '📝', name: '募集要項', level: 1, type: '通常' },
-        { icon: '✉️', name: 'エントリー', level: 1, type: 'フォーム' },
-        { icon: '💼', name: '職種A', level: 2, type: '通常' },
-        { icon: '💼', name: '職種B', level: 2, type: '通常' },
-        { icon: '🗣️', name: '先輩社員Aの声', level: 2, type: '通常' },
-        { icon: '🗣️', name: '先輩社員Bの声', level: 2, type: '通常' },
-      ],
-      accounting: [
-        { icon: '🏦', name: 'ホーム', level: 0, type: '通常' },
-        { icon: '📊', name: 'サービス', level: 1, type: '通常' },
-        { icon: '🏢', name: '事務所紹介', level: 1, type: '通常' },
-        { icon: '👨‍💼', name: 'スタッフ紹介', level: 1, type: '通常' },
-        { icon: '📰', name: 'お知らせ', level: 1, type: 'ブログ' },
-        { icon: '📞', name: 'お問い合わせ', level: 1, type: 'フォーム' },
-        { icon: '💹', name: '税務顧問', level: 2, type: 'LP' },
-        { icon: '📋', name: '記帳代行', level: 2, type: 'LP' },
-        { icon: '🏗️', name: '相続・贈与', level: 2, type: 'LP' },
-        { icon: '🔢', name: '料金案内', level: 2, type: '通常' },
-      ],
-      construction: [
-        { icon: '🏗️', name: 'ホーム', level: 0, type: '通常' },
-        { icon: '🔨', name: '施工事例', level: 1, type: '通常' },
-        { icon: '🏠', name: 'サービス', level: 1, type: '通常' },
-        { icon: '🏢', name: '会社案内', level: 1, type: '通常' },
-        { icon: '📰', name: 'ブログ', level: 1, type: 'ブログ' },
-        { icon: '📞', name: 'お問い合わせ', level: 1, type: 'フォーム' },
-        { icon: '🏡', name: '新築工事', level: 2, type: 'LP' },
-        { icon: '🔧', name: 'リノベーション', level: 2, type: 'LP' },
-        { icon: '🛠️', name: '外壁塗装', level: 2, type: 'LP' },
-        { icon: '💰', name: '料金・保証', level: 2, type: '通常' },
-      ],
-      rental: [
-        { icon: '🏡', name: 'TOP', level: 0, type: 'LP' },
-        { icon: '🛏️', name: 'お部屋紹介', level: 1, type: '通常' },
-        { icon: '📍', name: 'アクセス・周辺', level: 1, type: '通常' },
-        { icon: '📅', name: 'ご予約', level: 1, type: 'フォーム' },
-        { icon: '❓', name: 'よくある質問', level: 1, type: '通常' },
-        { icon: '📰', name: 'お知らせ', level: 1, type: 'ブログ' },
-        { icon: '🛋️', name: '設備・アメニティ', level: 2, type: '通常' },
-        { icon: '📷', name: 'フォトギャラリー', level: 2, type: '通常' },
-        { icon: '⭐', name: '口コミ・評価', level: 2, type: '通常' },
-        { icon: '📜', name: 'ご利用ルール', level: 2, type: '通常' },
-      ],
-      portfolio: [
-        { icon: '✨', name: 'TOP', level: 0, type: 'LP' },
-        { icon: '🎨', name: '作品集', level: 1, type: '通常' },
-        { icon: '👤', name: 'プロフィール', level: 1, type: '通常' },
-        { icon: '💼', name: '実績', level: 1, type: '通常' },
-        { icon: '📞', name: 'コンタクト', level: 1, type: 'フォーム' },
-        { icon: '🖥️', name: 'Web制作', level: 2, type: '通常' },
-        { icon: '📱', name: 'アプリ開発', level: 2, type: '通常' },
-        { icon: '🤖', name: 'AI開発', level: 2, type: '通常' },
-      ],
-      ec: [
-        { icon: '🛒', name: 'ホーム', level: 0, type: '通常' },
-        { icon: '📦', name: '商品一覧', level: 1, type: '通常' },
-        { icon: '🏷️', name: 'カテゴリ', level: 1, type: '通常' },
-        { icon: '👤', name: 'マイページ', level: 1, type: '通常' },
-        { icon: '💳', name: 'カート・決済', level: 1, type: '通常' },
-        { icon: '📞', name: 'お問い合わせ', level: 1, type: 'フォーム' },
-        { icon: '⭐', name: '新着商品', level: 2, type: '通常' },
-        { icon: '🔥', name: '人気商品', level: 2, type: '通常' },
-        { icon: '📋', name: '注文履歴', level: 2, type: '通常' },
-        { icon: '🏠', name: '住所管理', level: 2, type: '通常' },
-      ],
-      restaurant: [
-        { icon: '🍽️', name: 'ホーム', level: 0, type: '通常' },
-        { icon: '📋', name: 'メニュー', level: 1, type: '通常' },
-        { icon: '📅', name: 'ご予約', level: 1, type: 'フォーム' },
-        { icon: '🏪', name: '店舗案内', level: 1, type: '通常' },
-        { icon: '📰', name: 'お知らせ', level: 1, type: 'ブログ' },
-        { icon: '🍜', name: 'ランチメニュー', level: 2, type: '通常' },
-        { icon: '🍷', name: 'ディナーメニュー', level: 2, type: '通常' },
-        { icon: '🎂', name: 'コース', level: 2, type: '通常' },
-        { icon: '🗺️', name: 'アクセス', level: 2, type: '通常' },
-      ],
-    };
-
-    // ===== INIT =====
-    function init() {
-      // Date default
-      document.getElementById('created-date').value = new Date().toISOString().split('T')[0];
-      document.getElementById('site-name').value = '〇〇株式会社 コーポレートサイト';
-      document.getElementById('client-name').value = '〇〇株式会社';
-      document.getElementById('agency-name').value = '';
-
-      // Color swatches
-      const sw = document.getElementById('color-swatches');
-      sw.innerHTML = '';
-      SWATCH_COLORS.forEach(c => {
-        const el = document.createElement('div');
-        el.className = 'swatch' + (c === state.themeColor ? ' active' : '');
-        el.style.background = c;
-        el.onclick = () => {
-          state.themeColor = c;
-          document.documentElement.style.setProperty('--accent', c);
-          document.querySelectorAll('.swatch').forEach(s => s.classList.remove('active'));
-          el.classList.add('active');
-          renderCanvas();
-          renderPageList();
-        };
-        sw.appendChild(el);
-      });
-
-      renderPageList();
-      renderCanvas();
-
-      // APIキーが保存済みなら状態復元
-      const savedKey = getApiKey();
-      if (savedKey) {
-        document.getElementById('api-key').value = savedKey;
-        document.getElementById('api-key-status').innerHTML =
-          '<span style="color:var(--accent3)">✓ APIキー設定済み</span>';
-      }
+    let seq = 0;
+    function todayStr() {
+      const d = new Date();
+      return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+    }
+    function newPage(name = '新しいページ', icon = '📄') {
+      return { id: `p${++seq}`, name, icon, description: '', children: [] };
     }
 
-    // ===== TAB SWITCH =====
-    function switchTab(name, btn) {
-      ['pages', 'settings', 'ai'].forEach(t => {
-        document.getElementById('tab-' + t).style.display = t === name ? 'block' : 'none';
-      });
-      document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    let data = {
+      project: { name: '新しいウェブサイト', client: '', date: todayStr(), agency: '', note: '', color: COLORS[0].value, lineColor: COLORS[0].line },
+      pages: []
+    };
+
+    // ============================================================
+    // STORAGE
+    // ============================================================
+    function save() { try { localStorage.setItem('sms_v2', JSON.stringify(data)); } catch (e) { } }
+    function loadStored() {
+      try {
+        const s = localStorage.getItem('sms_v2');
+        if (s) { data = JSON.parse(s); seq = calcMaxSeq(data.pages); }
+      } catch (e) { }
+    }
+    function calcMaxSeq(pages) {
+      let m = 0;
+      for (const p of pages) {
+        const n = parseInt(p.id.slice(1));
+        if (!isNaN(n) && n > m) m = n;
+        m = Math.max(m, calcMaxSeq(p.children || []));
+      }
+      return m;
+    }
+
+    // ============================================================
+    // PAGE CRUD
+    // ============================================================
+    function findPage(nodes, id) {
+      for (let i = 0; i < nodes.length; i++) {
+        if (nodes[i].id === id) return { page: nodes[i], arr: nodes, idx: i };
+        const r = findPage(nodes[i].children || [], id);
+        if (r) return r;
+      }
+      return null;
+    }
+    function countPages(nodes) {
+      return (nodes || []).reduce((s, p) => s + 1 + countPages(p.children), 0);
+    }
+
+    function addRoot() {
+      const pg = newPage();
+      data.pages.push(pg);
+      save(); renderAll();
+      setTimeout(() => {
+        const el = document.querySelector(`[data-id="${pg.id}"] .pe-name`);
+        if (el) { el.focus(); el.select(); }
+      }, 60);
+    }
+
+    function addChild(parentId) {
+      const r = findPage(data.pages, parentId);
+      if (!r) return;
+      const pg = newPage('子ページ');
+      r.page.children.push(pg);
+      save(); renderAll();
+      setTimeout(() => {
+        const el = document.querySelector(`[data-id="${pg.id}"] .pe-name`);
+        if (el) { el.focus(); el.select(); }
+      }, 60);
+    }
+
+    function removePage(id) {
+      const r = findPage(data.pages, id);
+      if (r) { r.arr.splice(r.idx, 1); save(); renderAll(); }
+    }
+
+    function confirmDelete(id) {
+      const r = findPage(data.pages, id);
+      if (!r) return;
+      const msg = r.page.children.length
+        ? `「${r.page.name}」と子ページ（${r.page.children.length}件）を削除しますか？`
+        : `「${r.page.name}」を削除しますか？`;
+      if (confirm(msg)) removePage(id);
+    }
+
+    function moveUp(id) {
+      const r = findPage(data.pages, id);
+      if (r && r.idx > 0) { [r.arr[r.idx - 1], r.arr[r.idx]] = [r.arr[r.idx], r.arr[r.idx - 1]]; save(); renderAll(); }
+    }
+    function moveDown(id) {
+      const r = findPage(data.pages, id);
+      if (r && r.idx < r.arr.length - 1) { [r.arr[r.idx], r.arr[r.idx + 1]] = [r.arr[r.idx + 1], r.arr[r.idx]]; save(); renderAll(); }
+    }
+
+    function updateField(id, field, value) {
+      const r = findPage(data.pages, id);
+      if (r) { r.page[field] = value; save(); renderPreview(); }
+    }
+
+    // ============================================================
+    // RENDER
+    // ============================================================
+    function renderAll() { renderEditor(); renderPreview(); }
+
+    function renderEditor() {
+      const list = document.getElementById('pe-list');
+      const btn = document.getElementById('add-bottom');
+      const countEl = document.getElementById('page-count');
+      const total = countPages(data.pages);
+      if (countEl) countEl.textContent = total ? `${total}ページ` : '';
+      if (!data.pages.length) {
+        list.innerHTML = '<div class="pe-empty">まだページがありません<br>「＋ ページを追加」から<br>始めましょう</div>';
+        if (btn) btn.style.display = 'none';
+        return;
+      }
+      list.innerHTML = renderItems(data.pages);
+      if (btn) btn.style.display = 'flex';
+    }
+
+    function renderItems(pages) {
+      return pages.map((p, i) => `
+    <div class="pe-item" data-id="${p.id}">
+      <div class="pe-item-header">
+        <button class="pe-icon-btn" onclick="openIconPicker('${p.id}')" title="アイコン変更">${p.icon}</button>
+        <input class="pe-name" value="${esc(p.name)}" placeholder="ページ名"
+               oninput="updateField('${p.id}','name',this.value)">
+        <div class="pe-btns">
+          <button class="ib" title="上へ" onclick="moveUp('${p.id}')" ${i === 0 ? 'disabled' : ''}>↑</button>
+          <button class="ib" title="下へ" onclick="moveDown('${p.id}')" ${i === pages.length - 1 ? 'disabled' : ''}>↓</button>
+          <button class="ib add" title="子ページを追加" onclick="addChild('${p.id}')">＋</button>
+          <button class="ib del" title="削除" onclick="confirmDelete('${p.id}')">✕</button>
+        </div>
+      </div>
+      <div class="pe-body">
+        <textarea class="pe-desc" placeholder="掲載コンテンツの例：代表挨拶、企業理念…"
+                  oninput="updateField('${p.id}','description',this.value)">${esc(p.description || '')}</textarea>
+      </div>
+      ${p.children && p.children.length ? `<div class="pe-children">${renderItems(p.children)}</div>` : ''}
+    </div>
+  `).join('');
+    }
+
+    function esc(s) { return (s || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'); }
+
+    // ============================================================
+    // PREVIEW
+    // ============================================================
+    function renderPreview() {
+      const root = document.getElementById('preview-root');
+      const color = data.project.color || COLORS[0].value;
+      const lineColor = data.project.lineColor || COLORS[0].line;
+      const siteName = document.getElementById('f-sitename').value || data.project.name || '新しいウェブサイト';
+      const client = document.getElementById('f-client').value || data.project.client || '';
+      const dateVal = document.getElementById('f-date').value || data.project.date || '';
+      const agency = document.getElementById('f-agency').value || data.project.agency || '';
+
+      // sync back to data
+      data.project.name = siteName; data.project.client = client;
+      data.project.date = dateVal; data.project.agency = agency;
+
+      const dateDisp = dateVal.replace(/-/g, '/').replace(/(\d{4})\/(\d{2})\/(\d{2})/, '$1年$2月$3日');
+      const meta = [];
+      if (client) meta.push(`クライアント：${esc(client)}`);
+      if (dateDisp) meta.push(`作成日：${dateDisp}`);
+      if (agency) meta.push(`制作：${esc(agency)}`);
+
+      root.innerHTML = `
+    <div class="sm-wrap" style="--sm-color:${color};--sm-line:${lineColor}">
+      <div class="sm-header">
+        <div class="sm-header-top">
+          <div class="sm-site-name">${esc(siteName)}</div>
+          <span class="sm-badge" style="background:${color}18;color:${color}">サイトマップ</span>
+        </div>
+        ${meta.length ? `<div class="sm-meta">${meta.join('<span style="margin:0 6px">｜</span>')}</div>` : ''}
+        <div class="sm-note">💬 各ブロックをクリックすると掲載コンテンツを確認できます</div>
+      </div>
+      ${data.pages.length
+          ? `<div class="sm-tree" style="--sm-color:${color};--sm-line:${lineColor}">${buildTree(data.pages)}</div>`
+          : `<div class="sm-empty"><div class="empty-icon">🗺️</div><p>左パネルでページを追加すると<br>ここにプレビューが表示されます</p></div>`
+        }
+    </div>`;
+    }
+
+    function buildTree(pages) {
+      const items = pages.map(p => {
+        const hasC = p.children && p.children.length > 0;
+        const hasD = !!(p.description);
+        return `<li>
+      <div class="sm-node-card" onclick="showDetail('${p.id}')">
+        <span class="sm-node-icon">${p.icon}</span>
+        <span class="sm-node-name">${esc(p.name)}</span>
+        ${hasD ? '<span class="sm-node-desc-hint">📝</span>' : ''}
+        ${hasC ? `<button class="sm-toggle open" id="tb-${p.id}" onclick="event.stopPropagation();pvToggle('${p.id}')">▼</button>` : ''}
+      </div>
+      ${hasC ? `<div id="ch-${p.id}" class="sm-node-children">${buildTree(p.children)}</div>` : ''}
+    </li>`;
+      }).join('');
+      return `<ul>${items}</ul>`;
+    }
+
+    function pvToggle(id) {
+      const ch = document.getElementById('ch-' + id);
+      const btn = document.getElementById('tb-' + id);
+      if (!ch) return;
+      const open = ch.style.display !== 'none';
+      ch.style.display = open ? 'none' : '';
+      btn.textContent = open ? '▶' : '▼';
+      btn.classList.toggle('open', !open);
+    }
+
+    function showDetail(id) {
+      const r = findPage(data.pages, id);
+      if (!r) return;
+      const p = r.page;
+      document.getElementById('dm-icon').textContent = p.icon;
+      document.getElementById('dm-title').textContent = p.name;
+      document.getElementById('dm-desc').innerHTML = p.description
+        ? esc(p.description).replace(/\n/g, '<br>')
+        : '<span style="color:var(--gray-300);font-size:12px">掲載コンテンツが未入力です。左パネルの説明欄に入力してください。</span>';
+      document.getElementById('detail-modal').classList.add('show');
+    }
+    function closeDetailModal() { document.getElementById('detail-modal').classList.remove('show'); }
+
+    // ============================================================
+    // ICON PICKER
+    // ============================================================
+    let _iconTarget = null, _selectedIcon = null;
+    function openIconPicker(id) {
+      _iconTarget = id;
+      const r = findPage(data.pages, id);
+      _selectedIcon = r ? r.page.icon : '📄';
+      const grid = document.getElementById('icon-grid');
+      grid.innerHTML = ICONS.map(ico => `
+    <button class="icon-option ${ico === _selectedIcon ? 'selected' : ''}" onclick="selectIcon('${ico}',this)">${ico}</button>
+  `).join('');
+      document.getElementById('icon-picker').classList.add('show');
+    }
+    function selectIcon(ico, btn) {
+      document.querySelectorAll('.icon-option').forEach(b => b.classList.remove('selected'));
+      btn.classList.add('selected');
+      _selectedIcon = ico;
+    }
+    function applyIcon() {
+      if (_iconTarget && _selectedIcon) { updateField(_iconTarget, 'icon', _selectedIcon); renderEditor(); }
+      closeIconPicker();
+    }
+    function closeIconPicker() { document.getElementById('icon-picker').classList.remove('show'); _iconTarget = null; }
+
+    // ============================================================
+    // TAB SWITCH
+    // ============================================================
+    function switchTab(tab, btn) {
+      ['pages', 'settings', 'ai'].forEach(t => document.getElementById('tab-' + t).style.display = t === tab ? '' : 'none');
+      document.querySelectorAll('.sidebar-tab').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
     }
 
-    // ===== PAGE LIST =====
-    function renderPageList() {
-      const list = document.getElementById('page-list');
-      list.innerHTML = '';
-      if (state.pages.length === 0) {
-        list.innerHTML = '<div style="text-align:center;color:var(--text2);font-size:12px;padding:20px 0">まだページがありません<br>「＋ ページを追加」から始めましょう</div>';
-        return;
+    // ============================================================
+    // SAMPLE MODAL
+    // ============================================================
+    function openSampleModal() { document.getElementById('sample-modal').classList.add('show'); }
+    function closeSampleModal() { document.getElementById('sample-modal').classList.remove('show'); }
+
+    // ============================================================
+    // TEMPLATES (flat → nested via flatToNested)
+    // ============================================================
+    const TEMPLATES = {
+      corp: [
+        { icon: '🏠', name: 'TOP', level: 0 }, { icon: '🏢', name: '会社概要', level: 1 }, { icon: '💼', name: 'サービス', level: 1 },
+        { icon: '📰', name: 'お知らせ', level: 1 }, { icon: '👥', name: '採用情報', level: 1 }, { icon: '📞', name: 'お問い合わせ', level: 1 },
+        { icon: '👤', name: '代表挨拶', level: 2 }, { icon: '💡', name: '企業理念', level: 2 }, { icon: '⭐', name: 'サービスA', level: 2 },
+        { icon: '⭐', name: 'サービスB', level: 2 }, { icon: '📋', name: 'プライバシーポリシー', level: 2 },
+      ],
+      clinic: [
+        { icon: '🏥', name: 'ホーム', level: 0 }, { icon: '🩺', name: '診療案内', level: 1 }, { icon: '👨‍⚕️', name: '医師紹介', level: 1 },
+        { icon: '🏨', name: 'クリニック案内', level: 1 }, { icon: '📅', name: 'ご予約', level: 1 }, { icon: '📰', name: 'お知らせ', level: 1 },
+        { icon: '👁️', name: '一般眼科', level: 2 }, { icon: '👓', name: 'コンタクト', level: 2 }, { icon: '🗺️', name: 'アクセス', level: 2 },
+        { icon: '📋', name: '初診の方へ', level: 2 },
+      ],
+      recruit: [
+        { icon: '🚀', name: 'TOP', level: 0 }, { icon: '💡', name: '仕事内容', level: 1 }, { icon: '🌍', name: '企業文化', level: 1 },
+        { icon: '👤', name: '社員インタビュー', level: 1 }, { icon: '💰', name: '福利厚生', level: 1 }, { icon: '📝', name: '募集要項', level: 1 },
+        { icon: '✉️', name: 'エントリー', level: 1 }, { icon: '💼', name: '職種A', level: 2 }, { icon: '💼', name: '職種B', level: 2 },
+        { icon: '🗣️', name: '先輩Aの声', level: 2 },
+      ],
+      accounting: [
+        { icon: '🏦', name: 'ホーム', level: 0 }, { icon: '📊', name: 'サービス', level: 1 }, { icon: '🏢', name: '事務所紹介', level: 1 },
+        { icon: '👨‍💼', name: 'スタッフ紹介', level: 1 }, { icon: '📰', name: 'お知らせ', level: 1 }, { icon: '📞', name: 'お問い合わせ', level: 1 },
+        { icon: '💹', name: '税務顧問', level: 2 }, { icon: '📋', name: '記帳代行', level: 2 }, { icon: '🔢', name: '料金案内', level: 2 },
+      ],
+      construction: [
+        { icon: '🏗️', name: 'ホーム', level: 0 }, { icon: '🔨', name: '施工事例', level: 1 }, { icon: '🏠', name: 'サービス', level: 1 },
+        { icon: '🏢', name: '会社案内', level: 1 }, { icon: '📰', name: 'ブログ', level: 1 }, { icon: '📞', name: 'お問い合わせ', level: 1 },
+        { icon: '🏡', name: '新築工事', level: 2 }, { icon: '🔧', name: 'リノベーション', level: 2 }, { icon: '🛠️', name: '外壁塗装', level: 2 },
+      ],
+      rental: [
+        { icon: '🏡', name: 'TOP', level: 0 }, { icon: '🏠', name: '施設案内', level: 1 }, { icon: '📅', name: '予約・空室', level: 1 },
+        { icon: '🗺️', name: 'アクセス', level: 1 }, { icon: '📰', name: 'お知らせ', level: 1 }, { icon: '📞', name: 'お問い合わせ', level: 1 },
+        { icon: '🛏️', name: '客室A', level: 2 }, { icon: '🛁', name: '設備・アメニティ', level: 2 }, { icon: '🍳', name: '周辺・観光', level: 2 },
+      ],
+      ec: [
+        { icon: '🛍️', name: 'TOP', level: 0 }, { icon: '📦', name: '商品一覧', level: 1 }, { icon: '🛒', name: 'カート', level: 1 },
+        { icon: '👤', name: 'マイページ', level: 1 }, { icon: '📞', name: 'お問い合わせ', level: 1 }, { icon: '🏢', name: '会社情報', level: 1 },
+        { icon: '⭐', name: 'カテゴリA', level: 2 }, { icon: '⭐', name: 'カテゴリB', level: 2 }, { icon: '📋', name: '特定商取引', level: 2 },
+      ],
+      portfolio: [
+        { icon: '🏠', name: 'TOP', level: 0 }, { icon: '👤', name: 'プロフィール', level: 1 }, { icon: '🎨', name: '制作実績', level: 1 },
+        { icon: '📰', name: 'ブログ', level: 1 }, { icon: '✉️', name: 'お問い合わせ', level: 1 },
+        { icon: '📋', name: '経歴・スキル', level: 2 }, { icon: '🖼️', name: '作品詳細', level: 2 }, { icon: '📄', name: '記事詳細', level: 2 },
+      ],
+      restaurant: [
+        { icon: '🍽️', name: 'TOP', level: 0 }, { icon: '📋', name: 'メニュー', level: 1 }, { icon: '📅', name: 'ご予約', level: 1 },
+        { icon: '🏪', name: '店舗情報', level: 1 }, { icon: '📰', name: 'お知らせ', level: 1 }, { icon: '📞', name: 'お問い合わせ', level: 1 },
+        { icon: '🍱', name: 'ランチ', level: 2 }, { icon: '🍷', name: 'ディナー', level: 2 }, { icon: '🗺️', name: 'アクセス', level: 2 },
+      ],
+    };
+
+    const TEMPLATE_NAMES = {
+      corp: '株式会社〇〇 コーポレートサイト', clinic: '〇〇クリニック サイト',
+      recruit: '〇〇株式会社 採用サイト', accounting: '〇〇会計事務所 サイト',
+      construction: '〇〇工務店 サイト', rental: '〇〇民泊 サイト',
+      ec: '〇〇 ECサイト', portfolio: '〇〇 ポートフォリオ', restaurant: '〇〇 公式サイト',
+    };
+
+    function flatToNested(flatPages) {
+      const result = [];
+      let curL0 = null, curL1 = null;
+      for (const p of flatPages) {
+        const node = newPage(p.name, p.icon || '📄');
+        if (p.level === 0) { result.push(node); curL0 = node; curL1 = null; }
+        else if (p.level === 1) { (curL0 ? curL0.children : result).push(node); curL1 = node; }
+        else { (curL1 ? curL1.children : curL0 ? curL0.children : result).push(node); }
       }
-      state.pages.forEach(p => {
-        const levelColor = p.level === 0 ? '#6c63ff' : p.level === 1 ? '#43e97b' : '#ff6584';
-        const el = document.createElement('div');
-        el.className = 'page-item' + (state.selectedPageId === p.id ? ' selected' : '');
-        el.innerHTML = `
-      <span class="page-dot" style="background:${levelColor}"></span>
-      <span class="page-item-label">${p.icon} ${p.name}</span>
-      <span class="page-item-level">L${p.level}</span>
-      <button class="page-item-delete" onclick="event.stopPropagation();deletePage(${p.id})">✕</button>
-    `;
-        el.onclick = () => selectPage(p.id);
-        list.appendChild(el);
-      });
+      return result;
     }
 
-    function selectPage(id) {
-      state.selectedPageId = id;
-      renderPageList();
-      renderCanvas();
-      showDetailPanel(id);
+    function loadSample(type) {
+      if (data.pages.length && !confirm('現在のデータをサンプルで上書きしますか？')) return;
+      closeSampleModal();
+      seq = 0;
+      data.pages = flatToNested(TEMPLATES[type] || []);
+      data.project.name = TEMPLATE_NAMES[type] || '新しいウェブサイト';
+      document.getElementById('f-sitename').value = data.project.name;
+      save(); renderAll();
+      switchTab('pages', document.querySelectorAll('.sidebar-tab')[0]);
+      showToast('✦ サンプルを読み込みました');
     }
 
-    function deletePage(id) {
-      state.pages = state.pages.filter(p => p.id !== id);
-      if (state.selectedPageId === id) { state.selectedPageId = null; closeDetail(); }
-      renderPageList();
-      renderCanvas();
-      showToast('ページを削除しました');
-    }
-
-    // ===== ADD PAGE MODAL =====
-    function openAddModal() {
-      document.getElementById('new-page-name').value = '';
-      document.getElementById('new-page-icon').value = '';
-      document.getElementById('new-page-price').value = '';
-      document.getElementById('new-page-memo').value = '';
-      document.getElementById('modal-add').classList.add('show');
-      setTimeout(() => document.getElementById('new-page-name').focus(), 100);
-    }
-
-    function closeModal(id) {
-      document.getElementById(id).classList.remove('show');
-    }
-
-    function addPage() {
-      const name = document.getElementById('new-page-name').value.trim();
-      if (!name) { showToast('ページ名を入力してください'); return; }
-      const level = parseInt(document.getElementById('new-page-level').value);
-      // only one L0
-      if (level === 0 && state.pages.some(p => p.level === 0)) {
-        showToast('L0（トップ）は1ページのみです'); return;
-      }
-      state.pages.push({
-        id: nextId++,
-        name,
-        icon: document.getElementById('new-page-icon').value || (level === 0 ? '🏠' : level === 1 ? '📄' : '📝'),
-        level,
-        type: document.getElementById('new-page-type').value,
-        price: parseInt(document.getElementById('new-page-price').value) || 0,
-        memo: document.getElementById('new-page-memo').value,
-      });
-      closeModal('modal-add');
-      renderPageList();
-      renderCanvas();
-      showToast('ページを追加しました ✓');
-    }
-
-    // ===== AI GENERATE =====
-    function generateAI() {
+    function generateTemplate() {
       const type = document.getElementById('ai-type').value;
       if (!type) { showToast('業種を選択してください'); return; }
-      const template = AI_TEMPLATES[type] || [];
-      state.pages = template.map(t => ({
-        id: nextId++,
-        name: t.name,
-        icon: t.icon,
-        level: t.level,
-        type: t.type,
-        price: t.level === 0 ? 80000 : t.level === 1 ? 50000 : 30000,
-        memo: '',
-      }));
-      showToast('✦ AIがページ構成を生成しました！');
-      switchTab('pages', document.querySelectorAll('.tab')[0]);
-      renderPageList();
-      renderCanvas();
+      if (data.pages.length && !confirm('現在のデータをテンプレートで上書きしますか？')) return;
+      seq = 0;
+      data.pages = flatToNested(TEMPLATES[type] || []);
+      data.project.name = TEMPLATE_NAMES[type] || '新しいウェブサイト';
+      document.getElementById('f-sitename').value = data.project.name;
+      save(); renderAll();
+      switchTab('pages', document.querySelectorAll('.sidebar-tab')[0]);
+      showToast('✦ テンプレートを生成しました');
     }
 
-    // ===== SAMPLE LOAD =====
-    function loadSample() {
-      document.getElementById('site-name').value = '〇〇眼科クリニック 採用サイト';
-      document.getElementById('client-name').value = '〇〇眼科クリニック';
-      document.getElementById('agency-name').value = 'Sanc-Official';
-      document.getElementById('ai-type').value = 'clinic';
-      generateAI();
-    }
-
-    // ===== RESET =====
+    // ============================================================
+    // RESET
+    // ============================================================
     function resetAll() {
-      if (!confirm('すべてのデータをリセットしますか？')) return;
-      state.pages = [];
-      state.selectedPageId = null;
-      nextId = 1;
-      document.getElementById('site-name').value = '';
-      document.getElementById('client-name').value = '';
-      document.getElementById('agency-name').value = '';
-      closeDetail();
-      renderPageList();
-      renderCanvas();
+      if (!confirm('全データをリセットしますか？')) return;
+      seq = 0;
+      data = {
+        project: { name: '新しいウェブサイト', client: '', date: todayStr(), agency: '', note: '', color: COLORS[0].value, lineColor: COLORS[0].line },
+        pages: []
+      };
+      syncForm(); save(); renderAll();
       showToast('リセットしました');
     }
 
-    // ===== RENDER CANVAS =====
-    function renderCanvas() {
-      const canvas = document.getElementById('canvas');
-      const siteName = document.getElementById('site-name').value || 'サイト名未設定';
-      const clientName = document.getElementById('client-name').value;
-      const agencyName = document.getElementById('agency-name').value;
-      const createdDate = document.getElementById('created-date').value;
-      const showPrice = document.getElementById('show-price').checked;
-      const showIcons = document.getElementById('show-icons').checked;
-
-      const l0 = state.pages.filter(p => p.level === 0);
-      const l1 = state.pages.filter(p => p.level === 1);
-      const l2 = state.pages.filter(p => p.level === 2);
-
-      // Stats
-      document.getElementById('stat-pages').textContent = state.pages.length;
-      document.getElementById('stat-l1').textContent = l1.length;
-      document.getElementById('stat-l2').textContent = l2.length;
-      document.getElementById('page-count-label').textContent = state.pages.length + ' ページ';
-
-      const totalPrice = state.pages.reduce((s, p) => s + (p.price || 0), 0);
-      document.getElementById('stat-price').textContent = '¥' + totalPrice.toLocaleString();
-      if (showPrice) {
-        document.getElementById('stat-price-wrap').style.display = 'flex';
-        document.getElementById('total-price-label').textContent = '合計 ¥' + totalPrice.toLocaleString();
-      } else {
-        document.getElementById('total-price-label').textContent = '';
-      }
-
-      if (state.pages.length === 0) {
-        canvas.innerHTML = `
-      <div class="empty-state">
-        <div class="empty-icon">🗂️</div>
-        <div class="empty-text">まだページがありません</div>
-        <div class="empty-sub">左のパネルから追加するか、AIで自動生成してみましょう</div>
-      </div>`;
-        return;
-      }
-
-      const tc = state.themeColor;
-      const c0 = state.themeColor; // L0色 = ユーザー設定テーマカラー
-      const metaParts = [clientName, agencyName, createdDate].filter(Boolean).join('　|　');
-
-      // 縦ツリー構造を構築
-      const buildTree = () => {
-        const l0 = state.pages.filter(p => p.level === 0);
-        const l1 = state.pages.filter(p => p.level === 1);
-        const l2 = state.pages.filter(p => p.level === 2);
-
-        const cardHTML = (p) => {
-          const sel = state.selectedPageId === p.id ? 'selected' : '';
-          const icon = showIcons ? `<span class="card-icon">${p.icon}</span>` : '';
-          const price = showPrice && p.price
-            ? `<span style="font-size:11px;color:var(--text2);margin-left:4px">¥${p.price.toLocaleString()}</span>` : '';
-          return `
-            <div class="tree-card level-${p.level} ${sel}" onclick="selectPage(${p.id})">
-              ${icon}
-              <span class="card-name">${p.name}</span>
-              ${price}
-              <span class="card-badge">L${p.level}</span>
-            </div>`;
-        };
-
-        let html = '<div class="tree-wrap">';
-
-        // L0
-        (l0.length ? l0 : []).forEach(p0 => {
-          html += `<div class="tree-l0-wrap">${cardHTML(p0)}`;
-
-          if (l1.length) {
-            html += '<div class="tree-children">';
-            l1.forEach(p1 => {
-              html += `<div class="tree-child-item tree-l1-wrap">${cardHTML(p1)}`;
-
-              const children = l2; // 全L2をぶら下げる（または親IDで紐付けも可）
-              if (children.length) {
-                html += '<div class="tree-children">';
-                children.forEach(p2 => {
-                  html += `<div class="tree-child-item">${cardHTML(p2)}</div>`;
-                });
-                html += '</div>';
-              }
-              html += '</div>';
-            });
-            html += '</div>';
-          }
-          html += '</div>';
-        });
-
-        html += '</div>';
-        return html;
-      };
-
-      let html = `
-        <div class="sitemap-header" style="--header-color:${tc}">
-          <div class="sitemap-title">${siteName}</div>
-          ${metaParts ? `<div class="sitemap-meta">${metaParts}</div>` : ''}
-        </div>
-        ${buildTree()}
-      `;
-
-      const memo = document.getElementById('memo').value;
-      if (memo) {
-        html += `<div style="margin-top:24px;padding:14px 18px;background:var(--surface2);border:1px solid var(--border);border-radius:8px;font-size:12px;color:var(--text2);line-height:1.8">${memo}</div>`;
-      }
-
-      canvas.innerHTML = html;
-    }
-
-    // ===== DETAIL PANEL =====
-    function showDetailPanel(id) {
-      const p = state.pages.find(x => x.id === id);
-      if (!p) return;
-      const panel = document.getElementById('detail-panel');
-      const content = document.getElementById('detail-content');
-      content.innerHTML = `
-    <div style="font-size:24px;text-align:center;margin-bottom:10px">${p.icon}</div>
-    <div style="font-size:14px;font-weight:700;text-align:center;margin-bottom:4px">${p.name}</div>
-    <div style="font-size:11px;text-align:center;color:var(--text2);margin-bottom:14px">L${p.level} / ${p.type}</div>
-    <div style="display:flex;flex-direction:column;gap:8px">
-      ${p.price ? `<div style="display:flex;justify-content:space-between;font-size:12px"><span style="color:var(--text2)">単価</span><span style="font-family:'Space Mono',monospace;color:var(--accent3)">¥${p.price.toLocaleString()}</span></div>` : ''}
-      ${p.memo ? `<div style="font-size:11px;color:var(--text2);background:var(--surface2);padding:8px;border-radius:6px;line-height:1.6">${p.memo}</div>` : ''}
-    </div>
-    <button class="btn btn-danger" style="width:100%;margin-top:14px;font-size:11px" onclick="deletePage(${p.id})">削除</button>
-  `;
-      panel.classList.add('show');
-    }
-
-    function closeDetail() {
-      document.getElementById('detail-panel').classList.remove('show');
-      state.selectedPageId = null;
-      renderPageList();
-    }
-
-    // ===== GEMINI API =====
+    // ============================================================
+    // GEMINI API
+    // ============================================================
     const GEMINI_MODEL = 'gemini-2.0-flash';
-
-    function getApiKey() {
-      return localStorage.getItem('gemini_api_key') || '';
-    }
-
+    function getApiKey() { return localStorage.getItem('gemini_api_key') || ''; }
     function saveApiKey() {
       const key = document.getElementById('api-key').value.trim();
       if (!key) { showToast('APIキーを入力してください'); return; }
       if (!key.startsWith('AIza')) { showToast('Gemini APIキーは "AIza" から始まります'); return; }
       localStorage.setItem('gemini_api_key', key);
-      document.getElementById('api-key-status').innerHTML =
-        '<span style="color:var(--accent3)">✓ APIキーを保存しました</span>';
+      document.getElementById('api-key-status').innerHTML = '<span style="color:#16A34A">✓ APIキーを保存しました</span>';
       showToast('✓ Gemini APIキーを保存しました');
     }
-
     async function callGemini(prompt) {
       const key = getApiKey();
-      if (!key) throw new Error('APIキーが設定されていません。「🔑 Gemini API キー設定」からキーを保存してください。');
+      if (!key) throw new Error('APIキーが設定されていません。設定タブからGemini APIキーを保存してください。');
       const res = await fetch(
         `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent?key=${key}`,
         {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            contents: [{ parts: [{ text: prompt }] }],
-            generationConfig: { temperature: 0.7, maxOutputTokens: 2048 }
-          })
+          method: 'POST', headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ contents: [{ parts: [{ text: prompt }] }], generationConfig: { temperature: 0.7, maxOutputTokens: 2048 } })
         }
       );
-      if (!res.ok) {
-        const err = await res.json().catch(() => ({}));
-        throw new Error(err?.error?.message || `APIエラー: ${res.status}`);
-      }
-      const data = await res.json();
-      return data.candidates?.[0]?.content?.parts?.[0]?.text || '';
+      if (!res.ok) { const err = await res.json().catch(() => ({})); throw new Error(err?.error?.message || `APIエラー: ${res.status}`); }
+      const d = await res.json();
+      return d.candidates?.[0]?.content?.parts?.[0]?.text || '';
     }
 
-    // ===== URL SCAN =====
+    // ============================================================
+    // URL SCAN
+    // ============================================================
     async function scanURL() {
       const url = document.getElementById('scan-url').value.trim();
       if (!url) { showToast('URLを入力してください'); return; }
       if (!url.startsWith('http')) { showToast('https:// から始まるURLを入力してください'); return; }
-
       const statusEl = document.getElementById('scan-status');
       const btn = document.querySelector('[onclick="scanURL()"]');
-
-      statusEl.innerHTML = '<span style="color:var(--accent)">🔄 サイトを取得中...</span>';
-      btn.disabled = true;
-      btn.textContent = '取得中...';
-
+      btn.disabled = true; btn.textContent = '取得中...';
+      statusEl.innerHTML = '<span style="color:var(--primary)">🔄 サイトを取得中...</span>';
       try {
-        // CORSプロキシ経由でHTML取得（複数フォールバック）
         const proxies = [
           u => `https://corsproxy.io/?${encodeURIComponent(u)}`,
           u => `https://api.allorigins.win/get?url=${encodeURIComponent(u)}`,
           u => `https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(u)}`,
         ];
-
         let html = '';
-        let lastErr = null;
-        for (const proxyFn of proxies) {
+        for (const fn of proxies) {
           try {
-            statusEl.innerHTML = `<span style="color:var(--accent)">🔄 取得中... (${proxies.indexOf(proxyFn) + 1}/${proxies.length})</span>`;
-            const res = await fetch(proxyFn(url), { signal: AbortSignal.timeout(10000) });
+            statusEl.innerHTML = `<span style="color:var(--primary)">🔄 取得中... (${proxies.indexOf(fn) + 1}/3)</span>`;
+            const res = await fetch(fn(url), { signal: AbortSignal.timeout(10000) });
             if (!res.ok) throw new Error(`HTTP ${res.status}`);
             const text = await res.text();
-            if (text.trim().startsWith('{')) {
-              const j = JSON.parse(text);
-              html = j.contents || j.data || text;
-            } else {
-              html = text;
-            }
+            if (text.trim().startsWith('{')) { const j = JSON.parse(text); html = j.contents || j.data || text; }
+            else { html = text; }
             if (html && html.length > 100) break;
-          } catch (e) {
-            lastErr = e;
-            continue;
-          }
+          } catch (e) { continue; }
         }
         if (!html || html.length < 100) throw new Error('HTMLを取得できませんでした。URLを確認するか再試行してください。');
-
-        // HTMLからナビゲーション・リンク情報を抽出
         const parser = new DOMParser();
         const doc = parser.parseFromString(html, 'text/html');
-
-        // title・nav・a タグからリンクテキストを収集
         const siteTitle = doc.querySelector('title')?.textContent?.trim() || '';
-        const navLinks = [...doc.querySelectorAll('nav a, header a, .menu a, #menu a, .nav a, .navigation a')]
-          .map(a => a.textContent.trim())
-          .filter(t => t.length > 0 && t.length < 30)
-          .slice(0, 20);
+        const navLinks = [...doc.querySelectorAll('nav a,header a,.menu a,#menu a,.nav a,.navigation a')]
+          .map(a => a.textContent.trim()).filter(t => t.length > 0 && t.length < 30).slice(0, 20);
         const allLinks = [...doc.querySelectorAll('a[href]')]
           .map(a => ({ text: a.textContent.trim(), href: a.getAttribute('href') }))
-          .filter(l => l.text.length > 0 && l.text.length < 30 && !l.href.startsWith('#'))
-          .slice(0, 40);
+          .filter(l => l.text.length > 0 && l.text.length < 30 && !l.href.startsWith('#')).slice(0, 40);
+        const urlPaths = allLinks.map(l => l.href).filter(h => h && h.startsWith('/') && h.length > 1).slice(0, 30);
 
-        statusEl.innerHTML = '<span style="color:var(--accent)">✦ AIがページ構成を解析中...</span>';
-
-        // Gemini APIで構成を解析・提案
-        const urlPaths = allLinks
-          .map(l => l.href)
-          .filter(h => h && h.startsWith('/') && h.length > 1)
-          .slice(0, 30);
+        statusEl.innerHTML = '<span style="color:var(--primary)">✦ AIが解析中...</span>';
 
         const prompt = `
 あなたはWeb制作のプロです。以下の情報からサイトマップの階層構造をJSON形式で出力してください。
 
 サイトタイトル: ${siteTitle}
 サイトURL: ${url}
-
 【ナビゲーションメニューのリンク（L1候補）】
 ${navLinks.join('\n')}
-
-【URLパス一覧（階層判断의 根拠）】
+【URLパス一覧（階層判断の根拠）】
 ${urlPaths.join('\n')}
-
 【全リンクテキスト】
 ${allLinks.slice(0, 30).map(l => l.text).join(', ')}
 
@@ -1775,312 +1713,323 @@ ${allLinks.slice(0, 30).map(l => l.text).join(', ')}
 6. level 0 はトップページのみ（必ず1件）
 7. level 1 は最大8件まで
 8. level 2 は最大12件まで
-9. サイトのトップページ（ホーム、サイト名そのもの、/のみのURL）は必ずlevel 0にする
+9. サイト名・ホーム・トップに一致するページは必ず level 0 にする
 
-JSON配列のみ返すこと（コードブロック・説明文不要）：
-[{"name":"ページ名","icon":"絵文字1文字","level":0〜2,"type":"通常/LP/フォーム/ブログ"}]
+JSON配列のみ返すこと：
+[{"name":"ページ名","icon":"絵文字1文字","level":0〜2}]
 `;
-
         const result = await callGemini(prompt);
         const clean = result.replace(/```json|```/g, '').trim();
-        const pages = JSON.parse(clean);
+        const flat = JSON.parse(clean);
+        if (!Array.isArray(flat) || flat.length === 0) throw new Error('ページ構成の解析に失敗しました');
 
-        if (!Array.isArray(pages) || pages.length === 0) throw new Error('ページ構成の解析に失敗しました');
+        seq = 0;
+        data.pages = flatToNested(flat);
 
-        // ページとして追加
-        state.pages = pages.map(p => ({
-          id: nextId++,
-          name: p.name || 'ページ',
-          icon: p.icon || '📄',
-          level: Number(p.level) || 1,
-          type: p.type || '通常',
-          price: p.level === 0 ? 80000 : p.level === 1 ? 50000 : 30000,
-          memo: '',
-        }));
-
-        // L0強制補正：サイト名・ホーム・トップに一致するページを必ずL0にする
-        const l0Keywords = ['ホーム', 'トップ', 'TOP', 'Home', siteTitle.split('|')[0].trim(), siteTitle.split('　')[0].trim()];
-        let l0Fixed = false;
-        state.pages = state.pages.map(p => {
-          if (!l0Fixed && (
-            p.level === 0 ||
-            l0Keywords.some(kw => kw && p.name.includes(kw)) ||
-            p.name === siteTitle
-          )) {
-            l0Fixed = true;
-            return { ...p, level: 0 };
+        // L0強制補正
+        if (!data.pages.some(p => p._isL0)) {
+          const l0kw = ['ホーム', 'トップ', 'TOP', 'Home', siteTitle.split('|')[0].trim().split('　')[0].trim()];
+          let fixed = false;
+          for (const p of data.pages) {
+            if (!fixed && l0kw.some(kw => kw && p.name.includes(kw))) {
+              // Already root - fine
+              fixed = true; break;
+            }
           }
-          return { ...p, level: p.level === 0 && l0Fixed ? 1 : p.level };
-        });
-
-        // L0が1件もない場合は先頭をL0にする
-        if (!state.pages.some(p => p.level === 0)) {
-          state.pages[0] = { ...state.pages[0], level: 0 };
         }
 
-        // サイト名を常にスキャン結果で上書き
         if (siteTitle) {
-          document.getElementById('site-name').value = siteTitle;
-          document.getElementById('client-name').value = siteTitle;
+          document.getElementById('f-sitename').value = siteTitle;
+          document.getElementById('f-client').value = siteTitle;
+          data.project.name = siteTitle;
+          data.project.client = siteTitle;
         }
 
-        statusEl.innerHTML = `<span style="color:var(--accent3)">✓ ${state.pages.length}ページを読み込みました</span>`;
-        showToast(`✦ ${state.pages.length}ページのサイト構成を取得しました！`);
-        switchTab('pages', document.querySelectorAll('.tab')[0]);
-        renderPageList();
-        renderCanvas();
-
+        statusEl.innerHTML = `<span style="color:#16A34A">✓ ${countPages(data.pages)}ページを読み込みました</span>`;
+        showToast(`✦ ${countPages(data.pages)}ページのサイト構成を取得しました！`);
+        switchTab('pages', document.querySelectorAll('.sidebar-tab')[0]);
+        save(); renderAll();
       } catch (e) {
-        statusEl.innerHTML = `<span style="color:var(--accent2)">⚠ ${e.message}</span>`;
+        statusEl.innerHTML = `<span style="color:#DC2626">⚠ ${e.message}</span>`;
         showToast('エラーが発生しました');
       } finally {
-        btn.disabled = false;
-        btn.textContent = '🌐 URLをスキャン';
+        btn.disabled = false; btn.textContent = '🌐 URLをスキャン';
       }
     }
 
-    // ===== KEYWORD SUGGESTION =====
+    // ============================================================
+    // KEYWORD SUGGESTION
+    // ============================================================
     async function suggestKeywords() {
       const target = document.getElementById('kw-target').value.trim();
       if (!target) { showToast('対象ページ・テーマを入力してください'); return; }
-
       const resultEl = document.getElementById('kw-result');
       const btn = document.querySelector('[onclick="suggestKeywords()"]');
-
-      resultEl.innerHTML = '<div style="color:var(--accent);font-size:12px">✦ Geminiがキーワードを生成中...</div>';
+      resultEl.innerHTML = '<div style="color:var(--primary);font-size:12px;margin-top:6px">✦ Geminiがキーワードを生成中...</div>';
       btn.disabled = true;
-
       try {
-        // 現在のページ構成も参考情報として渡す
-        const pageList = state.pages.map(p => p.name).join('、') || 'なし';
-
+        const pageList = [];
+        const collectNames = nodes => { nodes.forEach(p => { pageList.push(p.name); collectNames(p.children || []); }); };
+        collectNames(data.pages);
         const prompt = `
 あなたはSEOの専門家です。以下の条件でSEOキーワードを提案してください。
-
 対象: ${target}
-現在のサイト構成: ${pageList}
-
-以下のJSON形式だけを返してください。コードブロックや説明文は不要です。
-{
-  "main": ["メインキーワード3つ"],
-  "long_tail": ["ロングテールキーワード5つ"],
-  "question": ["検索される疑問形キーワード3つ"],
-  "advice": "100文字以内のSEOアドバイス"
-}
-
-条件：
-- 日本語のキーワードで
-- 実際に検索されそうな自然なキーワードを選ぶ
-- 地域名や業種名を含めて具体的に
+現在のサイト構成: ${pageList.join('、') || 'なし'}
+以下のJSON形式だけを返してください（コードブロック・説明文不要）：
+{"main":["メインキーワード3つ"],"long_tail":["ロングテールキーワード5つ"],"question":["疑問形キーワード3つ"],"advice":"100文字以内のSEOアドバイス"}
 `;
-
         const result = await callGemini(prompt);
         const clean = result.replace(/```json|```/g, '').trim();
         const kw = JSON.parse(clean);
-
+        const tag = (k, color) => `<span style="background:${color}18;border:1px solid ${color}44;color:${color};padding:3px 8px;border-radius:4px;font-size:11px">${k}</span>`;
         resultEl.innerHTML = `
-      <div style="display:flex;flex-direction:column;gap:10px;margin-top:4px">
+      <div style="display:flex;flex-direction:column;gap:10px;margin-top:10px">
         <div>
-          <div style="font-size:10px;font-weight:700;color:var(--accent);letter-spacing:1px;margin-bottom:5px">MAIN KEYWORDS</div>
-          <div style="display:flex;flex-wrap:wrap;gap:5px">
-            ${(kw.main || []).map(k => `<span style="background:var(--accent)22;border:1px solid var(--accent)44;color:var(--accent);padding:3px 8px;border-radius:4px;font-size:11px">${k}</span>`).join('')}
-          </div>
+          <div style="font-size:10px;font-weight:700;color:#2563EB;letter-spacing:1px;margin-bottom:5px">MAIN KEYWORDS</div>
+          <div style="display:flex;flex-wrap:wrap;gap:5px">${(kw.main || []).map(k => tag(k, '#2563EB')).join('')}</div>
         </div>
         <div>
-          <div style="font-size:10px;font-weight:700;color:var(--accent3);letter-spacing:1px;margin-bottom:5px">LONG TAIL</div>
-          <div style="display:flex;flex-wrap:wrap;gap:5px">
-            ${(kw.long_tail || []).map(k => `<span style="background:var(--accent3)22;border:1px solid var(--accent3)44;color:var(--accent3);padding:3px 8px;border-radius:4px;font-size:11px">${k}</span>`).join('')}
-          </div>
+          <div style="font-size:10px;font-weight:700;color:#16A34A;letter-spacing:1px;margin-bottom:5px">LONG TAIL</div>
+          <div style="display:flex;flex-wrap:wrap;gap:5px">${(kw.long_tail || []).map(k => tag(k, '#16A34A')).join('')}</div>
         </div>
         <div>
-          <div style="font-size:10px;font-weight:700;color:var(--accent2);letter-spacing:1px;margin-bottom:5px">QUESTIONS</div>
-          <div style="display:flex;flex-wrap:wrap;gap:5px">
-            ${(kw.question || []).map(k => `<span style="background:var(--accent2)22;border:1px solid var(--accent2)44;color:var(--accent2);padding:3px 8px;border-radius:4px;font-size:11px">${k}</span>`).join('')}
-          </div>
+          <div style="font-size:10px;font-weight:700;color:#DB2777;letter-spacing:1px;margin-bottom:5px">QUESTIONS</div>
+          <div style="display:flex;flex-wrap:wrap;gap:5px">${(kw.question || []).map(k => tag(k, '#DB2777')).join('')}</div>
         </div>
-        ${kw.advice ? `<div style="font-size:11px;color:var(--text2);background:var(--surface2);padding:10px;border-radius:6px;line-height:1.7;border-left:3px solid var(--accent)">💡 ${kw.advice}</div>` : ''}
-      </div>
-    `;
+        ${kw.advice ? `<div style="font-size:11px;color:#475569;background:#F8FAFC;padding:10px;border-radius:6px;line-height:1.7;border-left:3px solid #2563EB">💡 ${kw.advice}</div>` : ''}
+      </div>`;
         showToast('✦ キーワードを生成しました！');
-
       } catch (e) {
-        resultEl.innerHTML = `<div style="color:var(--accent2);font-size:12px">⚠ ${e.message}</div>`;
-      } finally {
-        btn.disabled = false;
-      }
+        resultEl.innerHTML = `<div style="color:#DC2626;font-size:12px;margin-top:6px">⚠ ${e.message}</div>`;
+      } finally { btn.disabled = false; }
     }
 
-    // ===== EXPORT =====
+    // ============================================================
+    // COLOR CHIPS
+    // ============================================================
+    function initColorChips() {
+      const c = document.getElementById('color-chips');
+      c.innerHTML = COLORS.map(col => `
+    <div class="color-chip ${col.value === data.project.color ? 'active' : ''}"
+         data-color="${col.value}" style="background:${col.value}" title="${col.name}"
+         onclick="setColor('${col.value}','${col.line}')"></div>
+  `).join('');
+    }
+    function setColor(value, line) {
+      data.project.color = value; data.project.lineColor = line;
+      document.querySelectorAll('.color-chip').forEach(c => c.classList.toggle('active', c.dataset.color === value));
+      save(); renderPreview();
+    }
+
+    // ============================================================
+    // EXPORT
+    // ============================================================
     function exportHTML() {
-      const canvas = document.getElementById('canvas').innerHTML;
-      const siteName = document.getElementById('site-name').value || 'サイトマップ';
-      const blob = new Blob([`<!DOCTYPE html><html lang="ja"><head><meta charset="UTF-8"><title>${siteName}</title><style>body{font-family:sans-serif;background:#0d0d12;color:#e8e8f0;padding:40px} .sitemap-header{padding:20px;background:#16161f;border-radius:8px;margin-bottom:30px;border-top:3px solid #6c63ff} .node{display:inline-block;padding:10px 14px;border-radius:8px;border:1.5px solid;margin:6px;text-align:center;min-width:100px} .level-row{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin:16px 0} .tree-container{display:flex;flex-direction:column;align-items:center}</style></head><body>${canvas}</body></html>`], { type: 'text/html' });
+      if (!data.pages.length) { alert('ページが1つもありません。'); return; }
+      const p = data.project;
+      const color = p.color || COLORS[0].value;
+      const lineColor = p.lineColor || COLORS[0].line;
+      const dateDisp = (p.date || '').replace(/-/g, '/').replace(/(\d{4})\/(\d{2})\/(\d{2})/, '$1年$2月$3日');
+      const meta = [];
+      if (p.client) meta.push(`クライアント：${p.client}`);
+      if (dateDisp) meta.push(`作成日：${dateDisp}`);
+      if (p.agency) meta.push(`制作：${p.agency}`);
+      const pagesJSON = JSON.stringify(data.pages);
+
+      const html = `<!DOCTYPE html>
+<html lang="ja"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>${p.name || 'サイトマップ'} - サイトマップ</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Hiragino Sans','Noto Sans JP',sans-serif;background:#EEF6FF;color:#0F172A;min-height:100vh;}
+.wrap{max-width:860px;margin:0 auto;padding:32px 20px 60px;}
+.pdf-btn-wrap{display:flex;justify-content:flex-end;margin-bottom:20px;}
+.pdf-btn{display:inline-flex;align-items:center;gap:6px;padding:8px 16px;background:white;border:1px solid #E2E8F0;border-radius:8px;font-size:13px;font-weight:600;color:#475569;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.06);transition:all .15s;}
+.pdf-btn:hover{background:#F8FAFC;}
+.sm-header{background:white;border-radius:12px;padding:22px 26px;margin-bottom:28px;box-shadow:0 4px 20px rgba(0,0,0,.07);border-top:5px solid ${color};}
+.sm-title{font-size:20px;font-weight:800;letter-spacing:-.02em;display:flex;align-items:center;gap:10px;margin-bottom:6px;}
+.sm-badge{padding:3px 12px;border-radius:999px;font-size:11px;font-weight:700;background:${color}18;color:${color};}
+.sm-meta{font-size:12px;color:#64748B;margin-bottom:4px;}
+.sm-note{font-size:11px;color:#94A3B8;}
+.tree ul{list-style:none;padding:0 0 0 22px;margin:0;position:relative;}
+.tree ul::before{content:'';position:absolute;left:0;top:0;bottom:14px;width:2px;background:${lineColor};border-radius:1px;}
+.tree li{position:relative;margin-bottom:8px;}
+.tree li::before{content:'';position:absolute;left:-22px;top:19px;width:18px;height:2px;background:${lineColor};}
+.tree>ul::before,.tree>ul>li::before{display:none;}
+.nc{display:inline-flex;align-items:center;gap:8px;padding:10px 16px;background:white;border-radius:10px;box-shadow:0 2px 8px rgba(0,0,0,.07);cursor:pointer;border-left:4px solid ${color};transition:all .18s;min-width:140px;max-width:440px;user-select:none;}
+.nc:hover{transform:translateX(3px);box-shadow:0 4px 16px rgba(0,0,0,.12);}
+.ni{font-size:17px;flex-shrink:0;}.nn{font-size:13px;font-weight:600;flex:1;}.nh{font-size:10px;color:#94A3B8;}
+.nt{width:20px;height:20px;border-radius:50%;background:#F1F5F9;border:none;cursor:pointer;font-size:9px;color:#64748B;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .15s;}
+.nt:hover{background:#E2E8F0;}.nt.open{background:${color};color:white;}
+.tree>ul>li>.nc{padding:13px 20px;border-radius:12px;border-left-width:5px;}
+.tree>ul>li>.nc .nn{font-size:15px;}.tree>ul>li>.nc .ni{font-size:20px;}
+.nch{margin-top:6px;overflow:hidden;}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.45);display:none;align-items:center;justify-content:center;z-index:1000;padding:20px;backdrop-filter:blur(3px);}
+.modal.show{display:flex;}.mbox{background:white;border-radius:16px;padding:26px;max-width:400px;width:100%;box-shadow:0 20px 60px rgba(0,0,0,.2);}
+.mh{display:flex;align-items:flex-start;gap:12px;margin-bottom:14px;}.micon{font-size:30px;flex-shrink:0;}
+.mt{font-size:16px;font-weight:700;}.ml{font-size:11px;color:#94A3B8;margin-bottom:3px;}
+.md{background:#F8FAFC;border-radius:8px;padding:12px;font-size:13px;color:#475569;line-height:1.8;min-height:50px;white-space:pre-wrap;}
+.mc{display:flex;justify-content:flex-end;margin-top:14px;}
+.mcb{padding:8px 18px;border:1px solid #E2E8F0;border-radius:7px;background:transparent;font-size:13px;cursor:pointer;color:#475569;}
+.nd{display:none;font-size:10px;color:#64748B;line-height:1.65;margin:3px 0 6px 10px;padding-left:12px;border-left:2px solid ${lineColor};white-space:pre-wrap;}
+.footer{margin-top:48px;padding:18px 0 0;border-top:1px solid #E2E8F0;font-size:11px;color:#94A3B8;text-align:center;line-height:1.8;}
+@page{size:A4;margin:12mm 15mm}
+@media print{
+  body{background:white!important}.wrap{max-width:none;padding:0}
+  .sm-header{box-shadow:none;border-radius:6px;padding:14px 20px;margin-bottom:12px}
+  .sm-note,.pdf-btn-wrap{display:none!important}
+  .nch{display:block!important;overflow:visible!important}
+  .nd{display:block!important}
+  .nc{box-shadow:none;border:none!important;background:transparent;padding:2px 0!important;min-width:0;cursor:default;break-inside:avoid;}
+  .nc:hover{transform:none!important}.nt{display:none!important}.modal{display:none!important}
+  .footer{margin-top:24px;}
+}
+</style></head><body>
+<div class="wrap">
+  <div class="pdf-btn-wrap"><button class="pdf-btn" onclick="window.print()">🖨️ PDFで保存 / 印刷</button></div>
+  <div class="sm-header">
+    <div class="sm-title">${p.name || 'サイトマップ'}<span class="sm-badge">SITE MAP</span></div>
+    ${meta.length ? `<div class="sm-meta">${meta.join('　|　')}</div>` : ''}
+    <div class="sm-note">💬 各ブロックをクリックすると掲載コンテンツを確認できます</div>
+  </div>
+  <div class="tree" id="tree"></div>
+  ${p.note ? `<div class="footer">${p.note.replace(/\n/g, '<br>')}</div>` : ''}
+</div>
+<div class="modal" id="modal" onclick="closeM()">
+  <div class="mbox" onclick="event.stopPropagation()">
+    <div class="mh"><span class="micon" id="mi"></span><div><div class="ml">掲載コンテンツ</div><div class="mt" id="mt"></div></div></div>
+    <div class="md" id="md"></div>
+    <div class="mc"><button class="mcb" onclick="closeM()">閉じる</button></div>
+  </div>
+</div>
+<script>
+const PG=${pagesJSON};
+function fp(pages,id){for(const p of pages){if(p.id===id)return p;const r=fp(p.children||[],id);if(r)return r;}return null;}
+function bt(pages){return'<ul>'+pages.map(p=>{const hc=p.children&&p.children.length;const hd=!!p.description;return'<li><div class="nc" onclick="om(\''+p.id+'\')"><span class="ni">'+p.icon+'</span><span class="nn">'+eh(p.name)+'</span>'+(hd?'<span class="nh">📝</span>':'')+(hc?'<button class="nt open" id="tb-'+p.id+'" onclick="event.stopPropagation();tg(\''+p.id+'\')">▼</button>':'')+'</div>'+(p.description?'<div class="nd">'+eh(p.description)+'</div>':'')+(hc?'<div class="nch" id="ch-'+p.id+'">'+bt(p.children)+'</div>':'')+'</li>';}).join('')+'</ul>';}
+function tg(id){const c=document.getElementById('ch-'+id);const b=document.getElementById('tb-'+id);if(!c)return;const o=c.style.display!=='none';c.style.display=o?'none':'';b.textContent=o?'▶':'▼';b.classList.toggle('open',!o);}
+function om(id){const p=fp(PG,id);if(!p)return;document.getElementById('mi').textContent=p.icon;document.getElementById('mt').textContent=p.name;document.getElementById('md').textContent=p.description||'（掲載コンテンツは別途ご確認ください）';document.getElementById('modal').classList.add('show');}
+function closeM(){document.getElementById('modal').classList.remove('show');}
+function eh(s){return(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeM();});
+document.getElementById('tree').innerHTML=bt(PG);
+<\/script>
+</body></html>`;
+
+      const blob = new Blob([html], { type: 'text/html;charset=utf-8' });
       const url = URL.createObjectURL(blob);
-      const a = document.createElement('a'); a.href = url; a.download = 'sitemap.html'; a.click();
-      showToast('HTMLをダウンロードしました ✓');
+      const a = document.createElement('a');
+      const name = (p.name || 'sitemap').replace(/[<>:"/\\|?*]/g, '_').slice(0, 40);
+      a.href = url; a.download = `sitemap_${name}_${p.date || todayStr()}.html`; a.click();
+      URL.revokeObjectURL(url);
+      showToast('✅ HTMLをダウンロードしました');
     }
 
     function exportXML() {
+      if (!data.pages.length) { alert('ページが1つもありません。'); return; }
       const base = prompt('ベースURLを入力してください（例: https://example.com）', 'https://example.com');
       if (!base) return;
       const slugify = s => s.replace(/[^a-zA-Z0-9]/g, '-').toLowerCase();
       let xml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n`;
-      state.pages.forEach(p => {
-        const slug = p.level === 0 ? '/' : '/' + slugify(p.name) + '/';
-        xml += `  <url>\n    <loc>${base}${slug}</loc>\n    <changefreq>monthly</changefreq>\n    <priority>${p.level === 0 ? '1.0' : p.level === 1 ? '0.8' : '0.6'}</priority>\n  </url>\n`;
-      });
+      const addUrls = (pages, depth) => {
+        pages.forEach(p => {
+          const slug = depth === 0 ? '/' : '/' + slugify(p.name) + '/';
+          xml += `  <url>\n    <loc>${base}${slug}</loc>\n    <changefreq>monthly</changefreq>\n    <priority>${depth === 0 ? '1.0' : depth === 1 ? '0.8' : '0.6'}</priority>\n  </url>\n`;
+          addUrls(p.children || [], depth + 1);
+        });
+      };
+      addUrls(data.pages, 0);
       xml += '</urlset>';
       const blob = new Blob([xml], { type: 'application/xml' });
       const url = URL.createObjectURL(blob);
       const a = document.createElement('a'); a.href = url; a.download = 'sitemap.xml'; a.click();
-      showToast('XMLをダウンロードしました ✓');
+      URL.revokeObjectURL(url);
+      showToast('✅ XMLをダウンロードしました');
     }
 
     function printPDF() {
+      if (!data.pages.length) { alert('ページが1つもありません。'); return; }
       window.print();
     }
 
-    // ===== TOAST =====
-    function showToast(msg) {
-      const t = document.getElementById('toast');
-      t.textContent = msg;
-      t.classList.add('show');
-      setTimeout(() => t.classList.remove('show'), 2500);
+    // ============================================================
+    // SYNC FORM
+    // ============================================================
+    function syncForm() {
+      document.getElementById('f-sitename').value = data.project.name || '';
+      document.getElementById('f-client').value = data.project.client || '';
+      document.getElementById('f-date').value = data.project.date || todayStr();
+      document.getElementById('f-agency').value = data.project.agency || '';
+      document.getElementById('f-note').value = data.project.note || '';
+      const savedKey = localStorage.getItem('gemini_api_key');
+      if (savedKey) { document.getElementById('api-key-status').innerHTML = '<span style="color:#16A34A">✓ APIキー設定済み</span>'; }
     }
 
-    // ===== KEYBOARD =====
+    // ============================================================
+    // TOAST
+    // ============================================================
+    function showToast(msg) {
+      const t = document.getElementById('toast');
+      t.textContent = msg; t.classList.add('show');
+      setTimeout(() => t.classList.remove('show'), 2800);
+    }
+
+    // ============================================================
+    // KEYBOARD
+    // ============================================================
     document.addEventListener('keydown', e => {
       if (e.key === 'Escape') {
-        closeModal('modal-add');
-        closeDetail();
-      }
-      if (e.key === 'Enter' && document.getElementById('modal-add').classList.contains('show')) {
-        addPage();
+        closeIconPicker();
+        closeSampleModal();
+        closeDetailModal();
       }
     });
 
-    // Click outside modal
-    document.getElementById('modal-add').addEventListener('click', function (e) {
-      if (e.target === this) closeModal('modal-add');
-    });
-
-    // ===== START =====
+    // ============================================================
+    // INIT
+    // ============================================================
+    function init() {
+      loadStored();
+      syncForm();
+      initColorChips();
+      renderAll();
+    }
     init();
 
     // ============================================================
     // © COPYRIGHT & AUTHOR PROTECTION
     // Developed by Satoshi Sasaki / Sanc-Official
     // Contact: s.sasaki@sanc-official.com
-    // https://sanc-official.com
-    // Unauthorized copying, redistribution or resale is prohibited.
     // ============================================================
+    const _a = { name: 'Satoshi Sasaki', co: 'Sanc-Official', email: 's.sasaki@sanc-official.com', url: 'https://sanc-official.com', tool: 'SiteMap Studio', ver: 'v1.1', year: '2025' };
 
-    const _author = {
-      name: 'Satoshi Sasaki',
-      company: 'Sanc-Official',
-      email: 's.sasaki@sanc-official.com',
-      url: 'https://sanc-official.com',
-      tool: 'SiteMap Studio',
-      version: 'v1.0',
-      built: '2025',
-    };
-
-    // --- フッター著作権表示を挿入 ---
-    (function injectFooter() {
-      const footer = document.createElement('div');
-      footer.id = 'sanc-footer';
-      footer.style.cssText = [
-        'position:fixed', 'bottom:0', 'left:0', 'right:0',
-        'background:#ffffffee', 'backdrop-filter:blur(8px)',
-        'border-top:1px solid #dde0e8',
-        'padding:5px 16px',
-        'font-size:10px', 'color:#9ca3af',
-        'display:flex', 'justify-content:space-between', 'align-items:center',
-        'z-index:9999', 'font-family:monospace',
-        'pointer-events:none',
-      ].join(';');
-      footer.innerHTML = `
-    <span>© ${_author.built} ${_author.company} / ${_author.name} — ${_author.email}</span>
-    <span>${_author.tool} ${_author.version}</span>
-  `;
-      document.body.appendChild(footer);
+    (function () {
+      const f = document.createElement('div');
+      f.style.cssText = 'position:fixed;bottom:0;left:0;right:0;background:#ffffffee;backdrop-filter:blur(8px);border-top:1px solid #E2E8F0;padding:4px 16px;font-size:10px;color:#94A3B8;display:flex;justify-content:space-between;align-items:center;z-index:9999;font-family:monospace;pointer-events:none;';
+      f.innerHTML = `<span>© ${_a.year} ${_a.co} / ${_a.name} — ${_a.email}</span><span>${_a.tool} ${_a.ver}</span>`;
+      document.body.appendChild(f);
     })();
 
-    // --- コピー検知：クリップボードにウォーターマークを混入 ---
     document.addEventListener('copy', function (e) {
-      const selection = window.getSelection();
-      if (!selection || selection.toString().length < 10) return;
-
-      const original = selection.toString();
-      const watermark = [
-        '',
-        '',
-        '---',
-        `[Source] ${_author.tool} ${_author.version}`,
-        `[Author] ${_author.name} / ${_author.company}`,
-        `[Contact] ${_author.email}`,
-        `[URL] ${_author.url}`,
-        '[Notice] This content was created using a tool developed by Sanc-Official.',
-        '         Unauthorized redistribution or resale is prohibited.',
-        '---',
-      ].join('\n');
-
-      e.clipboardData.setData('text/plain', original + watermark);
+      const sel = window.getSelection();
+      if (!sel || sel.toString().length < 10) return;
+      const wm = `\n\n---\n[Source] ${_a.tool} ${_a.ver}\n[Author] ${_a.name} / ${_a.co}\n[Contact] ${_a.email}\n---`;
+      e.clipboardData.setData('text/plain', sel.toString() + wm);
       e.preventDefault();
     });
 
-    // --- DevTools 開口検知：コード盗用抑止メッセージ ---
-    (function devToolsGuard() {
+    (function () {
       let opened = false;
-      const threshold = 160;
-      const check = () => {
-        if (
-          window.outerWidth - window.innerWidth > threshold ||
-          window.outerHeight - window.innerHeight > threshold
-        ) {
-          if (!opened) {
-            opened = true;
-            console.clear();
-            console.log(
-              '%c© Sanc-Official / Satoshi Sasaki',
-              'font-size:18px;font-weight:bold;color:#6c63ff'
-            );
-            console.log(
-              '%cContact: s.sasaki@sanc-official.com',
-              'font-size:13px;color:#43e97b'
-            );
-            console.log(
-              '%cThis tool is proprietary software. Copying or redistribution without permission is prohibited.',
-              'font-size:12px;color:#ff6584'
-            );
-            console.log(
-              '%cLicensing inquiries welcome.',
-              'font-size:12px;color:#888899'
-            );
-          }
-        } else {
-          opened = false;
-        }
-      };
-      setInterval(check, 1000);
-    })();
-
-    // --- HTMLメタ情報にも著者情報を埋め込む ---
-    (function injectMeta() {
-      const metas = [
-        { name: 'author', content: `${_author.name} / ${_author.company}` },
-        { name: 'copyright', content: `© ${_author.built} ${_author.company}` },
-        { name: 'contact', content: _author.email },
-        { name: 'generator', content: `${_author.tool} ${_author.version} by ${_author.company}` },
-      ];
-      metas.forEach(({ name, content }) => {
-        const m = document.createElement('meta');
-        m.name = name; m.content = content;
-        document.head.appendChild(m);
-      });
+      setInterval(() => {
+        const o = window.outerWidth - window.innerWidth > 160 || window.outerHeight - window.innerHeight > 160;
+        if (o && !opened) {
+          opened = true; console.clear();
+          console.log('%c© Sanc-Official / Satoshi Sasaki', 'font-size:18px;font-weight:bold;color:#2563EB');
+          console.log('%cContact: s.sasaki@sanc-official.com', 'font-size:13px;color:#16A34A');
+          console.log('%cThis tool is proprietary software.', 'font-size:12px;color:#DC2626');
+        } else if (!o) { opened = false; }
+      }, 1000);
     })();
   </script>
-
 </body>
 
 </html>
