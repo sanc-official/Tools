@@ -1730,6 +1730,7 @@ ${allLinks.slice(0, 30).map(l => l.text).join(', ')}
 6. level 0 はトップページのみ（必ず1件）
 7. level 1 は最大8件まで
 8. level 2 は最大12件まで
+9. サイトのトップページ（ホーム、サイト名そのもの、/のみのURL）は必ずlevel 0にする
 
 JSON配列のみ返すこと（コードブロック・説明文不要）：
 [{"name":"ページ名","icon":"絵文字1文字","level":0〜2,"type":"通常/LP/フォーム/ブログ"}]
@@ -1755,6 +1756,7 @@ JSON配列のみ返すこと（コードブロック・説明文不要）：
         // サイト名を常にスキャン結果で上書き
         if (siteTitle) {
           document.getElementById('site-name').value = siteTitle;
+          document.getElementById('client-name').value = siteTitle;
         }
 
         statusEl.innerHTML = `<span style="color:var(--accent3)">✓ ${state.pages.length}ページを読み込みました</span>`;
