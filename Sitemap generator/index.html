@@ -1,1139 +1,1413 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SiteMap Studio｜Web制作提案用サイトマップ作成ツール</title>
-<!-- © 2025 Sanc-Official / Satoshi Sasaki - s.sasaki@sanc-official.com -->
-<!-- Developed by Sanc-Official. Unauthorized copying or redistribution is prohibited. -->
-<meta name="author" content="Satoshi Sasaki / Sanc-Official">
-<meta name="copyright" content="© 2025 Sanc-Official">
-<meta name="contact" content="s.sasaki@sanc-official.com">
-<style>
-  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Space+Mono:wght@400;700&display=swap');
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SiteMap Studio｜Web制作提案用サイトマップ作成ツール</title>
+  <!-- © 2025 Sanc-Official / Satoshi Sasaki - s.sasaki@sanc-official.com -->
+  <!-- Developed by Sanc-Official. Unauthorized copying or redistribution is prohibited. -->
+  <meta name="author" content="Satoshi Sasaki / Sanc-Official">
+  <meta name="copyright" content="© 2025 Sanc-Official">
+  <meta name="contact" content="s.sasaki@sanc-official.com">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Space+Mono:wght@400;700&display=swap');
 
-  :root {
-    --bg: #0d0d12;
-    --surface: #16161f;
-    --surface2: #1e1e2a;
-    --border: #2a2a3a;
-    --accent: #6c63ff;
-    --accent2: #ff6584;
-    --accent3: #43e97b;
-    --text: #e8e8f0;
-    --text2: #888899;
-    --radius: 10px;
-  }
+    :root {
+      --bg: #0d0d12;
+      --surface: #16161f;
+      --surface2: #1e1e2a;
+      --border: #2a2a3a;
+      --accent: #6c63ff;
+      --accent2: #ff6584;
+      --accent3: #43e97b;
+      --text: #e8e8f0;
+      --text2: #888899;
+      --radius: 10px;
+    }
 
-  * { box-sizing: border-box; margin: 0; padding: 0; }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-  body {
-    font-family: 'Noto Sans JP', sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-  }
+    body {
+      font-family: 'Noto Sans JP', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
 
-  /* HEADER */
-  header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 14px 24px;
-    background: var(--surface);
-    border-bottom: 1px solid var(--border);
-    gap: 12px;
-    flex-wrap: wrap;
-  }
-  .logo {
-    font-family: 'Space Mono', monospace;
-    font-size: 16px;
-    font-weight: 700;
-    color: var(--accent);
-    letter-spacing: -0.5px;
-  }
-  .logo span { color: var(--text2); font-weight: 400; font-size: 12px; margin-left: 8px; }
+    /* HEADER */
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 24px;
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      gap: 12px;
+      flex-wrap: wrap;
+    }
 
-  .header-actions {
-    display: flex;
-    gap: 8px;
-    flex-wrap: wrap;
-  }
+    .logo {
+      font-family: 'Space Mono', monospace;
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--accent);
+      letter-spacing: -0.5px;
+    }
 
-  .btn {
-    padding: 7px 14px;
-    border-radius: 6px;
-    border: none;
-    cursor: pointer;
-    font-size: 12px;
-    font-family: 'Noto Sans JP', sans-serif;
-    font-weight: 500;
-    transition: all 0.2s;
-  }
-  .btn-ghost {
-    background: transparent;
-    border: 1px solid var(--border);
-    color: var(--text2);
-  }
-  .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
-  .btn-primary {
-    background: var(--accent);
-    color: white;
-  }
-  .btn-primary:hover { background: #7b73ff; }
-  .btn-success {
-    background: var(--accent3);
-    color: #0d1a12;
-  }
-  .btn-success:hover { background: #5ff590; }
-  .btn-danger {
-    background: transparent;
-    border: 1px solid var(--accent2);
-    color: var(--accent2);
-  }
-  .btn-danger:hover { background: var(--accent2); color: white; }
+    .logo span {
+      color: var(--text2);
+      font-weight: 400;
+      font-size: 12px;
+      margin-left: 8px;
+    }
 
-  /* AI BADGE */
-  .ai-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 5px;
-    background: linear-gradient(135deg, #6c63ff22, #ff658422);
-    border: 1px solid #6c63ff44;
-    color: var(--accent);
-    padding: 5px 10px;
-    border-radius: 20px;
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.5px;
-  }
-  .ai-badge::before { content: '✦'; font-size: 10px; }
+    .header-actions {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
 
-  /* MAIN LAYOUT */
-  .main {
-    display: grid;
-    grid-template-columns: 300px 1fr;
-    flex: 1;
-    min-height: 0;
-    height: calc(100vh - 57px);
-  }
+    .btn {
+      padding: 7px 14px;
+      border-radius: 6px;
+      border: none;
+      cursor: pointer;
+      font-size: 12px;
+      font-family: 'Noto Sans JP', sans-serif;
+      font-weight: 500;
+      transition: all 0.2s;
+    }
 
-  /* SIDEBAR */
-  .sidebar {
-    background: var(--surface);
-    border-right: 1px solid var(--border);
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-  }
+    .btn-ghost {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text2);
+    }
 
-  .sidebar-tabs {
-    display: flex;
-    border-bottom: 1px solid var(--border);
-  }
-  .tab {
-    flex: 1;
-    padding: 11px 8px;
-    background: none;
-    border: none;
-    color: var(--text2);
-    font-size: 11px;
-    font-family: 'Noto Sans JP', sans-serif;
-    cursor: pointer;
-    border-bottom: 2px solid transparent;
-    transition: all 0.2s;
-  }
-  .tab.active {
-    color: var(--accent);
-    border-bottom-color: var(--accent);
-    background: #6c63ff0a;
-  }
+    .btn-ghost:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
 
-  .sidebar-content {
-    flex: 1;
-    overflow-y: auto;
-    padding: 16px;
-  }
-  .sidebar-content::-webkit-scrollbar { width: 4px; }
-  .sidebar-content::-webkit-scrollbar-track { background: var(--surface); }
-  .sidebar-content::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+    .btn-primary {
+      background: var(--accent);
+      color: white;
+    }
 
-  .section-label {
-    font-size: 10px;
-    font-weight: 700;
-    color: var(--text2);
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    margin-bottom: 10px;
-    margin-top: 16px;
-  }
-  .section-label:first-child { margin-top: 0; }
+    .btn-primary:hover {
+      background: #7b73ff;
+    }
 
-  .form-group { margin-bottom: 12px; }
-  .form-group label {
-    display: block;
-    font-size: 11px;
-    color: var(--text2);
-    margin-bottom: 5px;
-  }
-  .form-group input, .form-group select, .form-group textarea {
-    width: 100%;
-    background: var(--surface2);
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    color: var(--text);
-    padding: 8px 10px;
-    font-size: 12px;
-    font-family: 'Noto Sans JP', sans-serif;
-    outline: none;
-    transition: border-color 0.2s;
-  }
-  .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
-    border-color: var(--accent);
-  }
-  .form-group textarea { resize: vertical; min-height: 60px; }
-  .form-group select option { background: var(--surface2); }
+    .btn-success {
+      background: var(--accent3);
+      color: #0d1a12;
+    }
 
-  /* COLOR SWATCHES */
-  .color-swatches {
-    display: flex;
-    gap: 8px;
-    flex-wrap: wrap;
-  }
-  .swatch {
-    width: 28px;
-    height: 28px;
-    border-radius: 50%;
-    cursor: pointer;
-    border: 2px solid transparent;
-    transition: all 0.2s;
-  }
-  .swatch.active, .swatch:hover { border-color: white; transform: scale(1.15); }
+    .btn-success:hover {
+      background: #5ff590;
+    }
 
-  /* AI PANEL */
-  .ai-panel {
-    background: linear-gradient(135deg, #6c63ff12, #ff658408);
-    border: 1px solid #6c63ff33;
-    border-radius: var(--radius);
-    padding: 14px;
-    margin-bottom: 14px;
-  }
-  .ai-panel-title {
-    font-size: 12px;
-    font-weight: 700;
-    color: var(--accent);
-    margin-bottom: 10px;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-  }
-  .ai-input-row {
-    display: flex;
-    gap: 6px;
-    margin-bottom: 8px;
-  }
-  .ai-input-row input {
-    flex: 1;
-    background: var(--surface2);
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    color: var(--text);
-    padding: 7px 10px;
-    font-size: 12px;
-    font-family: 'Noto Sans JP', sans-serif;
-    outline: none;
-  }
-  .ai-input-row input:focus { border-color: var(--accent); }
-  .ai-hint { font-size: 10px; color: var(--text2); }
+    .btn-danger {
+      background: transparent;
+      border: 1px solid var(--accent2);
+      color: var(--accent2);
+    }
 
-  /* PAGE LIST */
-  .page-list { display: flex; flex-direction: column; gap: 6px; }
-  .page-item {
-    background: var(--surface2);
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    padding: 8px 10px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    cursor: pointer;
-    transition: all 0.2s;
-    position: relative;
-  }
-  .page-item:hover { border-color: var(--accent); }
-  .page-item.selected { border-color: var(--accent); background: #6c63ff12; }
-  .page-dot {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    flex-shrink: 0;
-  }
-  .page-item-label { flex: 1; font-size: 12px; }
-  .page-item-level {
-    font-size: 10px;
-    color: var(--text2);
-    background: var(--border);
-    padding: 1px 5px;
-    border-radius: 3px;
-  }
-  .page-item-delete {
-    background: none;
-    border: none;
-    color: var(--text2);
-    cursor: pointer;
-    font-size: 14px;
-    padding: 0 2px;
-    opacity: 0;
-    transition: opacity 0.2s;
-  }
-  .page-item:hover .page-item-delete { opacity: 1; }
-  .page-item-delete:hover { color: var(--accent2); }
+    .btn-danger:hover {
+      background: var(--accent2);
+      color: white;
+    }
 
-  .add-page-btn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 6px;
-    width: 100%;
-    padding: 9px;
-    background: transparent;
-    border: 1px dashed var(--border);
-    border-radius: 6px;
-    color: var(--text2);
-    font-size: 12px;
-    font-family: 'Noto Sans JP', sans-serif;
-    cursor: pointer;
-    transition: all 0.2s;
-    margin-top: 6px;
-  }
-  .add-page-btn:hover { border-color: var(--accent); color: var(--accent); }
+    /* AI BADGE */
+    .ai-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      background: linear-gradient(135deg, #6c63ff22, #ff658422);
+      border: 1px solid #6c63ff44;
+      color: var(--accent);
+      padding: 5px 10px;
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
 
-  /* CANVAS */
-  .canvas-area {
-    display: flex;
-    flex-direction: column;
-    background: var(--bg);
-    overflow: hidden;
-  }
+    .ai-badge::before {
+      content: '✦';
+      font-size: 10px;
+    }
 
-  .canvas-toolbar {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 10px 20px;
-    background: var(--surface);
-    border-bottom: 1px solid var(--border);
-    flex-wrap: wrap;
-  }
-  .canvas-toolbar span {
-    font-size: 11px;
-    color: var(--text2);
-  }
+    /* MAIN LAYOUT */
+    .main {
+      display: grid;
+      grid-template-columns: 300px 1fr;
+      flex: 1;
+      min-height: 0;
+      height: calc(100vh - 57px);
+    }
 
-  .canvas-scroll {
-    flex: 1;
-    overflow: auto;
-    padding: 40px;
-  }
-  .canvas-scroll::-webkit-scrollbar { width: 6px; height: 6px; }
-  .canvas-scroll::-webkit-scrollbar-track { background: var(--bg); }
-  .canvas-scroll::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+    /* SIDEBAR */
+    .sidebar {
+      background: var(--surface);
+      border-right: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
 
-  /* SITEMAP DIAGRAM */
-  .sitemap-wrapper {
-    min-width: 700px;
-    min-height: 400px;
-    position: relative;
-  }
+    .sidebar-tabs {
+      display: flex;
+      border-bottom: 1px solid var(--border);
+    }
 
-  .sitemap-header {
-    text-align: center;
-    margin-bottom: 40px;
-    padding: 20px;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    position: relative;
-    overflow: hidden;
-  }
-  .sitemap-header::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 3px;
-    background: var(--header-color, var(--accent));
-  }
-  .sitemap-title { font-size: 20px; font-weight: 700; margin-bottom: 4px; }
-  .sitemap-meta { font-size: 12px; color: var(--text2); }
+    .tab {
+      flex: 1;
+      padding: 11px 8px;
+      background: none;
+      border: none;
+      color: var(--text2);
+      font-size: 11px;
+      font-family: 'Noto Sans JP', sans-serif;
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      transition: all 0.2s;
+    }
 
-  .tree-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0;
-  }
+    .tab.active {
+      color: var(--accent);
+      border-bottom-color: var(--accent);
+      background: #6c63ff0a;
+    }
 
-  /* Level rows */
-  .level-row {
-    display: flex;
-    justify-content: center;
-    gap: 16px;
-    position: relative;
-    width: 100%;
-    margin-bottom: 0;
-  }
+    .sidebar-content {
+      flex: 1;
+      overflow-y: auto;
+      padding: 16px;
+    }
 
-  .node-wrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    position: relative;
-  }
+    .sidebar-content::-webkit-scrollbar {
+      width: 4px;
+    }
 
-  .connector-v {
-    width: 2px;
-    height: 30px;
-    background: var(--border);
-  }
-  .connector-h-container {
-    position: relative;
-    display: flex;
-    align-items: flex-start;
-    justify-content: center;
-    width: 100%;
-    margin-bottom: 0;
-  }
-  .connector-h {
-    height: 2px;
-    background: var(--border);
-    position: absolute;
-    top: 0;
-  }
+    .sidebar-content::-webkit-scrollbar-track {
+      background: var(--surface);
+    }
 
-  .node {
-    min-width: 130px;
-    max-width: 160px;
-    padding: 10px 14px;
-    border-radius: 8px;
-    border: 1.5px solid;
-    text-align: center;
-    cursor: pointer;
-    transition: all 0.2s;
-    position: relative;
-  }
-  .node:hover { transform: translateY(-2px); box-shadow: 0 8px 20px #0006; }
-  .node.selected { box-shadow: 0 0 0 2px white, 0 8px 20px #0006; }
+    .sidebar-content::-webkit-scrollbar-thumb {
+      background: var(--border);
+      border-radius: 2px;
+    }
 
-  .node-icon { font-size: 18px; margin-bottom: 4px; }
-  .node-label { font-size: 12px; font-weight: 500; }
-  .node-type { font-size: 10px; opacity: 0.6; margin-top: 2px; }
-  .node-price {
-    font-size: 10px;
-    margin-top: 4px;
-    opacity: 0.8;
-    font-family: 'Space Mono', monospace;
-  }
+    .section-label {
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--text2);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+      margin-top: 16px;
+    }
 
-  /* Level 0 = root */
-  .node-l0 {
-    min-width: 160px;
-    padding: 14px 20px;
-    border-radius: 10px;
-  }
-  .node-l1 { }
-  .node-l2 {
-    min-width: 110px;
-    padding: 8px 10px;
-  }
-  .node-l2 .node-label { font-size: 11px; }
+    .section-label:first-child {
+      margin-top: 0;
+    }
 
-  /* EMPTY STATE */
-  .empty-state {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 300px;
-    gap: 12px;
-    color: var(--text2);
-  }
-  .empty-icon { font-size: 48px; opacity: 0.3; }
-  .empty-text { font-size: 14px; }
-  .empty-sub { font-size: 12px; opacity: 0.6; }
+    .form-group {
+      margin-bottom: 12px;
+    }
 
-  /* TOAST */
-  .toast {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background: var(--surface2);
-    border: 1px solid var(--accent);
-    color: var(--text);
-    padding: 12px 18px;
-    border-radius: 8px;
-    font-size: 13px;
-    opacity: 0;
-    transform: translateY(10px);
-    transition: all 0.3s;
-    z-index: 100;
-    pointer-events: none;
-  }
-  .toast.show { opacity: 1; transform: translateY(0); }
+    .form-group label {
+      display: block;
+      font-size: 11px;
+      color: var(--text2);
+      margin-bottom: 5px;
+    }
 
-  /* MODAL */
-  .modal-overlay {
-    position: fixed;
-    inset: 0;
-    background: #0009;
-    z-index: 200;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.2s;
-  }
-  .modal-overlay.show { opacity: 1; pointer-events: auto; }
-  .modal {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 24px;
-    width: 420px;
-    max-width: 90vw;
-    transform: scale(0.95);
-    transition: transform 0.2s;
-  }
-  .modal-overlay.show .modal { transform: scale(1); }
-  .modal-title {
-    font-size: 16px;
-    font-weight: 700;
-    margin-bottom: 16px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-  .modal-actions { display: flex; gap: 8px; justify-content: flex-end; margin-top: 16px; }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      color: var(--text);
+      padding: 8px 10px;
+      font-size: 12px;
+      font-family: 'Noto Sans JP', sans-serif;
+      outline: none;
+      transition: border-color 0.2s;
+    }
 
-  /* STATS BAR */
-  .stats-bar {
-    display: flex;
-    gap: 20px;
-    padding: 8px 20px;
-    background: var(--surface);
-    border-top: 1px solid var(--border);
-  }
-  .stat { display: flex; align-items: center; gap: 6px; font-size: 11px; color: var(--text2); }
-  .stat strong { color: var(--text); font-family: 'Space Mono', monospace; }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: var(--accent);
+    }
 
-  /* LOADING */
-  .loading-dots {
-    display: inline-flex;
-    gap: 4px;
-    align-items: center;
-  }
-  .loading-dots span {
-    width: 5px; height: 5px;
-    background: var(--accent);
-    border-radius: 50%;
-    animation: bounce 0.8s infinite;
-  }
-  .loading-dots span:nth-child(2) { animation-delay: 0.15s; }
-  .loading-dots span:nth-child(3) { animation-delay: 0.3s; }
-  @keyframes bounce {
-    0%, 80%, 100% { transform: scale(0.6); opacity: 0.4; }
-    40% { transform: scale(1); opacity: 1; }
-  }
+    .form-group textarea {
+      resize: vertical;
+      min-height: 60px;
+    }
 
-  /* PAGE DETAIL PANEL */
-  .detail-panel {
-    position: absolute;
-    right: 20px;
-    top: 60px;
-    width: 240px;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 14px;
-    z-index: 10;
-    box-shadow: 0 10px 30px #0006;
-    opacity: 0;
-    transform: translateX(20px);
-    pointer-events: none;
-    transition: all 0.2s;
-  }
-  .detail-panel.show { opacity: 1; transform: translateX(0); pointer-events: auto; }
-  .detail-panel-title {
-    font-size: 12px;
-    font-weight: 700;
-    margin-bottom: 12px;
-    color: var(--accent);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  .detail-close {
-    background: none;
-    border: none;
-    color: var(--text2);
-    cursor: pointer;
-    font-size: 16px;
-  }
-  .detail-close:hover { color: var(--text); }
+    .form-group select option {
+      background: var(--surface2);
+    }
 
-  @media (max-width: 700px) {
-    .main { grid-template-columns: 1fr; }
-    .sidebar { height: 50vh; border-right: none; border-bottom: 1px solid var(--border); }
-  }
-</style>
+    /* COLOR SWATCHES */
+    .color-swatches {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .swatch {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      cursor: pointer;
+      border: 2px solid transparent;
+      transition: all 0.2s;
+    }
+
+    .swatch.active,
+    .swatch:hover {
+      border-color: white;
+      transform: scale(1.15);
+    }
+
+    /* AI PANEL */
+    .ai-panel {
+      background: linear-gradient(135deg, #6c63ff12, #ff658408);
+      border: 1px solid #6c63ff33;
+      border-radius: var(--radius);
+      padding: 14px;
+      margin-bottom: 14px;
+    }
+
+    .ai-panel-title {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .ai-input-row {
+      display: flex;
+      gap: 6px;
+      margin-bottom: 8px;
+    }
+
+    .ai-input-row input {
+      flex: 1;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      color: var(--text);
+      padding: 7px 10px;
+      font-size: 12px;
+      font-family: 'Noto Sans JP', sans-serif;
+      outline: none;
+    }
+
+    .ai-input-row input:focus {
+      border-color: var(--accent);
+    }
+
+    .ai-hint {
+      font-size: 10px;
+      color: var(--text2);
+    }
+
+    /* PAGE LIST */
+    .page-list {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .page-item {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 8px 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      transition: all 0.2s;
+      position: relative;
+    }
+
+    .page-item:hover {
+      border-color: var(--accent);
+    }
+
+    .page-item.selected {
+      border-color: var(--accent);
+      background: #6c63ff12;
+    }
+
+    .page-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .page-item-label {
+      flex: 1;
+      font-size: 12px;
+    }
+
+    .page-item-level {
+      font-size: 10px;
+      color: var(--text2);
+      background: var(--border);
+      padding: 1px 5px;
+      border-radius: 3px;
+    }
+
+    .page-item-delete {
+      background: none;
+      border: none;
+      color: var(--text2);
+      cursor: pointer;
+      font-size: 14px;
+      padding: 0 2px;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+    .page-item:hover .page-item-delete {
+      opacity: 1;
+    }
+
+    .page-item-delete:hover {
+      color: var(--accent2);
+    }
+
+    .add-page-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      width: 100%;
+      padding: 9px;
+      background: transparent;
+      border: 1px dashed var(--border);
+      border-radius: 6px;
+      color: var(--text2);
+      font-size: 12px;
+      font-family: 'Noto Sans JP', sans-serif;
+      cursor: pointer;
+      transition: all 0.2s;
+      margin-top: 6px;
+    }
+
+    .add-page-btn:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    /* CANVAS */
+    .canvas-area {
+      display: flex;
+      flex-direction: column;
+      background: var(--bg);
+      overflow: hidden;
+    }
+
+    .canvas-toolbar {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 20px;
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      flex-wrap: wrap;
+    }
+
+    .canvas-toolbar span {
+      font-size: 11px;
+      color: var(--text2);
+    }
+
+    .canvas-scroll {
+      flex: 1;
+      overflow: auto;
+      padding: 40px;
+    }
+
+    .canvas-scroll::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+
+    .canvas-scroll::-webkit-scrollbar-track {
+      background: var(--bg);
+    }
+
+    .canvas-scroll::-webkit-scrollbar-thumb {
+      background: var(--border);
+      border-radius: 3px;
+    }
+
+    /* SITEMAP DIAGRAM */
+    .sitemap-wrapper {
+      min-width: 700px;
+      min-height: 400px;
+      position: relative;
+    }
+
+    .sitemap-header {
+      text-align: center;
+      margin-bottom: 40px;
+      padding: 20px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .sitemap-header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: var(--header-color, var(--accent));
+    }
+
+    .sitemap-title {
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .sitemap-meta {
+      font-size: 12px;
+      color: var(--text2);
+    }
+
+    .tree-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0;
+    }
+
+    /* Level rows */
+    .level-row {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      position: relative;
+      width: 100%;
+      margin-bottom: 0;
+    }
+
+    .node-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+    }
+
+    .connector-v {
+      width: 2px;
+      height: 30px;
+      background: var(--border);
+    }
+
+    .connector-h-container {
+      position: relative;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      width: 100%;
+      margin-bottom: 0;
+    }
+
+    .connector-h {
+      height: 2px;
+      background: var(--border);
+      position: absolute;
+      top: 0;
+    }
+
+    .node {
+      min-width: 130px;
+      max-width: 160px;
+      padding: 10px 14px;
+      border-radius: 8px;
+      border: 1.5px solid;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.2s;
+      position: relative;
+    }
+
+    .node:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px #0006;
+    }
+
+    .node.selected {
+      box-shadow: 0 0 0 2px white, 0 8px 20px #0006;
+    }
+
+    .node-icon {
+      font-size: 18px;
+      margin-bottom: 4px;
+    }
+
+    .node-label {
+      font-size: 12px;
+      font-weight: 500;
+    }
+
+    .node-type {
+      font-size: 10px;
+      opacity: 0.6;
+      margin-top: 2px;
+    }
+
+    .node-price {
+      font-size: 10px;
+      margin-top: 4px;
+      opacity: 0.8;
+      font-family: 'Space Mono', monospace;
+    }
+
+    /* Level 0 = root */
+    .node-l0 {
+      min-width: 160px;
+      padding: 14px 20px;
+      border-radius: 10px;
+    }
+
+    .node-l1 {}
+
+    .node-l2 {
+      min-width: 110px;
+      padding: 8px 10px;
+    }
+
+    .node-l2 .node-label {
+      font-size: 11px;
+    }
+
+    /* EMPTY STATE */
+    .empty-state {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 300px;
+      gap: 12px;
+      color: var(--text2);
+    }
+
+    .empty-icon {
+      font-size: 48px;
+      opacity: 0.3;
+    }
+
+    .empty-text {
+      font-size: 14px;
+    }
+
+    .empty-sub {
+      font-size: 12px;
+      opacity: 0.6;
+    }
+
+    /* TOAST */
+    .toast {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: var(--surface2);
+      border: 1px solid var(--accent);
+      color: var(--text);
+      padding: 12px 18px;
+      border-radius: 8px;
+      font-size: 13px;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: all 0.3s;
+      z-index: 100;
+      pointer-events: none;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* MODAL */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: #0009;
+      z-index: 200;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s;
+    }
+
+    .modal-overlay.show {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .modal {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+      width: 420px;
+      max-width: 90vw;
+      transform: scale(0.95);
+      transition: transform 0.2s;
+    }
+
+    .modal-overlay.show .modal {
+      transform: scale(1);
+    }
+
+    .modal-title {
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .modal-actions {
+      display: flex;
+      gap: 8px;
+      justify-content: flex-end;
+      margin-top: 16px;
+    }
+
+    /* STATS BAR */
+    .stats-bar {
+      display: flex;
+      gap: 20px;
+      padding: 8px 20px;
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+    }
+
+    .stat {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      color: var(--text2);
+    }
+
+    .stat strong {
+      color: var(--text);
+      font-family: 'Space Mono', monospace;
+    }
+
+    /* LOADING */
+    .loading-dots {
+      display: inline-flex;
+      gap: 4px;
+      align-items: center;
+    }
+
+    .loading-dots span {
+      width: 5px;
+      height: 5px;
+      background: var(--accent);
+      border-radius: 50%;
+      animation: bounce 0.8s infinite;
+    }
+
+    .loading-dots span:nth-child(2) {
+      animation-delay: 0.15s;
+    }
+
+    .loading-dots span:nth-child(3) {
+      animation-delay: 0.3s;
+    }
+
+    @keyframes bounce {
+
+      0%,
+      80%,
+      100% {
+        transform: scale(0.6);
+        opacity: 0.4;
+      }
+
+      40% {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
+    /* PAGE DETAIL PANEL */
+    .detail-panel {
+      position: absolute;
+      right: 20px;
+      top: 60px;
+      width: 240px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 14px;
+      z-index: 10;
+      box-shadow: 0 10px 30px #0006;
+      opacity: 0;
+      transform: translateX(20px);
+      pointer-events: none;
+      transition: all 0.2s;
+    }
+
+    .detail-panel.show {
+      opacity: 1;
+      transform: translateX(0);
+      pointer-events: auto;
+    }
+
+    .detail-panel-title {
+      font-size: 12px;
+      font-weight: 700;
+      margin-bottom: 12px;
+      color: var(--accent);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .detail-close {
+      background: none;
+      border: none;
+      color: var(--text2);
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    .detail-close:hover {
+      color: var(--text);
+    }
+
+    @media (max-width: 700px) {
+      .main {
+        grid-template-columns: 1fr;
+      }
+
+      .sidebar {
+        height: 50vh;
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+      }
+    }
+  </style>
 </head>
+
 <body>
 
-<!-- HEADER -->
-<header>
-  <div style="display:flex;align-items:center;gap:12px">
-    <div class="logo">SiteMap Studio <span>β v1.0</span></div>
-    <div class="ai-badge">AI搭載</div>
-  </div>
-  <div class="header-actions">
-    <button class="btn btn-ghost" onclick="loadSample()">📂 サンプル</button>
-    <button class="btn btn-ghost" onclick="resetAll()">🔄 リセット</button>
-    <button class="btn btn-ghost" onclick="exportHTML()">⬇️ HTML保存</button>
-    <button class="btn btn-success" onclick="exportXML()">🗂️ XML出力</button>
-    <button class="btn btn-primary" onclick="printPDF()">🖨️ PDF保存</button>
-  </div>
-</header>
-
-<!-- MAIN -->
-<div class="main">
-
-  <!-- SIDEBAR -->
-  <div class="sidebar">
-    <div class="sidebar-tabs">
-      <button class="tab active" onclick="switchTab('pages', this)">📑 ページ構成</button>
-      <button class="tab" onclick="switchTab('settings', this)">⚙️ 設定</button>
-      <button class="tab" onclick="switchTab('ai', this)">✦ AI生成</button>
+  <!-- HEADER -->
+  <header>
+    <div style="display:flex;align-items:center;gap:12px">
+      <div class="logo">SiteMap Studio <span>β v1.0</span></div>
+      <div class="ai-badge">AI搭載</div>
     </div>
-
-    <!-- PAGES TAB -->
-    <div id="tab-pages" class="sidebar-content">
-      <div class="section-label">ページ一覧</div>
-      <div class="page-list" id="page-list"></div>
-      <button class="add-page-btn" onclick="openAddModal()">＋ ページを追加</button>
-
-      <div class="section-label" style="margin-top:20px">階層の目安</div>
-      <div style="display:flex;flex-direction:column;gap:6px">
-        <div style="display:flex;align-items:center;gap:8px;font-size:11px;color:var(--text2)">
-          <span style="width:12px;height:12px;background:#6c63ff;border-radius:2px;display:inline-block"></span> L0 = トップ（1ページのみ）
-        </div>
-        <div style="display:flex;align-items:center;gap:8px;font-size:11px;color:var(--text2)">
-          <span style="width:12px;height:12px;background:#43e97b;border-radius:2px;display:inline-block"></span> L1 = メインメニュー
-        </div>
-        <div style="display:flex;align-items:center;gap:8px;font-size:11px;color:var(--text2)">
-          <span style="width:12px;height:12px;background:#ff6584;border-radius:2px;display:inline-block"></span> L2 = サブページ
-        </div>
-      </div>
+    <div class="header-actions">
+      <button class="btn btn-ghost" onclick="loadSample()">📂 サンプル</button>
+      <button class="btn btn-ghost" onclick="resetAll()">🔄 リセット</button>
+      <button class="btn btn-ghost" onclick="exportHTML()">⬇️ HTML保存</button>
+      <button class="btn btn-success" onclick="exportXML()">🗂️ XML出力</button>
+      <button class="btn btn-primary" onclick="printPDF()">🖨️ PDF保存</button>
     </div>
+  </header>
 
-    <!-- SETTINGS TAB -->
-    <div id="tab-settings" class="sidebar-content" style="display:none">
-      <div class="section-label">プロジェクト情報</div>
-      <div class="form-group">
-        <label>サイト名</label>
-        <input type="text" id="site-name" placeholder="〇〇株式会社 コーポレートサイト" oninput="renderCanvas()">
-      </div>
-      <div class="form-group">
-        <label>クライアント名</label>
-        <input type="text" id="client-name" placeholder="〇〇株式会社" oninput="renderCanvas()">
-      </div>
-      <div class="form-group">
-        <label>制作会社名</label>
-        <input type="text" id="agency-name" placeholder="Sanc-Official" oninput="renderCanvas()">
-      </div>
-      <div class="form-group">
-        <label>作成日</label>
-        <input type="date" id="created-date" oninput="renderCanvas()">
-      </div>
-      <div class="form-group">
-        <label>備考・メモ</label>
-        <textarea id="memo" placeholder="提案の補足・注意事項など" oninput="renderCanvas()"></textarea>
+  <!-- MAIN -->
+  <div class="main">
+
+    <!-- SIDEBAR -->
+    <div class="sidebar">
+      <div class="sidebar-tabs">
+        <button class="tab active" onclick="switchTab('pages', this)">📑 ページ構成</button>
+        <button class="tab" onclick="switchTab('settings', this)">⚙️ 設定</button>
+        <button class="tab" onclick="switchTab('ai', this)">✦ AI生成</button>
       </div>
 
-      <div class="section-label">テーマカラー</div>
-      <div class="color-swatches" id="color-swatches"></div>
+      <!-- PAGES TAB -->
+      <div id="tab-pages" class="sidebar-content">
+        <div class="section-label">ページ一覧</div>
+        <div class="page-list" id="page-list"></div>
+        <button class="add-page-btn" onclick="openAddModal()">＋ ページを追加</button>
 
-      <div class="section-label" style="margin-top:20px">表示オプション</div>
-      <div class="form-group">
-        <label style="display:flex;align-items:center;gap:8px;cursor:pointer">
-          <input type="checkbox" id="show-price" onchange="renderCanvas()" style="width:auto">
-          ページ単価を表示
-        </label>
+        <div class="section-label" style="margin-top:20px">階層の目安</div>
+        <div style="display:flex;flex-direction:column;gap:6px">
+          <div style="display:flex;align-items:center;gap:8px;font-size:11px;color:var(--text2)">
+            <span style="width:12px;height:12px;background:#6c63ff;border-radius:2px;display:inline-block"></span> L0 =
+            トップ（1ページのみ）
+          </div>
+          <div style="display:flex;align-items:center;gap:8px;font-size:11px;color:var(--text2)">
+            <span style="width:12px;height:12px;background:#43e97b;border-radius:2px;display:inline-block"></span> L1 =
+            メインメニュー
+          </div>
+          <div style="display:flex;align-items:center;gap:8px;font-size:11px;color:var(--text2)">
+            <span style="width:12px;height:12px;background:#ff6584;border-radius:2px;display:inline-block"></span> L2 =
+            サブページ
+          </div>
+        </div>
       </div>
-      <div class="form-group">
-        <label style="display:flex;align-items:center;gap:8px;cursor:pointer">
-          <input type="checkbox" id="show-icons" checked onchange="renderCanvas()" style="width:auto">
-          アイコンを表示
-        </label>
-      </div>
-    </div>
 
-    <!-- AI TAB -->
-    <div id="tab-ai" class="sidebar-content" style="display:none">
-      <div class="ai-panel">
-        <div class="ai-panel-title">✦ AIでページ構成を自動生成</div>
+      <!-- SETTINGS TAB -->
+      <div id="tab-settings" class="sidebar-content" style="display:none">
+        <div class="section-label">プロジェクト情報</div>
         <div class="form-group">
-          <label>業種 / サイトタイプ</label>
-          <select id="ai-type">
-            <option value="">選択してください</option>
-            <option value="corp">コーポレートサイト</option>
-            <option value="clinic">医療クリニック</option>
-            <option value="ec">ECサイト</option>
-            <option value="recruit">採用サイト</option>
-            <option value="portfolio">ポートフォリオ</option>
-            <option value="restaurant">飲食店</option>
-            <option value="accounting">会計・士業事務所</option>
-            <option value="construction">建設・工務店</option>
-            <option value="rental">民泊・宿泊施設</option>
-          </select>
+          <label>サイト名</label>
+          <input type="text" id="site-name" placeholder="〇〇株式会社 コーポレートサイト" oninput="renderCanvas()">
         </div>
-        <div class="ai-input-row">
-          <input type="text" id="ai-keyword" placeholder="キーワード（例：眼科 採用）">
+        <div class="form-group">
+          <label>クライアント名</label>
+          <input type="text" id="client-name" placeholder="〇〇株式会社" oninput="renderCanvas()">
         </div>
-        <button class="btn btn-primary" style="width:100%;margin-top:4px" onclick="generateAI()">
-          ✦ 構成を自動生成
+        <div class="form-group">
+          <label>制作会社名</label>
+          <input type="text" id="agency-name" placeholder="Sanc-Official" oninput="renderCanvas()">
+        </div>
+        <div class="form-group">
+          <label>作成日</label>
+          <input type="date" id="created-date" oninput="renderCanvas()">
+        </div>
+        <div class="form-group">
+          <label>備考・メモ</label>
+          <textarea id="memo" placeholder="提案の補足・注意事項など" oninput="renderCanvas()"></textarea>
+        </div>
+
+        <div class="section-label">テーマカラー</div>
+        <div class="color-swatches" id="color-swatches"></div>
+
+        <div class="section-label" style="margin-top:20px">表示オプション</div>
+        <div class="form-group">
+          <label style="display:flex;align-items:center;gap:8px;cursor:pointer">
+            <input type="checkbox" id="show-price" onchange="renderCanvas()" style="width:auto">
+            ページ単価を表示
+          </label>
+        </div>
+        <div class="form-group">
+          <label style="display:flex;align-items:center;gap:8px;cursor:pointer">
+            <input type="checkbox" id="show-icons" checked onchange="renderCanvas()" style="width:auto">
+            アイコンを表示
+          </label>
+        </div>
+      </div>
+
+      <!-- AI TAB -->
+      <div id="tab-ai" class="sidebar-content" style="display:none">
+        <div class="ai-panel">
+          <div class="ai-panel-title">✦ AIでページ構成を自動生成</div>
+          <div class="form-group">
+            <label>業種 / サイトタイプ</label>
+            <select id="ai-type">
+              <option value="">選択してください</option>
+              <option value="corp">コーポレートサイト</option>
+              <option value="clinic">医療クリニック</option>
+              <option value="ec">ECサイト</option>
+              <option value="recruit">採用サイト</option>
+              <option value="portfolio">ポートフォリオ</option>
+              <option value="restaurant">飲食店</option>
+              <option value="accounting">会計・士業事務所</option>
+              <option value="construction">建設・工務店</option>
+              <option value="rental">民泊・宿泊施設</option>
+            </select>
+          </div>
+          <div class="ai-input-row">
+            <input type="text" id="ai-keyword" placeholder="キーワード（例：眼科 採用）">
+          </div>
+          <button class="btn btn-primary" style="width:100%;margin-top:4px" onclick="generateAI()">
+            ✦ 構成を自動生成
+          </button>
+          <p class="ai-hint" style="margin-top:8px">業種を選ぶだけで最適なページ構成が生成されます</p>
+        </div>
+
+        <!-- API KEY SETTING -->
+        <div class="section-label">🔑 Gemini API キー設定</div>
+        <div class="form-group">
+          <label>Google Gemini API Key</label>
+          <div style="display:flex;gap:6px">
+            <input type="password" id="api-key" placeholder="AIza..." style="flex:1">
+            <button class="btn btn-ghost" onclick="saveApiKey()" style="padding:7px 10px;flex-shrink:0">保存</button>
+          </div>
+          <div style="font-size:10px;color:var(--text2);margin-top:4px">
+            取得先：<a href="https://aistudio.google.com" target="_blank"
+              style="color:var(--accent)">aistudio.google.com</a>
+            （無料）｜このブラウザにのみ保存されます。
+          </div>
+        </div>
+        <div id="api-key-status" style="font-size:11px;color:var(--text2);margin-bottom:12px"></div>
+
+        <!-- URL SCAN -->
+        <div class="section-label">🔗 URLからサイト構成を読み込み</div>
+        <div class="form-group">
+          <label>既存サイトのURL</label>
+          <input type="text" id="scan-url" placeholder="https://example.com">
+        </div>
+        <button class="btn btn-primary" style="width:100%" onclick="scanURL()">
+          🌐 URLをスキャン
         </button>
-        <p class="ai-hint" style="margin-top:8px">業種を選ぶだけで最適なページ構成が生成されます</p>
+        <div id="scan-status" style="font-size:11px;color:var(--text2);margin-top:8px;line-height:1.6"></div>
+
+        <!-- KEYWORD -->
+        <div class="section-label" style="margin-top:16px">📊 SEOキーワード提案</div>
+        <div class="form-group">
+          <label>対象ページ or テーマ</label>
+          <input type="text" id="kw-target" placeholder="例：眼科クリニック 採用ページ">
+        </div>
+        <button class="btn btn-primary" style="width:100%" onclick="suggestKeywords()">
+          🔍 キーワードをAI提案
+        </button>
+        <div id="kw-result" style="margin-top:10px"></div>
+      </div>
+    </div>
+
+    <!-- CANVAS -->
+    <div class="canvas-area" style="position:relative">
+      <div class="canvas-toolbar">
+        <span>プレビュー</span>
+        <div style="flex:1"></div>
+        <span id="page-count-label">0 ページ</span>
+        <span id="total-price-label"></span>
+      </div>
+      <div class="canvas-scroll">
+        <div class="sitemap-wrapper" id="canvas"></div>
       </div>
 
-      <div class="section-label">🔗 URLからサイト構成を読み込み</div>
+      <!-- DETAIL PANEL -->
+      <div class="detail-panel" id="detail-panel">
+        <div class="detail-panel-title">
+          <span>ページ詳細</span>
+          <button class="detail-close" onclick="closeDetail()">✕</button>
+        </div>
+        <div id="detail-content"></div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- STATS BAR -->
+  <div class="stats-bar">
+    <div class="stat">総ページ数 <strong id="stat-pages">0</strong></div>
+    <div class="stat">L1 <strong id="stat-l1">0</strong></div>
+    <div class="stat">L2 <strong id="stat-l2">0</strong></div>
+    <div class="stat" id="stat-price-wrap">合計金額 <strong id="stat-price">¥0</strong></div>
+  </div>
+
+  <!-- ADD PAGE MODAL -->
+  <div class="modal-overlay" id="modal-add">
+    <div class="modal">
+      <div class="modal-title">📄 ページを追加</div>
       <div class="form-group">
-        <label>既存サイトのURL</label>
-        <input type="text" id="scan-url" placeholder="https://example.com">
+        <label>ページ名 *</label>
+        <input type="text" id="new-page-name" placeholder="例：サービス紹介">
       </div>
-      <button class="btn btn-ghost" style="width:100%" onclick="showToast('この機能は有料版で利用できます 🔒')">
-        🌐 URLをスキャン（有料版）
-      </button>
-
-      <div class="section-label" style="margin-top:16px">📊 SEOキーワードメモ生成</div>
-      <button class="btn btn-ghost" style="width:100%" onclick="showToast('この機能は有料版で利用できます 🔒')">
-        🔍 キーワード提案（有料版）
-      </button>
-    </div>
-  </div>
-
-  <!-- CANVAS -->
-  <div class="canvas-area" style="position:relative">
-    <div class="canvas-toolbar">
-      <span>プレビュー</span>
-      <div style="flex:1"></div>
-      <span id="page-count-label">0 ページ</span>
-      <span id="total-price-label"></span>
-    </div>
-    <div class="canvas-scroll">
-      <div class="sitemap-wrapper" id="canvas"></div>
-    </div>
-
-    <!-- DETAIL PANEL -->
-    <div class="detail-panel" id="detail-panel">
-      <div class="detail-panel-title">
-        <span>ページ詳細</span>
-        <button class="detail-close" onclick="closeDetail()">✕</button>
+      <div class="form-group">
+        <label>アイコン（絵文字）</label>
+        <input type="text" id="new-page-icon" placeholder="例：🏠" maxlength="4">
       </div>
-      <div id="detail-content"></div>
+      <div class="form-group">
+        <label>階層</label>
+        <select id="new-page-level">
+          <option value="1">L1 メインメニュー</option>
+          <option value="2">L2 サブページ</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>種別</label>
+        <select id="new-page-type">
+          <option value="通常">通常ページ</option>
+          <option value="LP">LP</option>
+          <option value="フォーム">フォーム</option>
+          <option value="ブログ">ブログ</option>
+          <option value="外部リンク">外部リンク</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>制作単価（円）</label>
+        <input type="number" id="new-page-price" placeholder="例：50000">
+      </div>
+      <div class="form-group">
+        <label>メモ・SEOキーワード</label>
+        <textarea id="new-page-memo" placeholder="ページの目的やキーワードなど"></textarea>
+      </div>
+      <div class="modal-actions">
+        <button class="btn btn-ghost" onclick="closeModal('modal-add')">キャンセル</button>
+        <button class="btn btn-primary" onclick="addPage()">追加する</button>
+      </div>
     </div>
   </div>
 
-</div>
+  <!-- TOAST -->
+  <div class="toast" id="toast"></div>
 
-<!-- STATS BAR -->
-<div class="stats-bar">
-  <div class="stat">総ページ数 <strong id="stat-pages">0</strong></div>
-  <div class="stat">L1 <strong id="stat-l1">0</strong></div>
-  <div class="stat">L2 <strong id="stat-l2">0</strong></div>
-  <div class="stat" id="stat-price-wrap">合計金額 <strong id="stat-price">¥0</strong></div>
-</div>
+  <script>
+    // ===== STATE =====
+    const COLORS = [
+      { id: 'purple', main: '#6c63ff', sub: '#43e97b', sub2: '#ff6584' },
+      { id: 'blue', main: '#4a9eff', sub: '#38d9a9', sub2: '#ffa94d' },
+      { id: 'green', main: '#43e97b', sub: '#4a9eff', sub2: '#ff6584' },
+      { id: 'pink', main: '#ff6584', sub: '#fcc419', sub2: '#74c0fc' },
+      { id: 'orange', main: '#ffa94d', sub: '#63e6be', sub2: '#da77f2' },
+    ];
+    const SWATCH_COLORS = ['#6c63ff', '#4a9eff', '#43e97b', '#ff6584', '#ffa94d', '#da77f2', '#f783ac', '#63e6be'];
 
-<!-- ADD PAGE MODAL -->
-<div class="modal-overlay" id="modal-add">
-  <div class="modal">
-    <div class="modal-title">📄 ページを追加</div>
-    <div class="form-group">
-      <label>ページ名 *</label>
-      <input type="text" id="new-page-name" placeholder="例：サービス紹介">
-    </div>
-    <div class="form-group">
-      <label>アイコン（絵文字）</label>
-      <input type="text" id="new-page-icon" placeholder="例：🏠" maxlength="4">
-    </div>
-    <div class="form-group">
-      <label>階層</label>
-      <select id="new-page-level">
-        <option value="1">L1 メインメニュー</option>
-        <option value="2">L2 サブページ</option>
-      </select>
-    </div>
-    <div class="form-group">
-      <label>種別</label>
-      <select id="new-page-type">
-        <option value="通常">通常ページ</option>
-        <option value="LP">LP</option>
-        <option value="フォーム">フォーム</option>
-        <option value="ブログ">ブログ</option>
-        <option value="外部リンク">外部リンク</option>
-      </select>
-    </div>
-    <div class="form-group">
-      <label>制作単価（円）</label>
-      <input type="number" id="new-page-price" placeholder="例：50000">
-    </div>
-    <div class="form-group">
-      <label>メモ・SEOキーワード</label>
-      <textarea id="new-page-memo" placeholder="ページの目的やキーワードなど"></textarea>
-    </div>
-    <div class="modal-actions">
-      <button class="btn btn-ghost" onclick="closeModal('modal-add')">キャンセル</button>
-      <button class="btn btn-primary" onclick="addPage()">追加する</button>
-    </div>
-  </div>
-</div>
-
-<!-- TOAST -->
-<div class="toast" id="toast"></div>
-
-<script>
-// ===== STATE =====
-const COLORS = [
-  { id: 'purple', main: '#6c63ff', sub: '#43e97b', sub2: '#ff6584' },
-  { id: 'blue',   main: '#4a9eff', sub: '#38d9a9', sub2: '#ffa94d' },
-  { id: 'green',  main: '#43e97b', sub: '#4a9eff', sub2: '#ff6584' },
-  { id: 'pink',   main: '#ff6584', sub: '#fcc419', sub2: '#74c0fc' },
-  { id: 'orange', main: '#ffa94d', sub: '#63e6be', sub2: '#da77f2' },
-];
-const SWATCH_COLORS = ['#6c63ff','#4a9eff','#43e97b','#ff6584','#ffa94d','#da77f2','#f783ac','#63e6be'];
-
-let state = {
-  pages: [],
-  themeColor: '#6c63ff',
-  selectedPageId: null,
-};
-
-let nextId = 1;
-
-// ===== TEMPLATES =====
-const AI_TEMPLATES = {
-  corp: [
-    { icon:'🏠', name:'ホーム', level:0, type:'通常' },
-    { icon:'🏢', name:'会社概要', level:1, type:'通常' },
-    { icon:'💼', name:'サービス', level:1, type:'通常' },
-    { icon:'📰', name:'お知らせ', level:1, type:'ブログ' },
-    { icon:'📞', name:'お問い合わせ', level:1, type:'フォーム' },
-    { icon:'👥', name:'採用情報', level:1, type:'通常' },
-    { icon:'📜', name:'沿革', level:2, type:'通常' },
-    { icon:'👤', name:'代表挨拶', level:2, type:'通常' },
-    { icon:'⭐', name:'サービス詳細A', level:2, type:'LP' },
-    { icon:'⭐', name:'サービス詳細B', level:2, type:'LP' },
-    { icon:'💡', name:'実績・事例', level:2, type:'通常' },
-    { icon:'📋', name:'プライバシーポリシー', level:2, type:'通常' },
-  ],
-  clinic: [
-    { icon:'🏥', name:'ホーム', level:0, type:'通常' },
-    { icon:'🔬', name:'診療案内', level:1, type:'通常' },
-    { icon:'👨‍⚕️', name:'医師紹介', level:1, type:'通常' },
-    { icon:'🏨', name:'クリニック案内', level:1, type:'通常' },
-    { icon:'📅', name:'ご予約', level:1, type:'フォーム' },
-    { icon:'📰', name:'お知らせ', level:1, type:'ブログ' },
-    { icon:'💬', name:'患者様へ', level:1, type:'通常' },
-    { icon:'👁️', name:'一般眼科', level:2, type:'通常' },
-    { icon:'👓', name:'コンタクト', level:2, type:'通常' },
-    { icon:'🔭', name:'レーシック', level:2, type:'LP' },
-    { icon:'🗺️', name:'アクセス・地図', level:2, type:'通常' },
-    { icon:'📋', name:'初診の方へ', level:2, type:'通常' },
-  ],
-  recruit: [
-    { icon:'🚀', name:'TOP', level:0, type:'LP' },
-    { icon:'💡', name:'仕事内容', level:1, type:'通常' },
-    { icon:'🌍', name:'企業文化', level:1, type:'通常' },
-    { icon:'👤', name:'社員インタビュー', level:1, type:'通常' },
-    { icon:'💰', name:'福利厚生・給与', level:1, type:'通常' },
-    { icon:'📝', name:'募集要項', level:1, type:'通常' },
-    { icon:'✉️', name:'エントリー', level:1, type:'フォーム' },
-    { icon:'💼', name:'職種A', level:2, type:'通常' },
-    { icon:'💼', name:'職種B', level:2, type:'通常' },
-    { icon:'🗣️', name:'先輩社員Aの声', level:2, type:'通常' },
-    { icon:'🗣️', name:'先輩社員Bの声', level:2, type:'通常' },
-  ],
-  accounting: [
-    { icon:'🏦', name:'ホーム', level:0, type:'通常' },
-    { icon:'📊', name:'サービス', level:1, type:'通常' },
-    { icon:'🏢', name:'事務所紹介', level:1, type:'通常' },
-    { icon:'👨‍💼', name:'スタッフ紹介', level:1, type:'通常' },
-    { icon:'📰', name:'お知らせ', level:1, type:'ブログ' },
-    { icon:'📞', name:'お問い合わせ', level:1, type:'フォーム' },
-    { icon:'💹', name:'税務顧問', level:2, type:'LP' },
-    { icon:'📋', name:'記帳代行', level:2, type:'LP' },
-    { icon:'🏗️', name:'相続・贈与', level:2, type:'LP' },
-    { icon:'🔢', name:'料金案内', level:2, type:'通常' },
-  ],
-  construction: [
-    { icon:'🏗️', name:'ホーム', level:0, type:'通常' },
-    { icon:'🔨', name:'施工事例', level:1, type:'通常' },
-    { icon:'🏠', name:'サービス', level:1, type:'通常' },
-    { icon:'🏢', name:'会社案内', level:1, type:'通常' },
-    { icon:'📰', name:'ブログ', level:1, type:'ブログ' },
-    { icon:'📞', name:'お問い合わせ', level:1, type:'フォーム' },
-    { icon:'🏡', name:'新築工事', level:2, type:'LP' },
-    { icon:'🔧', name:'リノベーション', level:2, type:'LP' },
-    { icon:'🛠️', name:'外壁塗装', level:2, type:'LP' },
-    { icon:'💰', name:'料金・保証', level:2, type:'通常' },
-  ],
-  rental: [
-    { icon:'🏡', name:'TOP', level:0, type:'LP' },
-    { icon:'🛏️', name:'お部屋紹介', level:1, type:'通常' },
-    { icon:'📍', name:'アクセス・周辺', level:1, type:'通常' },
-    { icon:'📅', name:'ご予約', level:1, type:'フォーム' },
-    { icon:'❓', name:'よくある質問', level:1, type:'通常' },
-    { icon:'📰', name:'お知らせ', level:1, type:'ブログ' },
-    { icon:'🛋️', name:'設備・アメニティ', level:2, type:'通常' },
-    { icon:'📷', name:'フォトギャラリー', level:2, type:'通常' },
-    { icon:'⭐', name:'口コミ・評価', level:2, type:'通常' },
-    { icon:'📜', name:'ご利用ルール', level:2, type:'通常' },
-  ],
-  portfolio: [
-    { icon:'✨', name:'TOP', level:0, type:'LP' },
-    { icon:'🎨', name:'作品集', level:1, type:'通常' },
-    { icon:'👤', name:'プロフィール', level:1, type:'通常' },
-    { icon:'💼', name:'実績', level:1, type:'通常' },
-    { icon:'📞', name:'コンタクト', level:1, type:'フォーム' },
-    { icon:'🖥️', name:'Web制作', level:2, type:'通常' },
-    { icon:'📱', name:'アプリ開発', level:2, type:'通常' },
-    { icon:'🤖', name:'AI開発', level:2, type:'通常' },
-  ],
-  ec: [
-    { icon:'🛒', name:'ホーム', level:0, type:'通常' },
-    { icon:'📦', name:'商品一覧', level:1, type:'通常' },
-    { icon:'🏷️', name:'カテゴリ', level:1, type:'通常' },
-    { icon:'👤', name:'マイページ', level:1, type:'通常' },
-    { icon:'💳', name:'カート・決済', level:1, type:'通常' },
-    { icon:'📞', name:'お問い合わせ', level:1, type:'フォーム' },
-    { icon:'⭐', name:'新着商品', level:2, type:'通常' },
-    { icon:'🔥', name:'人気商品', level:2, type:'通常' },
-    { icon:'📋', name:'注文履歴', level:2, type:'通常' },
-    { icon:'🏠', name:'住所管理', level:2, type:'通常' },
-  ],
-  restaurant: [
-    { icon:'🍽️', name:'ホーム', level:0, type:'通常' },
-    { icon:'📋', name:'メニュー', level:1, type:'通常' },
-    { icon:'📅', name:'ご予約', level:1, type:'フォーム' },
-    { icon:'🏪', name:'店舗案内', level:1, type:'通常' },
-    { icon:'📰', name:'お知らせ', level:1, type:'ブログ' },
-    { icon:'🍜', name:'ランチメニュー', level:2, type:'通常' },
-    { icon:'🍷', name:'ディナーメニュー', level:2, type:'通常' },
-    { icon:'🎂', name:'コース', level:2, type:'通常' },
-    { icon:'🗺️', name:'アクセス', level:2, type:'通常' },
-  ],
-};
-
-// ===== INIT =====
-function init() {
-  // Date default
-  document.getElementById('created-date').value = new Date().toISOString().split('T')[0];
-  document.getElementById('site-name').value = '〇〇株式会社 コーポレートサイト';
-  document.getElementById('client-name').value = '〇〇株式会社';
-  document.getElementById('agency-name').value = '';
-
-  // Color swatches
-  const sw = document.getElementById('color-swatches');
-  sw.innerHTML = '';
-  SWATCH_COLORS.forEach(c => {
-    const el = document.createElement('div');
-    el.className = 'swatch' + (c === state.themeColor ? ' active' : '');
-    el.style.background = c;
-    el.onclick = () => {
-      state.themeColor = c;
-      document.querySelectorAll('.swatch').forEach(s => s.classList.remove('active'));
-      el.classList.add('active');
-      renderCanvas();
+    let state = {
+      pages: [],
+      themeColor: '#6c63ff',
+      selectedPageId: null,
     };
-    sw.appendChild(el);
-  });
 
-  renderPageList();
-  renderCanvas();
-}
+    let nextId = 1;
 
-// ===== TAB SWITCH =====
-function switchTab(name, btn) {
-  ['pages','settings','ai'].forEach(t => {
-    document.getElementById('tab-' + t).style.display = t === name ? 'block' : 'none';
-  });
-  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-  btn.classList.add('active');
-}
+    // ===== TEMPLATES =====
+    const AI_TEMPLATES = {
+      corp: [
+        { icon: '🏠', name: 'ホーム', level: 0, type: '通常' },
+        { icon: '🏢', name: '会社概要', level: 1, type: '通常' },
+        { icon: '💼', name: 'サービス', level: 1, type: '通常' },
+        { icon: '📰', name: 'お知らせ', level: 1, type: 'ブログ' },
+        { icon: '📞', name: 'お問い合わせ', level: 1, type: 'フォーム' },
+        { icon: '👥', name: '採用情報', level: 1, type: '通常' },
+        { icon: '📜', name: '沿革', level: 2, type: '通常' },
+        { icon: '👤', name: '代表挨拶', level: 2, type: '通常' },
+        { icon: '⭐', name: 'サービス詳細A', level: 2, type: 'LP' },
+        { icon: '⭐', name: 'サービス詳細B', level: 2, type: 'LP' },
+        { icon: '💡', name: '実績・事例', level: 2, type: '通常' },
+        { icon: '📋', name: 'プライバシーポリシー', level: 2, type: '通常' },
+      ],
+      clinic: [
+        { icon: '🏥', name: 'ホーム', level: 0, type: '通常' },
+        { icon: '🔬', name: '診療案内', level: 1, type: '通常' },
+        { icon: '👨‍⚕️', name: '医師紹介', level: 1, type: '通常' },
+        { icon: '🏨', name: 'クリニック案内', level: 1, type: '通常' },
+        { icon: '📅', name: 'ご予約', level: 1, type: 'フォーム' },
+        { icon: '📰', name: 'お知らせ', level: 1, type: 'ブログ' },
+        { icon: '💬', name: '患者様へ', level: 1, type: '通常' },
+        { icon: '👁️', name: '一般眼科', level: 2, type: '通常' },
+        { icon: '👓', name: 'コンタクト', level: 2, type: '通常' },
+        { icon: '🔭', name: 'レーシック', level: 2, type: 'LP' },
+        { icon: '🗺️', name: 'アクセス・地図', level: 2, type: '通常' },
+        { icon: '📋', name: '初診の方へ', level: 2, type: '通常' },
+      ],
+      recruit: [
+        { icon: '🚀', name: 'TOP', level: 0, type: 'LP' },
+        { icon: '💡', name: '仕事内容', level: 1, type: '通常' },
+        { icon: '🌍', name: '企業文化', level: 1, type: '通常' },
+        { icon: '👤', name: '社員インタビュー', level: 1, type: '通常' },
+        { icon: '💰', name: '福利厚生・給与', level: 1, type: '通常' },
+        { icon: '📝', name: '募集要項', level: 1, type: '通常' },
+        { icon: '✉️', name: 'エントリー', level: 1, type: 'フォーム' },
+        { icon: '💼', name: '職種A', level: 2, type: '通常' },
+        { icon: '💼', name: '職種B', level: 2, type: '通常' },
+        { icon: '🗣️', name: '先輩社員Aの声', level: 2, type: '通常' },
+        { icon: '🗣️', name: '先輩社員Bの声', level: 2, type: '通常' },
+      ],
+      accounting: [
+        { icon: '🏦', name: 'ホーム', level: 0, type: '通常' },
+        { icon: '📊', name: 'サービス', level: 1, type: '通常' },
+        { icon: '🏢', name: '事務所紹介', level: 1, type: '通常' },
+        { icon: '👨‍💼', name: 'スタッフ紹介', level: 1, type: '通常' },
+        { icon: '📰', name: 'お知らせ', level: 1, type: 'ブログ' },
+        { icon: '📞', name: 'お問い合わせ', level: 1, type: 'フォーム' },
+        { icon: '💹', name: '税務顧問', level: 2, type: 'LP' },
+        { icon: '📋', name: '記帳代行', level: 2, type: 'LP' },
+        { icon: '🏗️', name: '相続・贈与', level: 2, type: 'LP' },
+        { icon: '🔢', name: '料金案内', level: 2, type: '通常' },
+      ],
+      construction: [
+        { icon: '🏗️', name: 'ホーム', level: 0, type: '通常' },
+        { icon: '🔨', name: '施工事例', level: 1, type: '通常' },
+        { icon: '🏠', name: 'サービス', level: 1, type: '通常' },
+        { icon: '🏢', name: '会社案内', level: 1, type: '通常' },
+        { icon: '📰', name: 'ブログ', level: 1, type: 'ブログ' },
+        { icon: '📞', name: 'お問い合わせ', level: 1, type: 'フォーム' },
+        { icon: '🏡', name: '新築工事', level: 2, type: 'LP' },
+        { icon: '🔧', name: 'リノベーション', level: 2, type: 'LP' },
+        { icon: '🛠️', name: '外壁塗装', level: 2, type: 'LP' },
+        { icon: '💰', name: '料金・保証', level: 2, type: '通常' },
+      ],
+      rental: [
+        { icon: '🏡', name: 'TOP', level: 0, type: 'LP' },
+        { icon: '🛏️', name: 'お部屋紹介', level: 1, type: '通常' },
+        { icon: '📍', name: 'アクセス・周辺', level: 1, type: '通常' },
+        { icon: '📅', name: 'ご予約', level: 1, type: 'フォーム' },
+        { icon: '❓', name: 'よくある質問', level: 1, type: '通常' },
+        { icon: '📰', name: 'お知らせ', level: 1, type: 'ブログ' },
+        { icon: '🛋️', name: '設備・アメニティ', level: 2, type: '通常' },
+        { icon: '📷', name: 'フォトギャラリー', level: 2, type: '通常' },
+        { icon: '⭐', name: '口コミ・評価', level: 2, type: '通常' },
+        { icon: '📜', name: 'ご利用ルール', level: 2, type: '通常' },
+      ],
+      portfolio: [
+        { icon: '✨', name: 'TOP', level: 0, type: 'LP' },
+        { icon: '🎨', name: '作品集', level: 1, type: '通常' },
+        { icon: '👤', name: 'プロフィール', level: 1, type: '通常' },
+        { icon: '💼', name: '実績', level: 1, type: '通常' },
+        { icon: '📞', name: 'コンタクト', level: 1, type: 'フォーム' },
+        { icon: '🖥️', name: 'Web制作', level: 2, type: '通常' },
+        { icon: '📱', name: 'アプリ開発', level: 2, type: '通常' },
+        { icon: '🤖', name: 'AI開発', level: 2, type: '通常' },
+      ],
+      ec: [
+        { icon: '🛒', name: 'ホーム', level: 0, type: '通常' },
+        { icon: '📦', name: '商品一覧', level: 1, type: '通常' },
+        { icon: '🏷️', name: 'カテゴリ', level: 1, type: '通常' },
+        { icon: '👤', name: 'マイページ', level: 1, type: '通常' },
+        { icon: '💳', name: 'カート・決済', level: 1, type: '通常' },
+        { icon: '📞', name: 'お問い合わせ', level: 1, type: 'フォーム' },
+        { icon: '⭐', name: '新着商品', level: 2, type: '通常' },
+        { icon: '🔥', name: '人気商品', level: 2, type: '通常' },
+        { icon: '📋', name: '注文履歴', level: 2, type: '通常' },
+        { icon: '🏠', name: '住所管理', level: 2, type: '通常' },
+      ],
+      restaurant: [
+        { icon: '🍽️', name: 'ホーム', level: 0, type: '通常' },
+        { icon: '📋', name: 'メニュー', level: 1, type: '通常' },
+        { icon: '📅', name: 'ご予約', level: 1, type: 'フォーム' },
+        { icon: '🏪', name: '店舗案内', level: 1, type: '通常' },
+        { icon: '📰', name: 'お知らせ', level: 1, type: 'ブログ' },
+        { icon: '🍜', name: 'ランチメニュー', level: 2, type: '通常' },
+        { icon: '🍷', name: 'ディナーメニュー', level: 2, type: '通常' },
+        { icon: '🎂', name: 'コース', level: 2, type: '通常' },
+        { icon: '🗺️', name: 'アクセス', level: 2, type: '通常' },
+      ],
+    };
 
-// ===== PAGE LIST =====
-function renderPageList() {
-  const list = document.getElementById('page-list');
-  list.innerHTML = '';
-  if (state.pages.length === 0) {
-    list.innerHTML = '<div style="text-align:center;color:var(--text2);font-size:12px;padding:20px 0">まだページがありません<br>「＋ ページを追加」から始めましょう</div>';
-    return;
-  }
-  state.pages.forEach(p => {
-    const levelColor = p.level === 0 ? '#6c63ff' : p.level === 1 ? '#43e97b' : '#ff6584';
-    const el = document.createElement('div');
-    el.className = 'page-item' + (state.selectedPageId === p.id ? ' selected' : '');
-    el.innerHTML = `
+    // ===== INIT =====
+    function init() {
+      // Date default
+      document.getElementById('created-date').value = new Date().toISOString().split('T')[0];
+      document.getElementById('site-name').value = '〇〇株式会社 コーポレートサイト';
+      document.getElementById('client-name').value = '〇〇株式会社';
+      document.getElementById('agency-name').value = '';
+
+      // Color swatches
+      const sw = document.getElementById('color-swatches');
+      sw.innerHTML = '';
+      SWATCH_COLORS.forEach(c => {
+        const el = document.createElement('div');
+        el.className = 'swatch' + (c === state.themeColor ? ' active' : '');
+        el.style.background = c;
+        el.onclick = () => {
+          state.themeColor = c;
+          document.querySelectorAll('.swatch').forEach(s => s.classList.remove('active'));
+          el.classList.add('active');
+          renderCanvas();
+        };
+        sw.appendChild(el);
+      });
+
+      renderPageList();
+      renderCanvas();
+
+      // APIキーが保存済みなら状態復元
+      const savedKey = getApiKey();
+      if (savedKey) {
+        document.getElementById('api-key').value = savedKey;
+        document.getElementById('api-key-status').innerHTML =
+          '<span style="color:var(--accent3)">✓ APIキー設定済み</span>';
+      }
+    }
+
+    // ===== TAB SWITCH =====
+    function switchTab(name, btn) {
+      ['pages', 'settings', 'ai'].forEach(t => {
+        document.getElementById('tab-' + t).style.display = t === name ? 'block' : 'none';
+      });
+      document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+      btn.classList.add('active');
+    }
+
+    // ===== PAGE LIST =====
+    function renderPageList() {
+      const list = document.getElementById('page-list');
+      list.innerHTML = '';
+      if (state.pages.length === 0) {
+        list.innerHTML = '<div style="text-align:center;color:var(--text2);font-size:12px;padding:20px 0">まだページがありません<br>「＋ ページを追加」から始めましょう</div>';
+        return;
+      }
+      state.pages.forEach(p => {
+        const levelColor = p.level === 0 ? '#6c63ff' : p.level === 1 ? '#43e97b' : '#ff6584';
+        const el = document.createElement('div');
+        el.className = 'page-item' + (state.selectedPageId === p.id ? ' selected' : '');
+        el.innerHTML = `
       <span class="page-dot" style="background:${levelColor}"></span>
       <span class="page-item-label">${p.icon} ${p.name}</span>
       <span class="page-item-level">L${p.level}</span>
       <button class="page-item-delete" onclick="event.stopPropagation();deletePage(${p.id})">✕</button>
     `;
-    el.onclick = () => selectPage(p.id);
-    list.appendChild(el);
-  });
-}
+        el.onclick = () => selectPage(p.id);
+        list.appendChild(el);
+      });
+    }
 
-function selectPage(id) {
-  state.selectedPageId = id;
-  renderPageList();
-  renderCanvas();
-  showDetailPanel(id);
-}
+    function selectPage(id) {
+      state.selectedPageId = id;
+      renderPageList();
+      renderCanvas();
+      showDetailPanel(id);
+    }
 
-function deletePage(id) {
-  state.pages = state.pages.filter(p => p.id !== id);
-  if (state.selectedPageId === id) { state.selectedPageId = null; closeDetail(); }
-  renderPageList();
-  renderCanvas();
-  showToast('ページを削除しました');
-}
+    function deletePage(id) {
+      state.pages = state.pages.filter(p => p.id !== id);
+      if (state.selectedPageId === id) { state.selectedPageId = null; closeDetail(); }
+      renderPageList();
+      renderCanvas();
+      showToast('ページを削除しました');
+    }
 
-// ===== ADD PAGE MODAL =====
-function openAddModal() {
-  document.getElementById('new-page-name').value = '';
-  document.getElementById('new-page-icon').value = '';
-  document.getElementById('new-page-price').value = '';
-  document.getElementById('new-page-memo').value = '';
-  document.getElementById('modal-add').classList.add('show');
-  setTimeout(() => document.getElementById('new-page-name').focus(), 100);
-}
+    // ===== ADD PAGE MODAL =====
+    function openAddModal() {
+      document.getElementById('new-page-name').value = '';
+      document.getElementById('new-page-icon').value = '';
+      document.getElementById('new-page-price').value = '';
+      document.getElementById('new-page-memo').value = '';
+      document.getElementById('modal-add').classList.add('show');
+      setTimeout(() => document.getElementById('new-page-name').focus(), 100);
+    }
 
-function closeModal(id) {
-  document.getElementById(id).classList.remove('show');
-}
+    function closeModal(id) {
+      document.getElementById(id).classList.remove('show');
+    }
 
-function addPage() {
-  const name = document.getElementById('new-page-name').value.trim();
-  if (!name) { showToast('ページ名を入力してください'); return; }
-  const level = parseInt(document.getElementById('new-page-level').value);
-  // only one L0
-  if (level === 0 && state.pages.some(p => p.level === 0)) {
-    showToast('L0（トップ）は1ページのみです'); return;
-  }
-  state.pages.push({
-    id: nextId++,
-    name,
-    icon: document.getElementById('new-page-icon').value || (level === 0 ? '🏠' : level === 1 ? '📄' : '📝'),
-    level,
-    type: document.getElementById('new-page-type').value,
-    price: parseInt(document.getElementById('new-page-price').value) || 0,
-    memo: document.getElementById('new-page-memo').value,
-  });
-  closeModal('modal-add');
-  renderPageList();
-  renderCanvas();
-  showToast('ページを追加しました ✓');
-}
+    function addPage() {
+      const name = document.getElementById('new-page-name').value.trim();
+      if (!name) { showToast('ページ名を入力してください'); return; }
+      const level = parseInt(document.getElementById('new-page-level').value);
+      // only one L0
+      if (level === 0 && state.pages.some(p => p.level === 0)) {
+        showToast('L0（トップ）は1ページのみです'); return;
+      }
+      state.pages.push({
+        id: nextId++,
+        name,
+        icon: document.getElementById('new-page-icon').value || (level === 0 ? '🏠' : level === 1 ? '📄' : '📝'),
+        level,
+        type: document.getElementById('new-page-type').value,
+        price: parseInt(document.getElementById('new-page-price').value) || 0,
+        memo: document.getElementById('new-page-memo').value,
+      });
+      closeModal('modal-add');
+      renderPageList();
+      renderCanvas();
+      showToast('ページを追加しました ✓');
+    }
 
-// ===== AI GENERATE =====
-function generateAI() {
-  const type = document.getElementById('ai-type').value;
-  if (!type) { showToast('業種を選択してください'); return; }
-  const template = AI_TEMPLATES[type] || [];
-  state.pages = template.map(t => ({
-    id: nextId++,
-    name: t.name,
-    icon: t.icon,
-    level: t.level,
-    type: t.type,
-    price: t.level === 0 ? 80000 : t.level === 1 ? 50000 : 30000,
-    memo: '',
-  }));
-  showToast('✦ AIがページ構成を生成しました！');
-  switchTab('pages', document.querySelectorAll('.tab')[0]);
-  renderPageList();
-  renderCanvas();
-}
+    // ===== AI GENERATE =====
+    function generateAI() {
+      const type = document.getElementById('ai-type').value;
+      if (!type) { showToast('業種を選択してください'); return; }
+      const template = AI_TEMPLATES[type] || [];
+      state.pages = template.map(t => ({
+        id: nextId++,
+        name: t.name,
+        icon: t.icon,
+        level: t.level,
+        type: t.type,
+        price: t.level === 0 ? 80000 : t.level === 1 ? 50000 : 30000,
+        memo: '',
+      }));
+      showToast('✦ AIがページ構成を生成しました！');
+      switchTab('pages', document.querySelectorAll('.tab')[0]);
+      renderPageList();
+      renderCanvas();
+    }
 
-// ===== SAMPLE LOAD =====
-function loadSample() {
-  document.getElementById('site-name').value = '〇〇眼科クリニック 採用サイト';
-  document.getElementById('client-name').value = '〇〇眼科クリニック';
-  document.getElementById('agency-name').value = 'Sanc-Official';
-  document.getElementById('ai-type').value = 'clinic';
-  generateAI();
-}
+    // ===== SAMPLE LOAD =====
+    function loadSample() {
+      document.getElementById('site-name').value = '〇〇眼科クリニック 採用サイト';
+      document.getElementById('client-name').value = '〇〇眼科クリニック';
+      document.getElementById('agency-name').value = 'Sanc-Official';
+      document.getElementById('ai-type').value = 'clinic';
+      generateAI();
+    }
 
-// ===== RESET =====
-function resetAll() {
-  if (!confirm('すべてのデータをリセットしますか？')) return;
-  state.pages = [];
-  state.selectedPageId = null;
-  nextId = 1;
-  document.getElementById('site-name').value = '';
-  document.getElementById('client-name').value = '';
-  document.getElementById('agency-name').value = '';
-  closeDetail();
-  renderPageList();
-  renderCanvas();
-  showToast('リセットしました');
-}
+    // ===== RESET =====
+    function resetAll() {
+      if (!confirm('すべてのデータをリセットしますか？')) return;
+      state.pages = [];
+      state.selectedPageId = null;
+      nextId = 1;
+      document.getElementById('site-name').value = '';
+      document.getElementById('client-name').value = '';
+      document.getElementById('agency-name').value = '';
+      closeDetail();
+      renderPageList();
+      renderCanvas();
+      showToast('リセットしました');
+    }
 
-// ===== RENDER CANVAS =====
-function renderCanvas() {
-  const canvas = document.getElementById('canvas');
-  const siteName = document.getElementById('site-name').value || 'サイト名未設定';
-  const clientName = document.getElementById('client-name').value;
-  const agencyName = document.getElementById('agency-name').value;
-  const createdDate = document.getElementById('created-date').value;
-  const showPrice = document.getElementById('show-price').checked;
-  const showIcons = document.getElementById('show-icons').checked;
+    // ===== RENDER CANVAS =====
+    function renderCanvas() {
+      const canvas = document.getElementById('canvas');
+      const siteName = document.getElementById('site-name').value || 'サイト名未設定';
+      const clientName = document.getElementById('client-name').value;
+      const agencyName = document.getElementById('agency-name').value;
+      const createdDate = document.getElementById('created-date').value;
+      const showPrice = document.getElementById('show-price').checked;
+      const showIcons = document.getElementById('show-icons').checked;
 
-  const l0 = state.pages.filter(p => p.level === 0);
-  const l1 = state.pages.filter(p => p.level === 1);
-  const l2 = state.pages.filter(p => p.level === 2);
+      const l0 = state.pages.filter(p => p.level === 0);
+      const l1 = state.pages.filter(p => p.level === 1);
+      const l2 = state.pages.filter(p => p.level === 2);
 
-  // Stats
-  document.getElementById('stat-pages').textContent = state.pages.length;
-  document.getElementById('stat-l1').textContent = l1.length;
-  document.getElementById('stat-l2').textContent = l2.length;
-  document.getElementById('page-count-label').textContent = state.pages.length + ' ページ';
+      // Stats
+      document.getElementById('stat-pages').textContent = state.pages.length;
+      document.getElementById('stat-l1').textContent = l1.length;
+      document.getElementById('stat-l2').textContent = l2.length;
+      document.getElementById('page-count-label').textContent = state.pages.length + ' ページ';
 
-  const totalPrice = state.pages.reduce((s, p) => s + (p.price || 0), 0);
-  document.getElementById('stat-price').textContent = '¥' + totalPrice.toLocaleString();
-  if (showPrice) {
-    document.getElementById('stat-price-wrap').style.display = 'flex';
-    document.getElementById('total-price-label').textContent = '合計 ¥' + totalPrice.toLocaleString();
-  } else {
-    document.getElementById('total-price-label').textContent = '';
-  }
+      const totalPrice = state.pages.reduce((s, p) => s + (p.price || 0), 0);
+      document.getElementById('stat-price').textContent = '¥' + totalPrice.toLocaleString();
+      if (showPrice) {
+        document.getElementById('stat-price-wrap').style.display = 'flex';
+        document.getElementById('total-price-label').textContent = '合計 ¥' + totalPrice.toLocaleString();
+      } else {
+        document.getElementById('total-price-label').textContent = '';
+      }
 
-  if (state.pages.length === 0) {
-    canvas.innerHTML = `
+      if (state.pages.length === 0) {
+        canvas.innerHTML = `
       <div class="empty-state">
         <div class="empty-icon">🗂️</div>
         <div class="empty-text">まだページがありません</div>
         <div class="empty-sub">左のパネルから追加するか、AIで自動生成してみましょう</div>
       </div>`;
-    return;
-  }
+        return;
+      }
 
-  const tc = state.themeColor;
-  const metaParts = [clientName, agencyName, createdDate].filter(Boolean).join('　|　');
+      const tc = state.themeColor;
+      const metaParts = [clientName, agencyName, createdDate].filter(Boolean).join('　|　');
 
-  let html = `
+      let html = `
     <div class="sitemap-header" style="--header-color:${tc}">
       <div class="sitemap-title">${siteName}</div>
       ${metaParts ? `<div class="sitemap-meta">${metaParts}</div>` : ''}
@@ -1141,11 +1415,11 @@ function renderCanvas() {
     <div class="tree-container">
   `;
 
-  // Level 0
-  if (l0.length > 0) {
-    const p = l0[0];
-    const selected = state.selectedPageId === p.id;
-    html += `<div class="level-row">
+      // Level 0
+      if (l0.length > 0) {
+        const p = l0[0];
+        const selected = state.selectedPageId === p.id;
+        html += `<div class="level-row">
       <div class="node-wrapper">
         <div class="node node-l0 ${selected ? 'selected' : ''}"
           style="background:${tc}22;border-color:${tc};color:${tc}"
@@ -1158,18 +1432,18 @@ function renderCanvas() {
         ${l1.length > 0 ? '<div class="connector-v"></div>' : ''}
       </div>
     </div>`;
-  }
+      }
 
-  // Level 1
-  if (l1.length > 0) {
-    html += `<div class="level-row">`;
-    l1.forEach(p => {
-      const selected = state.selectedPageId === p.id;
-      const children = l2.filter((_, i) => {
-        // simple distribution: assign l2 pages proportionally
-        return false; // we handle L2 separately
-      });
-      html += `
+      // Level 1
+      if (l1.length > 0) {
+        html += `<div class="level-row">`;
+        l1.forEach(p => {
+          const selected = state.selectedPageId === p.id;
+          const children = l2.filter((_, i) => {
+            // simple distribution: assign l2 pages proportionally
+            return false; // we handle L2 separately
+          });
+          html += `
         <div class="node-wrapper">
           <div class="node node-l1 ${selected ? 'selected' : ''}"
             style="background:#43e97b22;border-color:#43e97b;color:#43e97b"
@@ -1181,21 +1455,21 @@ function renderCanvas() {
           </div>
         </div>
       `;
-    });
-    html += `</div>`;
-  }
+        });
+        html += `</div>`;
+      }
 
-  // Connector to L2
-  if (l1.length > 0 && l2.length > 0) {
-    html += `<div style="width:2px;height:24px;background:var(--border);margin:0 auto"></div>`;
-  }
+      // Connector to L2
+      if (l1.length > 0 && l2.length > 0) {
+        html += `<div style="width:2px;height:24px;background:var(--border);margin:0 auto"></div>`;
+      }
 
-  // Level 2
-  if (l2.length > 0) {
-    html += `<div class="level-row" style="flex-wrap:wrap;gap:10px 16px;max-width:900px;margin:0 auto">`;
-    l2.forEach(p => {
-      const selected = state.selectedPageId === p.id;
-      html += `
+      // Level 2
+      if (l2.length > 0) {
+        html += `<div class="level-row" style="flex-wrap:wrap;gap:10px 16px;max-width:900px;margin:0 auto">`;
+        l2.forEach(p => {
+          const selected = state.selectedPageId === p.id;
+          html += `
         <div class="node-wrapper">
           <div class="node node-l2 ${selected ? 'selected' : ''}"
             style="background:#ff658422;border-color:#ff6584;color:#ff6584"
@@ -1207,28 +1481,28 @@ function renderCanvas() {
           </div>
         </div>
       `;
-    });
-    html += `</div>`;
-  }
+        });
+        html += `</div>`;
+      }
 
-  html += `</div>`; // tree-container
+      html += `</div>`; // tree-container
 
-  // Memo
-  const memo = document.getElementById('memo').value;
-  if (memo) {
-    html += `<div style="margin-top:32px;padding:14px 18px;background:var(--surface);border:1px solid var(--border);border-radius:8px;font-size:12px;color:var(--text2);line-height:1.8">${memo}</div>`;
-  }
+      // Memo
+      const memo = document.getElementById('memo').value;
+      if (memo) {
+        html += `<div style="margin-top:32px;padding:14px 18px;background:var(--surface);border:1px solid var(--border);border-radius:8px;font-size:12px;color:var(--text2);line-height:1.8">${memo}</div>`;
+      }
 
-  canvas.innerHTML = html;
-}
+      canvas.innerHTML = html;
+    }
 
-// ===== DETAIL PANEL =====
-function showDetailPanel(id) {
-  const p = state.pages.find(x => x.id === id);
-  if (!p) return;
-  const panel = document.getElementById('detail-panel');
-  const content = document.getElementById('detail-content');
-  content.innerHTML = `
+    // ===== DETAIL PANEL =====
+    function showDetailPanel(id) {
+      const p = state.pages.find(x => x.id === id);
+      if (!p) return;
+      const panel = document.getElementById('detail-panel');
+      const content = document.getElementById('detail-content');
+      content.innerHTML = `
     <div style="font-size:24px;text-align:center;margin-bottom:10px">${p.icon}</div>
     <div style="font-size:14px;font-weight:700;text-align:center;margin-bottom:4px">${p.name}</div>
     <div style="font-size:11px;text-align:center;color:var(--text2);margin-bottom:14px">L${p.level} / ${p.type}</div>
@@ -1238,185 +1512,396 @@ function showDetailPanel(id) {
     </div>
     <button class="btn btn-danger" style="width:100%;margin-top:14px;font-size:11px" onclick="deletePage(${p.id})">削除</button>
   `;
-  panel.classList.add('show');
+      panel.classList.add('show');
+    }
+
+    function closeDetail() {
+      document.getElementById('detail-panel').classList.remove('show');
+      state.selectedPageId = null;
+      renderPageList();
+    }
+
+    // ===== GEMINI API =====
+    const GEMINI_MODEL = 'gemini-2.0-flash';
+
+    function getApiKey() {
+      return localStorage.getItem('gemini_api_key') || '';
+    }
+
+    function saveApiKey() {
+      const key = document.getElementById('api-key').value.trim();
+      if (!key) { showToast('APIキーを入力してください'); return; }
+      if (!key.startsWith('AIza')) { showToast('Gemini APIキーは "AIza" から始まります'); return; }
+      localStorage.setItem('gemini_api_key', key);
+      document.getElementById('api-key-status').innerHTML =
+        '<span style="color:var(--accent3)">✓ APIキーを保存しました</span>';
+      showToast('✓ Gemini APIキーを保存しました');
+    }
+
+    async function callGemini(prompt) {
+      const key = getApiKey();
+      if (!key) throw new Error('APIキーが設定されていません。「🔑 Gemini API キー設定」からキーを保存してください。');
+      const res = await fetch(
+        `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent?key=${key}`,
+        {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            contents: [{ parts: [{ text: prompt }] }],
+            generationConfig: { temperature: 0.7, maxOutputTokens: 2048 }
+          })
+        }
+      );
+      if (!res.ok) {
+        const err = await res.json().catch(() => ({}));
+        throw new Error(err?.error?.message || `APIエラー: ${res.status}`);
+      }
+      const data = await res.json();
+      return data.candidates?.[0]?.content?.parts?.[0]?.text || '';
+    }
+
+    // ===== URL SCAN =====
+    async function scanURL() {
+      const url = document.getElementById('scan-url').value.trim();
+      if (!url) { showToast('URLを入力してください'); return; }
+      if (!url.startsWith('http')) { showToast('https:// から始まるURLを入力してください'); return; }
+
+      const statusEl = document.getElementById('scan-status');
+      const btn = document.querySelector('[onclick="scanURL()"]');
+
+      statusEl.innerHTML = '<span style="color:var(--accent)">🔄 サイトを取得中...</span>';
+      btn.disabled = true;
+      btn.textContent = '取得中...';
+
+      try {
+        // CORSプロキシ経由でHTML取得（無料）
+        const proxyUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(url)}`;
+        const fetchRes = await fetch(proxyUrl);
+        const fetchData = await fetchRes.json();
+        const html = fetchData.contents || '';
+
+        if (!html) throw new Error('サイトのHTMLを取得できませんでした');
+
+        // HTMLからナビゲーション・リンク情報を抽出
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(html, 'text/html');
+
+        // title・nav・a タグからリンクテキストを収集
+        const siteTitle = doc.querySelector('title')?.textContent?.trim() || '';
+        const navLinks = [...doc.querySelectorAll('nav a, header a, .menu a, #menu a, .nav a, .navigation a')]
+          .map(a => a.textContent.trim())
+          .filter(t => t.length > 0 && t.length < 30)
+          .slice(0, 20);
+        const allLinks = [...doc.querySelectorAll('a[href]')]
+          .map(a => ({ text: a.textContent.trim(), href: a.getAttribute('href') }))
+          .filter(l => l.text.length > 0 && l.text.length < 30 && !l.href.startsWith('#'))
+          .slice(0, 40);
+
+        statusEl.innerHTML = '<span style="color:var(--accent)">✦ AIがページ構成を解析中...</span>';
+
+        // Gemini APIで構成を解析・提案
+        const prompt = `
+以下のウェブサイトのHTMLから取得したナビゲーション情報をもとに、サイトマップのページ構成をJSON形式で出力してください。
+
+サイトタイトル: ${siteTitle}
+サイトURL: ${url}
+ナビゲーションリンク: ${navLinks.join(', ')}
+その他のリンク（一部）: ${allLinks.slice(0, 20).map(l => l.text).join(', ')}
+
+以下のJSON配列形式だけを返してください。コードブロックや説明文は不要です。
+[
+  {"name": "ページ名", "icon": "絵文字1文字", "level": 0または1または2, "type": "通常またはLPまたはフォームまたはブログ"},
+  ...
+]
+
+ルール：
+- level 0 はトップページのみ（1件）
+- level 1 はメインメニュー（3〜8件）
+- level 2 はサブページ（0〜8件）
+- iconは内容にあった絵文字を1文字
+- typeは「通常」「LP」「フォーム」「ブログ」のいずれか
+- 日本語のサイトなら日本語のページ名で
+`;
+
+        const result = await callGemini(prompt);
+        const clean = result.replace(/```json|```/g, '').trim();
+        const pages = JSON.parse(clean);
+
+        if (!Array.isArray(pages) || pages.length === 0) throw new Error('ページ構成の解析に失敗しました');
+
+        // ページとして追加
+        state.pages = pages.map(p => ({
+          id: nextId++,
+          name: p.name || 'ページ',
+          icon: p.icon || '📄',
+          level: Number(p.level) || 1,
+          type: p.type || '通常',
+          price: p.level === 0 ? 80000 : p.level === 1 ? 50000 : 30000,
+          memo: '',
+        }));
+
+        // サイト名を自動セット
+        if (siteTitle && !document.getElementById('site-name').value) {
+          document.getElementById('site-name').value = siteTitle;
+        }
+
+        statusEl.innerHTML = `<span style="color:var(--accent3)">✓ ${state.pages.length}ページを読み込みました</span>`;
+        showToast(`✦ ${state.pages.length}ページのサイト構成を取得しました！`);
+        switchTab('pages', document.querySelectorAll('.tab')[0]);
+        renderPageList();
+        renderCanvas();
+
+      } catch (e) {
+        statusEl.innerHTML = `<span style="color:var(--accent2)">⚠ ${e.message}</span>`;
+        showToast('エラーが発生しました');
+      } finally {
+        btn.disabled = false;
+        btn.textContent = '🌐 URLをスキャン';
+      }
+    }
+
+    // ===== KEYWORD SUGGESTION =====
+    async function suggestKeywords() {
+      const target = document.getElementById('kw-target').value.trim();
+      if (!target) { showToast('対象ページ・テーマを入力してください'); return; }
+
+      const resultEl = document.getElementById('kw-result');
+      const btn = document.querySelector('[onclick="suggestKeywords()"]');
+
+      resultEl.innerHTML = '<div style="color:var(--accent);font-size:12px">✦ Geminiがキーワードを生成中...</div>';
+      btn.disabled = true;
+
+      try {
+        // 現在のページ構成も参考情報として渡す
+        const pageList = state.pages.map(p => p.name).join('、') || 'なし';
+
+        const prompt = `
+あなたはSEOの専門家です。以下の条件でSEOキーワードを提案してください。
+
+対象: ${target}
+現在のサイト構成: ${pageList}
+
+以下のJSON形式だけを返してください。コードブロックや説明文は不要です。
+{
+  "main": ["メインキーワード3つ"],
+  "long_tail": ["ロングテールキーワード5つ"],
+  "question": ["検索される疑問形キーワード3つ"],
+  "advice": "100文字以内のSEOアドバイス"
 }
 
-function closeDetail() {
-  document.getElementById('detail-panel').classList.remove('show');
-  state.selectedPageId = null;
-  renderPageList();
-}
+条件：
+- 日本語のキーワードで
+- 実際に検索されそうな自然なキーワードを選ぶ
+- 地域名や業種名を含めて具体的に
+`;
 
-// ===== EXPORT =====
-function exportHTML() {
-  const canvas = document.getElementById('canvas').innerHTML;
-  const siteName = document.getElementById('site-name').value || 'サイトマップ';
-  const blob = new Blob([`<!DOCTYPE html><html lang="ja"><head><meta charset="UTF-8"><title>${siteName}</title><style>body{font-family:sans-serif;background:#0d0d12;color:#e8e8f0;padding:40px} .sitemap-header{padding:20px;background:#16161f;border-radius:8px;margin-bottom:30px;border-top:3px solid #6c63ff} .node{display:inline-block;padding:10px 14px;border-radius:8px;border:1.5px solid;margin:6px;text-align:center;min-width:100px} .level-row{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin:16px 0} .tree-container{display:flex;flex-direction:column;align-items:center}</style></head><body>${canvas}</body></html>`], {type: 'text/html'});
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement('a'); a.href = url; a.download = 'sitemap.html'; a.click();
-  showToast('HTMLをダウンロードしました ✓');
-}
+        const result = await callGemini(prompt);
+        const clean = result.replace(/```json|```/g, '').trim();
+        const kw = JSON.parse(clean);
 
-function exportXML() {
-  const base = prompt('ベースURLを入力してください（例: https://example.com）', 'https://example.com');
-  if (!base) return;
-  const slugify = s => s.replace(/[^a-zA-Z0-9]/g, '-').toLowerCase();
-  let xml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n`;
-  state.pages.forEach(p => {
-    const slug = p.level === 0 ? '/' : '/' + slugify(p.name) + '/';
-    xml += `  <url>\n    <loc>${base}${slug}</loc>\n    <changefreq>monthly</changefreq>\n    <priority>${p.level === 0 ? '1.0' : p.level === 1 ? '0.8' : '0.6'}</priority>\n  </url>\n`;
-  });
-  xml += '</urlset>';
-  const blob = new Blob([xml], {type: 'application/xml'});
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement('a'); a.href = url; a.download = 'sitemap.xml'; a.click();
-  showToast('XMLをダウンロードしました ✓');
-}
+        resultEl.innerHTML = `
+      <div style="display:flex;flex-direction:column;gap:10px;margin-top:4px">
+        <div>
+          <div style="font-size:10px;font-weight:700;color:var(--accent);letter-spacing:1px;margin-bottom:5px">MAIN KEYWORDS</div>
+          <div style="display:flex;flex-wrap:wrap;gap:5px">
+            ${(kw.main || []).map(k => `<span style="background:var(--accent)22;border:1px solid var(--accent)44;color:var(--accent);padding:3px 8px;border-radius:4px;font-size:11px">${k}</span>`).join('')}
+          </div>
+        </div>
+        <div>
+          <div style="font-size:10px;font-weight:700;color:var(--accent3);letter-spacing:1px;margin-bottom:5px">LONG TAIL</div>
+          <div style="display:flex;flex-wrap:wrap;gap:5px">
+            ${(kw.long_tail || []).map(k => `<span style="background:var(--accent3)22;border:1px solid var(--accent3)44;color:var(--accent3);padding:3px 8px;border-radius:4px;font-size:11px">${k}</span>`).join('')}
+          </div>
+        </div>
+        <div>
+          <div style="font-size:10px;font-weight:700;color:var(--accent2);letter-spacing:1px;margin-bottom:5px">QUESTIONS</div>
+          <div style="display:flex;flex-wrap:wrap;gap:5px">
+            ${(kw.question || []).map(k => `<span style="background:var(--accent2)22;border:1px solid var(--accent2)44;color:var(--accent2);padding:3px 8px;border-radius:4px;font-size:11px">${k}</span>`).join('')}
+          </div>
+        </div>
+        ${kw.advice ? `<div style="font-size:11px;color:var(--text2);background:var(--surface2);padding:10px;border-radius:6px;line-height:1.7;border-left:3px solid var(--accent)">💡 ${kw.advice}</div>` : ''}
+      </div>
+    `;
+        showToast('✦ キーワードを生成しました！');
 
-function printPDF() {
-  window.print();
-}
+      } catch (e) {
+        resultEl.innerHTML = `<div style="color:var(--accent2);font-size:12px">⚠ ${e.message}</div>`;
+      } finally {
+        btn.disabled = false;
+      }
+    }
 
-// ===== TOAST =====
-function showToast(msg) {
-  const t = document.getElementById('toast');
-  t.textContent = msg;
-  t.classList.add('show');
-  setTimeout(() => t.classList.remove('show'), 2500);
-}
+    // ===== EXPORT =====
+    function exportHTML() {
+      const canvas = document.getElementById('canvas').innerHTML;
+      const siteName = document.getElementById('site-name').value || 'サイトマップ';
+      const blob = new Blob([`<!DOCTYPE html><html lang="ja"><head><meta charset="UTF-8"><title>${siteName}</title><style>body{font-family:sans-serif;background:#0d0d12;color:#e8e8f0;padding:40px} .sitemap-header{padding:20px;background:#16161f;border-radius:8px;margin-bottom:30px;border-top:3px solid #6c63ff} .node{display:inline-block;padding:10px 14px;border-radius:8px;border:1.5px solid;margin:6px;text-align:center;min-width:100px} .level-row{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin:16px 0} .tree-container{display:flex;flex-direction:column;align-items:center}</style></head><body>${canvas}</body></html>`], { type: 'text/html' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a'); a.href = url; a.download = 'sitemap.html'; a.click();
+      showToast('HTMLをダウンロードしました ✓');
+    }
 
-// ===== KEYBOARD =====
-document.addEventListener('keydown', e => {
-  if (e.key === 'Escape') {
-    closeModal('modal-add');
-    closeDetail();
-  }
-  if (e.key === 'Enter' && document.getElementById('modal-add').classList.contains('show')) {
-    addPage();
-  }
-});
+    function exportXML() {
+      const base = prompt('ベースURLを入力してください（例: https://example.com）', 'https://example.com');
+      if (!base) return;
+      const slugify = s => s.replace(/[^a-zA-Z0-9]/g, '-').toLowerCase();
+      let xml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n`;
+      state.pages.forEach(p => {
+        const slug = p.level === 0 ? '/' : '/' + slugify(p.name) + '/';
+        xml += `  <url>\n    <loc>${base}${slug}</loc>\n    <changefreq>monthly</changefreq>\n    <priority>${p.level === 0 ? '1.0' : p.level === 1 ? '0.8' : '0.6'}</priority>\n  </url>\n`;
+      });
+      xml += '</urlset>';
+      const blob = new Blob([xml], { type: 'application/xml' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a'); a.href = url; a.download = 'sitemap.xml'; a.click();
+      showToast('XMLをダウンロードしました ✓');
+    }
 
-// Click outside modal
-document.getElementById('modal-add').addEventListener('click', function(e) {
-  if (e.target === this) closeModal('modal-add');
-});
+    function printPDF() {
+      window.print();
+    }
 
-// ===== START =====
-init();
+    // ===== TOAST =====
+    function showToast(msg) {
+      const t = document.getElementById('toast');
+      t.textContent = msg;
+      t.classList.add('show');
+      setTimeout(() => t.classList.remove('show'), 2500);
+    }
 
-// ============================================================
-// © COPYRIGHT & AUTHOR PROTECTION
-// Developed by Satoshi Sasaki / Sanc-Official
-// Contact: s.sasaki@sanc-official.com
-// https://sanc-official.com
-// Unauthorized copying, redistribution or resale is prohibited.
-// ============================================================
+    // ===== KEYBOARD =====
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') {
+        closeModal('modal-add');
+        closeDetail();
+      }
+      if (e.key === 'Enter' && document.getElementById('modal-add').classList.contains('show')) {
+        addPage();
+      }
+    });
 
-const _author = {
-  name:    'Satoshi Sasaki',
-  company: 'Sanc-Official',
-  email:   's.sasaki@sanc-official.com',
-  url:     'https://sanc-official.com',
-  tool:    'SiteMap Studio',
-  version: 'v1.0',
-  built:   '2025',
-};
+    // Click outside modal
+    document.getElementById('modal-add').addEventListener('click', function (e) {
+      if (e.target === this) closeModal('modal-add');
+    });
 
-// --- フッター著作権表示を挿入 ---
-(function injectFooter() {
-  const footer = document.createElement('div');
-  footer.id = 'sanc-footer';
-  footer.style.cssText = [
-    'position:fixed', 'bottom:0', 'left:0', 'right:0',
-    'background:#0d0d12cc', 'backdrop-filter:blur(8px)',
-    'border-top:1px solid #2a2a3a',
-    'padding:5px 16px',
-    'font-size:10px', 'color:#555566',
-    'display:flex', 'justify-content:space-between', 'align-items:center',
-    'z-index:9999', 'font-family:monospace',
-    'pointer-events:none',
-  ].join(';');
-  footer.innerHTML = `
+    // ===== START =====
+    init();
+
+    // ============================================================
+    // © COPYRIGHT & AUTHOR PROTECTION
+    // Developed by Satoshi Sasaki / Sanc-Official
+    // Contact: s.sasaki@sanc-official.com
+    // https://sanc-official.com
+    // Unauthorized copying, redistribution or resale is prohibited.
+    // ============================================================
+
+    const _author = {
+      name: 'Satoshi Sasaki',
+      company: 'Sanc-Official',
+      email: 's.sasaki@sanc-official.com',
+      url: 'https://sanc-official.com',
+      tool: 'SiteMap Studio',
+      version: 'v1.0',
+      built: '2025',
+    };
+
+    // --- フッター著作権表示を挿入 ---
+    (function injectFooter() {
+      const footer = document.createElement('div');
+      footer.id = 'sanc-footer';
+      footer.style.cssText = [
+        'position:fixed', 'bottom:0', 'left:0', 'right:0',
+        'background:#0d0d12cc', 'backdrop-filter:blur(8px)',
+        'border-top:1px solid #2a2a3a',
+        'padding:5px 16px',
+        'font-size:10px', 'color:#555566',
+        'display:flex', 'justify-content:space-between', 'align-items:center',
+        'z-index:9999', 'font-family:monospace',
+        'pointer-events:none',
+      ].join(';');
+      footer.innerHTML = `
     <span>© ${_author.built} ${_author.company} / ${_author.name} — ${_author.email}</span>
     <span>${_author.tool} ${_author.version}</span>
   `;
-  document.body.appendChild(footer);
-})();
+      document.body.appendChild(footer);
+    })();
 
-// --- コピー検知：クリップボードにウォーターマークを混入 ---
-document.addEventListener('copy', function(e) {
-  const selection = window.getSelection();
-  if (!selection || selection.toString().length < 10) return;
+    // --- コピー検知：クリップボードにウォーターマークを混入 ---
+    document.addEventListener('copy', function (e) {
+      const selection = window.getSelection();
+      if (!selection || selection.toString().length < 10) return;
 
-  const original = selection.toString();
-  const watermark = [
-    '',
-    '',
-    '---',
-    `[Source] ${_author.tool} ${_author.version}`,
-    `[Author] ${_author.name} / ${_author.company}`,
-    `[Contact] ${_author.email}`,
-    `[URL] ${_author.url}`,
-    '[Notice] This content was created using a tool developed by Sanc-Official.',
-    '         Unauthorized redistribution or resale is prohibited.',
-    '---',
-  ].join('\n');
+      const original = selection.toString();
+      const watermark = [
+        '',
+        '',
+        '---',
+        `[Source] ${_author.tool} ${_author.version}`,
+        `[Author] ${_author.name} / ${_author.company}`,
+        `[Contact] ${_author.email}`,
+        `[URL] ${_author.url}`,
+        '[Notice] This content was created using a tool developed by Sanc-Official.',
+        '         Unauthorized redistribution or resale is prohibited.',
+        '---',
+      ].join('\n');
 
-  e.clipboardData.setData('text/plain', original + watermark);
-  e.preventDefault();
-});
+      e.clipboardData.setData('text/plain', original + watermark);
+      e.preventDefault();
+    });
 
-// --- DevTools 開口検知：コード盗用抑止メッセージ ---
-(function devToolsGuard() {
-  let opened = false;
-  const threshold = 160;
-  const check = () => {
-    if (
-      window.outerWidth - window.innerWidth > threshold ||
-      window.outerHeight - window.innerHeight > threshold
-    ) {
-      if (!opened) {
-        opened = true;
-        console.clear();
-        console.log(
-          '%c© Sanc-Official / Satoshi Sasaki',
-          'font-size:18px;font-weight:bold;color:#6c63ff'
-        );
-        console.log(
-          '%cContact: s.sasaki@sanc-official.com',
-          'font-size:13px;color:#43e97b'
-        );
-        console.log(
-          '%cThis tool is proprietary software. Copying or redistribution without permission is prohibited.',
-          'font-size:12px;color:#ff6584'
-        );
-        console.log(
-          '%cLicensing inquiries welcome.',
-          'font-size:12px;color:#888899'
-        );
-      }
-    } else {
-      opened = false;
-    }
-  };
-  setInterval(check, 1000);
-})();
+    // --- DevTools 開口検知：コード盗用抑止メッセージ ---
+    (function devToolsGuard() {
+      let opened = false;
+      const threshold = 160;
+      const check = () => {
+        if (
+          window.outerWidth - window.innerWidth > threshold ||
+          window.outerHeight - window.innerHeight > threshold
+        ) {
+          if (!opened) {
+            opened = true;
+            console.clear();
+            console.log(
+              '%c© Sanc-Official / Satoshi Sasaki',
+              'font-size:18px;font-weight:bold;color:#6c63ff'
+            );
+            console.log(
+              '%cContact: s.sasaki@sanc-official.com',
+              'font-size:13px;color:#43e97b'
+            );
+            console.log(
+              '%cThis tool is proprietary software. Copying or redistribution without permission is prohibited.',
+              'font-size:12px;color:#ff6584'
+            );
+            console.log(
+              '%cLicensing inquiries welcome.',
+              'font-size:12px;color:#888899'
+            );
+          }
+        } else {
+          opened = false;
+        }
+      };
+      setInterval(check, 1000);
+    })();
 
-// --- HTMLメタ情報にも著者情報を埋め込む ---
-(function injectMeta() {
-  const metas = [
-    { name: 'author',      content: `${_author.name} / ${_author.company}` },
-    { name: 'copyright',   content: `© ${_author.built} ${_author.company}` },
-    { name: 'contact',     content: _author.email },
-    { name: 'generator',   content: `${_author.tool} ${_author.version} by ${_author.company}` },
-  ];
-  metas.forEach(({ name, content }) => {
-    const m = document.createElement('meta');
-    m.name = name; m.content = content;
-    document.head.appendChild(m);
-  });
-})();
-</script>
+    // --- HTMLメタ情報にも著者情報を埋め込む ---
+    (function injectMeta() {
+      const metas = [
+        { name: 'author', content: `${_author.name} / ${_author.company}` },
+        { name: 'copyright', content: `© ${_author.built} ${_author.company}` },
+        { name: 'contact', content: _author.email },
+        { name: 'generator', content: `${_author.tool} ${_author.version} by ${_author.company}` },
+      ];
+      metas.forEach(({ name, content }) => {
+        const m = document.createElement('meta');
+        m.name = name; m.content = content;
+        document.head.appendChild(m);
+      });
+    })();
+  </script>
 
 </body>
+
 </html>
