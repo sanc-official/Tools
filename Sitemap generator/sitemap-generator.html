@@ -611,123 +611,111 @@
       font-size: 11px;
     }
 
-    /* HORIZONTAL TREE */
-    /* VERTICAL TREE */
-    .vtree {
-      display: flex;
-      flex-direction: column;
-      gap: 0;
+    /* TREE NODES */
+    .tree-wrap {
       padding: 8px 0 40px;
     }
 
-    .vtree-node {
-      display: flex;
-      flex-direction: column;
-    }
-
-    .vtree-item {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      padding: 10px 14px;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-left: 4px solid;
-      border-radius: 8px;
-      margin-bottom: 6px;
-      cursor: pointer;
-      transition: all 0.15s;
-      box-shadow: var(--shadow);
+    .tree-node {
       position: relative;
     }
 
-    .vtree-item:hover {
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-      transform: translateX(2px);
-    }
-
-    .vtree-item.selected {
-      box-shadow: 0 0 0 2px var(--accent);
-    }
-
-    .vtree-item.level-0 {
-      border-left-color: #5b52e8;
-      margin-left: 0;
-      font-weight: 700;
-    }
-
-    .vtree-item.level-1 {
-      border-left-color: #1dab60;
-      margin-left: 32px;
-    }
-
-    .vtree-item.level-2 {
-      border-left-color: #e8406b;
-      margin-left: 64px;
-    }
-
-    .vtree-icon {
-      font-size: 20px;
-      flex-shrink: 0;
-    }
-
-    .vtree-body {
-      flex: 1;
-    }
-
-    .vtree-name {
+    .tree-card {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 14px;
+      background: #fff;
+      border: 1.5px solid #e2e4eb;
+      border-radius: 999px;
       font-size: 13px;
       font-weight: 600;
       color: var(--text);
+      cursor: pointer;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.07);
+      transition: box-shadow 0.15s, border-color 0.15s;
+      white-space: nowrap;
+      position: relative;
+      z-index: 1;
     }
 
-    .vtree-type {
+    .tree-card:hover {
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.12);
+    }
+
+    .tree-card.selected {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(91, 82, 232, 0.15);
+    }
+
+    .tree-card.level-0 {
+      border-color: #5b52e8;
+      background: #f5f4ff;
+      font-size: 14px;
+    }
+
+    .tree-card .card-icon {
+      font-size: 16px;
+    }
+
+    .tree-card .card-name {
+      flex: 1;
+    }
+
+    .tree-card .card-badge {
       font-size: 10px;
-      color: var(--text2);
-      margin-top: 2px;
-    }
-
-    .vtree-price {
-      font-size: 11px;
-      font-family: 'Space Mono', monospace;
-      color: var(--text2);
-      margin-left: auto;
-      flex-shrink: 0;
-    }
-
-    .vtree-badge {
-      font-size: 10px;
-      padding: 2px 7px;
-      border-radius: 10px;
       font-weight: 700;
-      flex-shrink: 0;
+      padding: 2px 7px;
+      border-radius: 999px;
+      background: #f0f0f8;
+      color: #888;
     }
 
-    .badge-l0 {
-      background: #5b52e822;
+    .tree-card.level-0 .card-badge {
+      background: #e8e6ff;
       color: #5b52e8;
     }
 
-    .badge-l1 {
-      background: #1dab6022;
+    .tree-card.level-1 .card-badge {
+      background: #e6f7ef;
       color: #1dab60;
     }
 
-    .badge-l2 {
-      background: #e8406b22;
+    .tree-card.level-2 .card-badge {
+      background: #fde8ee;
       color: #e8406b;
     }
 
     /* 接続線 */
-    .vtree-item.level-1::before,
-    .vtree-item.level-2::before {
+    .tree-children {
+      position: relative;
+      margin-left: 28px;
+      padding-left: 20px;
+      border-left: 2px solid #e2e4eb;
+      margin-top: 0;
+    }
+
+    .tree-child-item {
+      position: relative;
+      margin-top: 8px;
+    }
+
+    .tree-child-item::before {
       content: '';
       position: absolute;
       left: -20px;
       top: 50%;
-      width: 16px;
-      height: 1px;
-      background: var(--border);
+      width: 18px;
+      height: 2px;
+      background: #e2e4eb;
+    }
+
+    .tree-l0-wrap {
+      margin-bottom: 8px;
+    }
+
+    .tree-l1-wrap {
+      margin-top: 8px;
     }
 
     /* SITEMAP HEADER - light */
@@ -1563,38 +1551,50 @@
       const tc = state.themeColor;
       const metaParts = [clientName, agencyName, createdDate].filter(Boolean).join('　|　');
 
-      // 縦ツリー構造を構築（L0→L1→L2 インデント表示）
-      const buildVerticalTree = () => {
-        let html = '<div class="vtree">';
+      // 縦ツリー構造を構築
+      const buildTree = () => {
+        const l0 = state.pages.filter(p => p.level === 0);
+        const l1 = state.pages.filter(p => p.level === 1);
+        const l2 = state.pages.filter(p => p.level === 2);
 
-        // L0を先頭に固定
-        const sorted = [
-          ...state.pages.filter(p => p.level === 0),
-          ...state.pages.filter(p => p.level === 1),
-          ...state.pages.filter(p => p.level === 2),
-        ];
+        const cardHTML = (p) => {
+          const sel = state.selectedPageId === p.id ? 'selected' : '';
+          const icon = showIcons ? `<span class="card-icon">${p.icon}</span>` : '';
+          const price = showPrice && p.price
+            ? `<span style="font-size:11px;color:var(--text2);margin-left:4px">¥${p.price.toLocaleString()}</span>` : '';
+          return `
+            <div class="tree-card level-${p.level} ${sel}" onclick="selectPage(${p.id})">
+              ${icon}
+              <span class="card-name">${p.name}</span>
+              ${price}
+              <span class="card-badge">L${p.level}</span>
+            </div>`;
+        };
 
-        sorted.forEach(p => {
-          const selected = state.selectedPageId === p.id;
-          const levelColor = p.level === 0 ? '#5b52e8' : p.level === 1 ? '#1dab60' : '#e8406b';
-          const badgeClass = `badge-l${p.level}`;
-          const priceHTML = showPrice && p.price
-            ? `<span class="vtree-price">¥${p.price.toLocaleString()}</span>` : '';
+        let html = '<div class="tree-wrap">';
 
-          html += `
-            <div class="vtree-node">
-              <div class="vtree-item level-${p.level} ${selected ? 'selected' : ''}"
-                onclick="selectPage(${p.id})">
-                ${showIcons ? `<span class="vtree-icon">${p.icon}</span>` : ''}
-                <div class="vtree-body">
-                  <div class="vtree-name">${p.name}</div>
-                  <div class="vtree-type">${p.type}</div>
-                </div>
-                ${priceHTML}
-                <span class="vtree-badge ${badgeClass}">L${p.level}</span>
-              </div>
-            </div>
-          `;
+        // L0
+        (l0.length ? l0 : []).forEach(p0 => {
+          html += `<div class="tree-l0-wrap">${cardHTML(p0)}`;
+
+          if (l1.length) {
+            html += '<div class="tree-children">';
+            l1.forEach(p1 => {
+              html += `<div class="tree-child-item tree-l1-wrap">${cardHTML(p1)}`;
+
+              const children = l2; // 全L2をぶら下げる（または親IDで紐付けも可）
+              if (children.length) {
+                html += '<div class="tree-children">';
+                children.forEach(p2 => {
+                  html += `<div class="tree-child-item">${cardHTML(p2)}</div>`;
+                });
+                html += '</div>';
+              }
+              html += '</div>';
+            });
+            html += '</div>';
+          }
+          html += '</div>';
         });
 
         html += '</div>';
@@ -1606,7 +1606,7 @@
           <div class="sitemap-title">${siteName}</div>
           ${metaParts ? `<div class="sitemap-meta">${metaParts}</div>` : ''}
         </div>
-        ${buildVerticalTree()}
+        ${buildTree()}
       `;
 
       const memo = document.getElementById('memo').value;
