@@ -1574,25 +1574,11 @@
     function flatToNested(flatPages) {
       const result = [];
       let curL0 = null, curL1 = null;
-      const nameMap = {};
       for (const p of flatPages) {
         const node = newPage(p.name, p.icon || '📄');
-        nameMap[p.name] = node;
-        if (p.level === 0) {
-          result.push(node);
-          curL0 = node;
-          curL1 = null;
-        } else if (p.level === 1) {
-          (curL0 ? curL0.children : result).push(node);
-          curL1 = node;
-        } else {
-          // L2: parent指定がある場合はそれを優先、なければ直近のL1
-          let targetParent = curL1;
-          if (p.parent && nameMap[p.parent]) {
-            targetParent = nameMap[p.parent];
-          }
-          (targetParent ? targetParent.children : curL0 ? curL0.children : result).push(node);
-        }
+        if (p.level === 0) { result.push(node); curL0 = node; curL1 = null; }
+        else if (p.level === 1) { (curL0 ? curL0.children : result).push(node); curL1 = node; }
+        else { (curL1 ? curL1.children : curL0 ? curL0.children : result).push(node); }
       }
       return result;
     }
@@ -1724,16 +1710,16 @@ ${allLinks.slice(0, 30).map(l => l.text).join(', ')}
 3. URLが2階層以上（例：/service/detail/）→ level 2
 4. 疾患名・診療項目・サービス詳細など明らかにサブページのもの → level 2
 5. ナビに出てこない本文内リンクは基本 level 2 扱い
-6. level 0 はトップページのみ（必ず1件）
+6. level 0 はサイト全体のトップ（ドメイン直下）のみ（必ず1件）
 7. level 1 は最大8件まで
 8. level 2 は最大12件まで
-9. サイト名・ホーム・トップに一致するページは必ず level 0 にする
-10. level 2 のページは parent フィールドに必ず親ページ名（level 1）を明記すること
-11. ナビメニュー外の疾患名・診療科目ページは、最後のナビ項目の子にせず、「当院の特徴」「診療内容」に相当するページの子にすること
+9. ホーム・TOPページはナビの先頭に存在しても level 1 として扱う（level 0 にしない）
+10. level 0 はサイト名またはブランド名のみ。ナビのホームリンクと混同しないこと
+11. 疾患・検査・予防接種など診療関連ページは「当院の特徴」「診療案内」相当ページの子（level 2）にする
 12. 採用情報・アクセス・施設案内の子に診療ページを入れてはいけない
 
 JSON配列のみ返すこと：
-[{"name":"ページ名","icon":"絵文字1文字","level":0〜2,"parent":"親ページ名（level1の場合はnull、level2の場合は必ず親ページ名を明記）"}]
+[{"name":"ページ名","icon":"絵文字1文字","level":0〜2}]
 `;
         const result = await callGemini(prompt);
         const clean = result.replace(/```json|```/g, '').trim();
