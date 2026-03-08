@@ -1574,13 +1574,34 @@
       btn.textContent = '取得中...';
 
       try {
-        // CORSプロキシ経由でHTML取得（無料）
-        const proxyUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(url)}`;
-        const fetchRes = await fetch(proxyUrl);
-        const fetchData = await fetchRes.json();
-        const html = fetchData.contents || '';
+        // CORSプロキシ経由でHTML取得（複数フォールバック）
+        const proxies = [
+          u => `https://corsproxy.io/?${encodeURIComponent(u)}`,
+          u => `https://api.allorigins.win/get?url=${encodeURIComponent(u)}`,
+          u => `https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(u)}`,
+        ];
 
-        if (!html) throw new Error('サイトのHTMLを取得できませんでした');
+        let html = '';
+        let lastErr = null;
+        for (const proxyFn of proxies) {
+          try {
+            statusEl.innerHTML = `<span style="color:var(--accent)">🔄 取得中... (${proxies.indexOf(proxyFn) + 1}/${proxies.length})</span>`;
+            const res = await fetch(proxyFn(url), { signal: AbortSignal.timeout(10000) });
+            if (!res.ok) throw new Error(`HTTP ${res.status}`);
+            const text = await res.text();
+            if (text.trim().startsWith('{')) {
+              const j = JSON.parse(text);
+              html = j.contents || j.data || text;
+            } else {
+              html = text;
+            }
+            if (html && html.length > 100) break;
+          } catch (e) {
+            lastErr = e;
+            continue;
+          }
+        }
+        if (!html || html.length < 100) throw new Error('HTMLを取得できませんでした。URLを確認するか再試行してください。');
 
         // HTMLからナビゲーション・リンク情報を抽出
         const parser = new DOMParser();
