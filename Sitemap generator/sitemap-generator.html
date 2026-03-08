@@ -1753,6 +1753,26 @@ JSON配列のみ返すこと（コードブロック・説明文不要）：
           memo: '',
         }));
 
+        // L0強制補正：サイト名・ホーム・トップに一致するページを必ずL0にする
+        const l0Keywords = ['ホーム', 'トップ', 'TOP', 'Home', siteTitle.split('|')[0].trim(), siteTitle.split('　')[0].trim()];
+        let l0Fixed = false;
+        state.pages = state.pages.map(p => {
+          if (!l0Fixed && (
+            p.level === 0 ||
+            l0Keywords.some(kw => kw && p.name.includes(kw)) ||
+            p.name === siteTitle
+          )) {
+            l0Fixed = true;
+            return { ...p, level: 0 };
+          }
+          return { ...p, level: p.level === 0 && l0Fixed ? 1 : p.level };
+        });
+
+        // L0が1件もない場合は先頭をL0にする
+        if (!state.pages.some(p => p.level === 0)) {
+          state.pages[0] = { ...state.pages[0], level: 0 };
+        }
+
         // サイト名を常にスキャン結果で上書き
         if (siteTitle) {
           document.getElementById('site-name').value = siteTitle;
