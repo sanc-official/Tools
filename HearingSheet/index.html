@@ -350,9 +350,7 @@
             border-color: var(--accent);
         }
 
-        .sns-option input {
-            display: none;
-        }
+
 
         .sns-option.checked {
             border-color: var(--accent);
@@ -996,28 +994,24 @@
                 <div class="form-group">
                     <label>運用中のSNS（複数選択可）</label>
                     <div class="sns-grid" id="sns-grid">
-                        <label class="sns-option" onclick="toggleSns(this,'Instagram')">
-                            <input type="checkbox"><span class="sns-icon">📸</span><span
-                                class="sns-label">Instagram</span>
-                        </label>
-                        <label class="sns-option" onclick="toggleSns(this,'X (Twitter)')">
-                            <input type="checkbox"><span class="sns-icon">🐦</span><span class="sns-label">X
-                                (Twitter)</span>
-                        </label>
-                        <label class="sns-option" onclick="toggleSns(this,'Facebook')">
-                            <input type="checkbox"><span class="sns-icon">👥</span><span
-                                class="sns-label">Facebook</span>
-                        </label>
-                        <label class="sns-option" onclick="toggleSns(this,'LINE公式')">
-                            <input type="checkbox"><span class="sns-icon">💬</span><span class="sns-label">LINE公式</span>
-                        </label>
-                        <label class="sns-option" onclick="toggleSns(this,'YouTube')">
-                            <input type="checkbox"><span class="sns-icon">▶️</span><span
-                                class="sns-label">YouTube</span>
-                        </label>
-                        <label class="sns-option" onclick="toggleSns(this,'TikTok')">
-                            <input type="checkbox"><span class="sns-icon">🎵</span><span class="sns-label">TikTok</span>
-                        </label>
+                        <div class="sns-option" onclick="toggleSns(this,'Instagram')">
+                            <span class="sns-icon">📸</span><span class="sns-label">Instagram</span>
+                        </div>
+                        <div class="sns-option" onclick="toggleSns(this,'X (Twitter)')">
+                            <span class="sns-icon">🐦</span><span class="sns-label">X (Twitter)</span>
+                        </div>
+                        <div class="sns-option" onclick="toggleSns(this,'Facebook')">
+                            <span class="sns-icon">👥</span><span class="sns-label">Facebook</span>
+                        </div>
+                        <div class="sns-option" onclick="toggleSns(this,'LINE公式')">
+                            <span class="sns-icon">💬</span><span class="sns-label">LINE公式</span>
+                        </div>
+                        <div class="sns-option" onclick="toggleSns(this,'YouTube')">
+                            <span class="sns-icon">▶️</span><span class="sns-label">YouTube</span>
+                        </div>
+                        <div class="sns-option" onclick="toggleSns(this,'TikTok')">
+                            <span class="sns-icon">🎵</span><span class="sns-label">TikTok</span>
+                        </div>
                     </div>
                 </div>
 
