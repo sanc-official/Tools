@@ -1,0 +1,1859 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web制作ヒアリングシート</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;600;700&family=DM+Serif+Display&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1a1a2e;
+            --accent: #e94560;
+            --accent2: #f5a623;
+            --bg: #f7f7f5;
+            --surface: #ffffff;
+            --border: #e2e2de;
+            --text: #1a1a2e;
+            --muted: #888;
+            --step-done: #22c55e;
+            --radius: 10px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+            font-size: 14px;
+        }
+
+        /* ===== HEADER ===== */
+        .header {
+            background: var(--primary);
+            color: white;
+            padding: 14px 28px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .header-logo {
+            font-size: 15px;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .header-logo span {
+            background: var(--accent);
+            color: white;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+        }
+
+        .header-subtitle {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.55);
+            margin-top: 2px;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-reset {
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            color: rgba(255, 255, 255, 0.7);
+            padding: 6px 14px;
+            border-radius: 6px;
+            font-size: 12px;
+            cursor: pointer;
+            font-family: inherit;
+            transition: all 0.2s;
+        }
+
+        .btn-reset:hover {
+            border-color: white;
+            color: white;
+        }
+
+        .save-indicator {
+            font-size: 11px;
+            color: rgba(255, 255, 255, 0.45);
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .save-dot {
+            width: 7px;
+            height: 7px;
+            background: var(--step-done);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.4;
+            }
+        }
+
+        /* ===== PROGRESS ===== */
+        .progress-bar-wrap {
+            background: var(--primary);
+            padding: 0 28px 16px;
+        }
+
+        .progress-info {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+
+        .progress-label {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 12px;
+        }
+
+        .progress-pct {
+            color: white;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .progress-track {
+            height: 5px;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 99px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent), var(--accent2));
+            border-radius: 99px;
+            transition: width 0.5s ease;
+        }
+
+        /* ===== STEP NAV ===== */
+        .step-nav {
+            background: var(--primary);
+            padding: 0 28px 20px;
+            display: flex;
+            gap: 0;
+            overflow-x: auto;
+        }
+
+        .step-item {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            padding: 6px 14px 6px 10px;
+            border-radius: 6px;
+            cursor: pointer;
+            color: rgba(255, 255, 255, 0.45);
+            font-size: 12px;
+            font-weight: 500;
+            transition: all 0.2s;
+            white-space: nowrap;
+        }
+
+        .step-item:hover {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .step-item.active {
+            color: white;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .step-item.done {
+            color: var(--step-done);
+        }
+
+        .step-num {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+            font-weight: 700;
+            flex-shrink: 0;
+            transition: all 0.2s;
+        }
+
+        .step-item.active .step-num {
+            background: var(--accent);
+            color: white;
+        }
+
+        .step-item.done .step-num {
+            background: var(--step-done);
+            color: white;
+        }
+
+        .step-sep {
+            color: rgba(255, 255, 255, 0.2);
+            padding: 0 2px;
+            display: flex;
+            align-items: center;
+            font-size: 14px;
+        }
+
+        /* ===== MAIN LAYOUT ===== */
+        .main {
+            display: grid;
+            grid-template-columns: 1fr 380px;
+            gap: 0;
+            min-height: calc(100vh - 130px);
+        }
+
+        /* ===== FORM PANEL ===== */
+        .form-panel {
+            padding: 28px;
+            border-right: 1px solid var(--border);
+            overflow-y: auto;
+        }
+
+        .step-content {
+            display: none;
+        }
+
+        .step-content.active {
+            display: block;
+        }
+
+        .section-title {
+            font-size: 17px;
+            font-weight: 700;
+            margin-bottom: 4px;
+            color: var(--primary);
+        }
+
+        .section-desc {
+            font-size: 12px;
+            color: var(--muted);
+            margin-bottom: 24px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+        }
+
+        label {
+            display: block;
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 6px;
+            color: var(--text);
+        }
+
+        label .req {
+            color: var(--accent);
+            margin-left: 3px;
+            font-size: 11px;
+        }
+
+        input[type=text],
+        input[type=email],
+        input[type=tel],
+        input[type=date],
+        select,
+        textarea {
+            width: 100%;
+            padding: 9px 12px;
+            border: 1.5px solid var(--border);
+            border-radius: var(--radius);
+            font-family: inherit;
+            font-size: 13px;
+            color: var(--text);
+            background: white;
+            transition: border-color 0.2s, box-shadow 0.2s;
+            outline: none;
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(233, 69, 96, 0.08);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        ::placeholder {
+            color: #bbb;
+            font-size: 12px;
+        }
+
+        /* SNS checkboxes */
+        .sns-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+        }
+
+        .sns-option {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            padding: 8px 12px;
+            border: 1.5px solid var(--border);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.15s;
+            background: white;
+        }
+
+        .sns-option:hover {
+            border-color: var(--accent);
+        }
+
+        .sns-option input {
+            display: none;
+        }
+
+        .sns-option.checked {
+            border-color: var(--accent);
+            background: #fff5f6;
+        }
+
+        .sns-icon {
+            font-size: 16px;
+        }
+
+        .sns-label {
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        /* Color picker */
+        .color-section {
+            margin-bottom: 20px;
+        }
+
+        .color-label {
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .color-presets {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 7px;
+            margin-bottom: 10px;
+        }
+
+        .color-swatch {
+            width: 32px;
+            height: 32px;
+            border-radius: 6px;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: all 0.15s;
+            position: relative;
+        }
+
+        .color-swatch:hover {
+            transform: scale(1.1);
+        }
+
+        .color-swatch.selected {
+            border-color: var(--text);
+            box-shadow: 0 0 0 2px white inset;
+        }
+
+        .color-custom-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 8px;
+        }
+
+        .color-custom-row input[type=color] {
+            width: 40px;
+            height: 36px;
+            padding: 2px;
+            border: 1.5px solid var(--border);
+            border-radius: 6px;
+            cursor: pointer;
+            background: white;
+        }
+
+        .color-hex {
+            font-size: 13px;
+            font-weight: 600;
+            font-family: monospace;
+            width: 90px;
+        }
+
+        /* Font checkboxes */
+        .font-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+        }
+
+        .font-option {
+            padding: 10px 14px;
+            border: 1.5px solid var(--border);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.15s;
+            background: white;
+        }
+
+        .font-option:hover {
+            border-color: var(--accent);
+        }
+
+        .font-option.selected {
+            border-color: var(--accent);
+            background: #fff5f6;
+        }
+
+        .font-name {
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .font-sub {
+            font-size: 11px;
+            color: var(--muted);
+        }
+
+        /* Mood tags */
+        .mood-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .mood-tag {
+            padding: 7px 14px;
+            border: 1.5px solid var(--border);
+            border-radius: 99px;
+            font-size: 12px;
+            cursor: pointer;
+            transition: all 0.15s;
+            background: white;
+            user-select: none;
+        }
+
+        .mood-tag:hover {
+            border-color: var(--accent);
+        }
+
+        .mood-tag.selected {
+            background: var(--accent);
+            color: white;
+            border-color: var(--accent);
+        }
+
+        /* URL add field */
+        .url-fields {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .url-field-row {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .url-field-row input {
+            flex: 1;
+        }
+
+        .btn-remove-url {
+            background: none;
+            border: 1.5px solid var(--border);
+            border-radius: 6px;
+            width: 30px;
+            height: 30px;
+            cursor: pointer;
+            font-size: 16px;
+            color: var(--muted);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            transition: all 0.15s;
+        }
+
+        .btn-remove-url:hover {
+            color: var(--accent);
+            border-color: var(--accent);
+        }
+
+        .btn-add-url {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            background: none;
+            border: 1.5px dashed var(--border);
+            border-radius: var(--radius);
+            padding: 8px 14px;
+            color: var(--muted);
+            font-size: 12px;
+            cursor: pointer;
+            font-family: inherit;
+            transition: all 0.2s;
+            width: 100%;
+            margin-top: 4px;
+        }
+
+        .btn-add-url:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        /* Page count */
+        .page-count-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .count-btn {
+            width: 32px;
+            height: 32px;
+            border: 1.5px solid var(--border);
+            background: white;
+            border-radius: 6px;
+            font-size: 18px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: inherit;
+            transition: all 0.15s;
+        }
+
+        .count-btn:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        .count-val {
+            font-size: 18px;
+            font-weight: 700;
+            min-width: 40px;
+            text-align: center;
+        }
+
+        /* Nav buttons */
+        .step-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 32px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border);
+        }
+
+        .btn-prev,
+        .btn-next {
+            padding: 10px 24px;
+            border-radius: var(--radius);
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            font-family: inherit;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 7px;
+        }
+
+        .btn-prev {
+            background: white;
+            border: 1.5px solid var(--border);
+            color: var(--muted);
+        }
+
+        .btn-prev:hover {
+            border-color: var(--text);
+            color: var(--text);
+        }
+
+        .btn-next {
+            background: var(--accent);
+            border: 1.5px solid var(--accent);
+            color: white;
+            box-shadow: 0 4px 14px rgba(233, 69, 96, 0.3);
+        }
+
+        .btn-next:hover {
+            background: #d63650;
+            box-shadow: 0 6px 18px rgba(233, 69, 96, 0.4);
+        }
+
+        .btn-next:disabled,
+        .btn-prev:disabled {
+            opacity: 0.3;
+            cursor: default;
+            box-shadow: none;
+        }
+
+        /* ===== PREVIEW PANEL ===== */
+        .preview-panel {
+            padding: 24px 20px;
+            background: #f2f2ef;
+            overflow-y: auto;
+            position: sticky;
+            top: 130px;
+            height: calc(100vh - 130px);
+        }
+
+        .preview-tabs {
+            display: flex;
+            gap: 0;
+            margin-bottom: 16px;
+            background: var(--surface);
+            border-radius: 8px;
+            padding: 3px;
+            border: 1px solid var(--border);
+        }
+
+        .preview-tab {
+            flex: 1;
+            padding: 6px;
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: 600;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s;
+            color: var(--muted);
+            border: none;
+            background: none;
+            font-family: inherit;
+        }
+
+        .preview-tab.active {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* Preview card */
+        .preview-card {
+            background: white;
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: 0 2px 16px rgba(0, 0, 0, 0.06);
+            margin-bottom: 16px;
+        }
+
+        .preview-header {
+            padding: 16px 18px;
+            font-size: 15px;
+            font-weight: 700;
+            color: white;
+            background: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .preview-badge {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 3px 10px;
+            border-radius: 99px;
+            font-size: 10px;
+            font-weight: 500;
+        }
+
+        .preview-body {
+            padding: 16px 18px;
+        }
+
+        .preview-row {
+            display: flex;
+            gap: 8px;
+            padding: 8px 0;
+            border-bottom: 1px solid #f0f0ec;
+            font-size: 12px;
+            align-items: flex-start;
+        }
+
+        .preview-row:last-child {
+            border-bottom: none;
+        }
+
+        .preview-key {
+            color: var(--muted);
+            min-width: 80px;
+            flex-shrink: 0;
+        }
+
+        .preview-val {
+            font-weight: 500;
+            color: var(--text);
+            word-break: break-all;
+        }
+
+        /* Color preview badge */
+        .color-preview-dot {
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            display: inline-block;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            vertical-align: middle;
+            margin-right: 4px;
+        }
+
+        /* Sharing section */
+        .share-section {
+            margin-bottom: 12px;
+        }
+
+        .btn-share {
+            width: 100%;
+            padding: 12px;
+            background: var(--accent);
+            color: white;
+            border: none;
+            border-radius: var(--radius);
+            font-family: inherit;
+            font-size: 13px;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: all 0.2s;
+            box-shadow: 0 4px 14px rgba(233, 69, 96, 0.3);
+            margin-bottom: 8px;
+        }
+
+        .btn-share:hover {
+            background: #d63650;
+        }
+
+        .btn-pdf {
+            width: 100%;
+            padding: 10px;
+            background: white;
+            color: var(--text);
+            border: 1.5px solid var(--border);
+            border-radius: var(--radius);
+            font-family: inherit;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: all 0.2s;
+        }
+
+        .btn-pdf:hover {
+            border-color: var(--text);
+        }
+
+        /* Text view */
+        .text-view {
+            display: none;
+            background: white;
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+            padding: 16px;
+            font-size: 11.5px;
+            line-height: 1.8;
+            color: var(--text);
+            white-space: pre-wrap;
+            font-family: monospace;
+            max-height: 420px;
+            overflow-y: auto;
+        }
+
+        .text-view.active {
+            display: block;
+        }
+
+        .preview-visual {
+            display: block;
+        }
+
+        .preview-visual.hidden {
+            display: none;
+        }
+
+        /* Divider */
+        .form-divider {
+            border: none;
+            border-top: 1px solid var(--border);
+            margin: 20px 0;
+        }
+
+        /* Toast */
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: var(--primary);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 99px;
+            font-size: 13px;
+            font-weight: 600;
+            z-index: 9999;
+            transition: transform 0.35s ease;
+            pointer-events: none;
+        }
+
+        .toast.show {
+            transform: translateX(-50%) translateY(0);
+        }
+
+        @media (max-width: 768px) {
+            .main {
+                grid-template-columns: 1fr;
+            }
+
+            .preview-panel {
+                position: static;
+                height: auto;
+            }
+
+            .sns-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media print {
+
+            .header,
+            .progress-bar-wrap,
+            .step-nav,
+            .form-panel,
+            .preview-tabs,
+            .share-section,
+            .btn-pdf,
+            .preview-panel>*:not(.preview-visual) {
+                display: none !important;
+            }
+
+            .main {
+                grid-template-columns: 1fr;
+            }
+
+            .preview-panel {
+                height: auto;
+                position: static;
+                background: white;
+            }
+
+            .preview-visual {
+                display: block !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <div class="header">
+        <div>
+            <div class="header-logo">
+                Web制作ヒアリングシート <span>SaNC</span>
+            </div>
+            <div class="header-subtitle">Webサイト制作をスムーズに進めるためのヒアリングシートです</div>
+        </div>
+        <div class="header-right">
+            <div class="save-indicator">
+                <span class="save-dot"></span> 自動保存中
+            </div>
+            <button class="btn-reset" onclick="resetAll()">リセット</button>
+        </div>
+    </div>
+
+    <!-- PROGRESS -->
+    <div class="progress-bar-wrap">
+        <div class="progress-info">
+            <span class="progress-label" id="step-label">Step 1 / 5</span>
+            <span class="progress-pct" id="step-pct">20%</span>
+        </div>
+        <div class="progress-track">
+            <div class="progress-fill" id="progress-fill" style="width:20%"></div>
+        </div>
+    </div>
+
+    <!-- STEP NAV -->
+    <div class="step-nav" id="step-nav">
+        <div class="step-item active" onclick="goStep(1)" id="snav1">
+            <span class="step-num">1</span> 基本情報
+        </div>
+        <span class="step-sep">›</span>
+        <div class="step-item" onclick="goStep(2)" id="snav2">
+            <span class="step-num">2</span> 事業内容
+        </div>
+        <span class="step-sep">›</span>
+        <div class="step-item" onclick="goStep(3)" id="snav3">
+            <span class="step-num">3</span> 目的・ゴール
+        </div>
+        <span class="step-sep">›</span>
+        <div class="step-item" onclick="goStep(4)" id="snav4">
+            <span class="step-num">4</span> デザイン
+        </div>
+        <span class="step-sep">›</span>
+        <div class="step-item" onclick="goStep(5)" id="snav5">
+            <span class="step-num">5</span> サーバー・運用
+        </div>
+    </div>
+
+    <!-- MAIN -->
+    <div class="main">
+
+        <!-- FORM PANEL -->
+        <div class="form-panel">
+
+            <!-- STEP 1: 基本情報 -->
+            <div class="step-content active" id="step1">
+                <div class="section-title">基本情報</div>
+                <div class="section-desc">基本情報の入力をお願いします。わかる範囲で大丈夫です。</div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>会社名 / 屋号 <span class="req">*</span></label>
+                        <input type="text" id="company" placeholder="例）株式会社〇〇" oninput="updatePreview()">
+                    </div>
+                    <div class="form-group">
+                        <label>ご担当者名 <span class="req">*</span></label>
+                        <input type="text" id="contact" placeholder="例）田中 太郎" oninput="updatePreview()">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>メールアドレス <span class="req">*</span></label>
+                        <input type="text" id="email" placeholder="例）info@example.com" oninput="updatePreview()">
+                    </div>
+                    <div class="form-group">
+                        <label>電話番号</label>
+                        <input type="tel" id="phone" placeholder="例）090-0000-0000" oninput="updatePreview()">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>御社のWebサイトURL（現在のサイト）</label>
+                    <input type="text" id="site-url" placeholder="例）https://example.com" oninput="updatePreview()">
+                </div>
+
+                <div class="form-group">
+                    <label>運用中のSNS（複数選択可）</label>
+                    <div class="sns-grid" id="sns-grid">
+                        <label class="sns-option" onclick="toggleSns(this,'Instagram')">
+                            <input type="checkbox"><span class="sns-icon">📸</span><span
+                                class="sns-label">Instagram</span>
+                        </label>
+                        <label class="sns-option" onclick="toggleSns(this,'X (Twitter)')">
+                            <input type="checkbox"><span class="sns-icon">🐦</span><span class="sns-label">X
+                                (Twitter)</span>
+                        </label>
+                        <label class="sns-option" onclick="toggleSns(this,'Facebook')">
+                            <input type="checkbox"><span class="sns-icon">👥</span><span
+                                class="sns-label">Facebook</span>
+                        </label>
+                        <label class="sns-option" onclick="toggleSns(this,'LINE公式')">
+                            <input type="checkbox"><span class="sns-icon">💬</span><span class="sns-label">LINE公式</span>
+                        </label>
+                        <label class="sns-option" onclick="toggleSns(this,'YouTube')">
+                            <input type="checkbox"><span class="sns-icon">▶️</span><span
+                                class="sns-label">YouTube</span>
+                        </label>
+                        <label class="sns-option" onclick="toggleSns(this,'TikTok')">
+                            <input type="checkbox"><span class="sns-icon">🎵</span><span class="sns-label">TikTok</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>ご連絡方法（優先）</label>
+                    <select id="contact-method" onchange="updatePreview()">
+                        <option value="">選択してください</option>
+                        <option>メール</option>
+                        <option>電話</option>
+                        <option>Chatwork</option>
+                        <option>LINE</option>
+                        <option>Slack</option>
+                        <option>その他</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Chatwork / LINE / Slack のURL</label>
+                    <div class="url-fields" id="chat-urls">
+                        <div class="url-field-row">
+                            <input type="text" placeholder="例）https://www.chatwork.com/..." oninput="updatePreview()">
+                            <button class="btn-remove-url" onclick="removeUrlField(this)">×</button>
+                        </div>
+                    </div>
+                    <button class="btn-add-url" onclick="addUrlField()">＋ 入力項目を追加する</button>
+                </div>
+
+                <div class="step-buttons">
+                    <button class="btn-prev" disabled>← 戻る</button>
+                    <button class="btn-next" onclick="goStep(2)">次へ →</button>
+                </div>
+            </div>
+
+            <!-- STEP 2: 事業内容 -->
+            <div class="step-content" id="step2">
+                <div class="section-title">事業内容について</div>
+                <div class="section-desc">御社のビジネス内容をお聞かせください。</div>
+
+                <div class="form-group">
+                    <label>主な事業内容 <span class="req">*</span></label>
+                    <input type="text" id="business-type" placeholder="例）不動産賃貸業" oninput="updatePreview()">
+                </div>
+                <div class="form-group">
+                    <label>サービス内容</label>
+                    <textarea id="service-detail" placeholder="例）新築一戸建て、地改築・リフォーム、外壁や屋根のメンテナンスなど"
+                        oninput="updatePreview()"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>御社のお客様から、普段どのようなお問合せをいただくことが多いですか？</label>
+                    <textarea id="inquiries" placeholder="例）リフォームの費用や工期の目安、築年数の古い家のリノベーション相談など"
+                        oninput="updatePreview()"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>他社よりもここは負けない！御社の推しポイント</label>
+                    <textarea id="strengths" placeholder="例）創業以来培ってきた技術力・業者とのパイプ、親身なアフターフォロー"
+                        oninput="updatePreview()"></textarea>
+                </div>
+
+                <hr class="form-divider">
+
+                <div class="section-title" style="font-size:14px;margin-bottom:16px;">案件の種別</div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>依頼内容 <span class="req">*</span></label>
+                        <select id="request-type" onchange="updatePreview()">
+                            <option value="">選択してください</option>
+                            <option>新規サイト制作</option>
+                            <option>リニューアル</option>
+                            <option>ランディングページ（LP）</option>
+                            <option>ECサイト</option>
+                            <option>採用サイト</option>
+                            <option>その他</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>希望公開日</label>
+                        <input type="date" id="deadline" onchange="updatePreview()">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>制作ページ数（概算）</label>
+                    <div class="page-count-row">
+                        <button class="count-btn" onclick="changeCount(-1)">−</button>
+                        <span class="count-val" id="page-count">5</span>
+                        <button class="count-btn" onclick="changeCount(1)">＋</button>
+                        <span style="font-size:12px;color:var(--muted)">ページ</span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>メモ・その他ご要望</label>
+                    <textarea id="memo" placeholder="例）シンプルで使いやすいデザインにしたい。スマホ対応を重視したい など"
+                        oninput="updatePreview()"></textarea>
+                </div>
+
+                <div class="step-buttons">
+                    <button class="btn-prev" onclick="goStep(1)">← 戻る</button>
+                    <button class="btn-next" onclick="goStep(3)">次へ →</button>
+                </div>
+            </div>
+
+            <!-- STEP 3: 目的・ゴール -->
+            <div class="step-content" id="step3">
+                <div class="section-title">目的とゴール</div>
+                <div class="section-desc">Webサイトで達成したいことをお聞かせください。</div>
+
+                <div class="form-group">
+                    <label>Webサイトの目的</label>
+                    <textarea id="purpose" placeholder="例）新規顧客の獲得、採用強化、既存顧客へのサービス案内"
+                        oninput="updatePreview()"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>想定ターゲットの年齢層</label>
+                    <select id="target-age" onchange="updatePreview()">
+                        <option value="">選択してください</option>
+                        <option>10〜20代</option>
+                        <option>30〜40代</option>
+                        <option>50〜60代</option>
+                        <option>60代以上</option>
+                        <option>幅広い世代</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>想定するお客様像（ペルソナ）</label>
+                    <textarea id="target-persona" placeholder="例）県内でリフォームを検討している方、初めて不動産を購入する30代夫婦"
+                        oninput="updatePreview()"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>Webサイトの最終的なゴールは何に繋げますか？</label>
+                    <div class="mood-tags" id="goal-tags">
+                        <span class="mood-tag" onclick="toggleTag(this,'メール問合せ')">📧 メール問合せ</span>
+                        <span class="mood-tag" onclick="toggleTag(this,'電話')">📞 電話</span>
+                        <span class="mood-tag" onclick="toggleTag(this,'LINE')">💬 LINE</span>
+                        <span class="mood-tag" onclick="toggleTag(this,'予約')">📅 予約</span>
+                        <span class="mood-tag" onclick="toggleTag(this,'購入')">🛒 購入</span>
+                        <span class="mood-tag" onclick="toggleTag(this,'採用応募')">📝 採用応募</span>
+                        <span class="mood-tag" onclick="toggleTag(this,'認知向上')">📣 認知向上</span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>参考にしたいWebサイト（URL）</label>
+                    <div class="url-fields" id="ref-urls">
+                        <div class="url-field-row">
+                            <input type="text" placeholder="例）https://example.com" oninput="updatePreview()">
+                            <button class="btn-remove-url" onclick="removeUrlField(this)">×</button>
+                        </div>
+                    </div>
+                    <button class="btn-add-url" onclick="addRefUrl()">＋ 追加する</button>
+                </div>
+
+                <div class="form-group">
+                    <label>競合サイト・意識している競合（URL または社名）</label>
+                    <textarea id="competitors" placeholder="例）〇〇工務店（https://...）" oninput="updatePreview()"></textarea>
+                </div>
+
+                <div class="step-buttons">
+                    <button class="btn-prev" onclick="goStep(2)">← 戻る</button>
+                    <button class="btn-next" onclick="goStep(4)">次へ →</button>
+                </div>
+            </div>
+
+            <!-- STEP 4: デザイン -->
+            <div class="step-content" id="step4">
+                <div class="section-title">デザイン</div>
+                <div class="section-desc">ご要望の「デザインテイスト」についてお伺いします。</div>
+
+                <div class="color-section">
+                    <div class="color-label">ブランドカラー（メイン）</div>
+                    <div class="color-presets" id="main-presets">
+                        <div class="color-swatch" style="background:#1a1a2e"
+                            onclick="selectColor('main','#1a1a2e',this)" title="#1a1a2e"></div>
+                        <div class="color-swatch" style="background:#374151"
+                            onclick="selectColor('main','#374151',this)" title="#374151"></div>
+                        <div class="color-swatch" style="background:#6b7280"
+                            onclick="selectColor('main','#6b7280',this)" title="#6b7280"></div>
+                        <div class="color-swatch" style="background:#ef4444"
+                            onclick="selectColor('main','#ef4444',this)" title="#ef4444"></div>
+                        <div class="color-swatch" style="background:#f97316"
+                            onclick="selectColor('main','#f97316',this)" title="#f97316"></div>
+                        <div class="color-swatch" style="background:#eab308"
+                            onclick="selectColor('main','#eab308',this)" title="#eab308"></div>
+                        <div class="color-swatch" style="background:#22c55e"
+                            onclick="selectColor('main','#22c55e',this)" title="#22c55e"></div>
+                        <div class="color-swatch" style="background:#3b82f6"
+                            onclick="selectColor('main','#3b82f6',this)" title="#3b82f6"></div>
+                        <div class="color-swatch" style="background:#1d4ed8"
+                            onclick="selectColor('main','#1d4ed8',this)" title="#1d4ed8"></div>
+                        <div class="color-swatch" style="background:#6d28d9"
+                            onclick="selectColor('main','#6d28d9',this)" title="#6d28d9"></div>
+                        <div class="color-swatch" style="background:#db2777"
+                            onclick="selectColor('main','#db2777',this)" title="#db2777"></div>
+                        <div class="color-swatch" style="background:#d97706"
+                            onclick="selectColor('main','#d97706',this)" title="#d97706"></div>
+                        <div class="color-swatch" style="background:#065f46"
+                            onclick="selectColor('main','#065f46',this)" title="#065f46"></div>
+                        <div class="color-swatch" style="background:#7c3aed"
+                            onclick="selectColor('main','#7c3aed',this)" title="#7c3aed"></div>
+                        <div class="color-swatch" style="background:#f5f5f0"
+                            onclick="selectColor('main','#f5f5f0',this)" title="#f5f5f0"
+                            style="border:1.5px solid #ddd"></div>
+                        <div class="color-swatch" style="background:#ffffff;border:1.5px solid #ddd"
+                            onclick="selectColor('main','#ffffff',this)" title="white"></div>
+                    </div>
+                    <div class="color-custom-row">
+                        <span style="font-size:12px;color:var(--muted)">カスタムカラー：</span>
+                        <input type="color" id="main-color-picker" value="#1a1a2e"
+                            oninput="onColorPick('main',this.value)">
+                        <input type="text" id="main-hex" class="color-hex" value="#1a1a2e" placeholder="#000000"
+                            oninput="onHexInput('main',this.value)">
+                    </div>
+                </div>
+
+                <div class="color-section">
+                    <div class="color-label">サブカラー（補助）</div>
+                    <div class="color-presets" id="sub-presets">
+                        <div class="color-swatch" style="background:#1a1a2e"
+                            onclick="selectColor('sub','#1a1a2e',this)"></div>
+                        <div class="color-swatch" style="background:#374151"
+                            onclick="selectColor('sub','#374151',this)"></div>
+                        <div class="color-swatch" style="background:#6b7280"
+                            onclick="selectColor('sub','#6b7280',this)"></div>
+                        <div class="color-swatch" style="background:#ef4444"
+                            onclick="selectColor('sub','#ef4444',this)"></div>
+                        <div class="color-swatch" style="background:#f97316"
+                            onclick="selectColor('sub','#f97316',this)"></div>
+                        <div class="color-swatch" style="background:#eab308"
+                            onclick="selectColor('sub','#eab308',this)"></div>
+                        <div class="color-swatch" style="background:#22c55e"
+                            onclick="selectColor('sub','#22c55e',this)"></div>
+                        <div class="color-swatch" style="background:#3b82f6"
+                            onclick="selectColor('sub','#3b82f6',this)"></div>
+                        <div class="color-swatch" style="background:#1d4ed8"
+                            onclick="selectColor('sub','#1d4ed8',this)"></div>
+                        <div class="color-swatch" style="background:#6d28d9"
+                            onclick="selectColor('sub','#6d28d9',this)"></div>
+                        <div class="color-swatch" style="background:#db2777"
+                            onclick="selectColor('sub','#db2777',this)"></div>
+                        <div class="color-swatch" style="background:#d97706"
+                            onclick="selectColor('sub','#d97706',this)"></div>
+                        <div class="color-swatch" style="background:#065f46"
+                            onclick="selectColor('sub','#065f46',this)"></div>
+                        <div class="color-swatch" style="background:#7c3aed"
+                            onclick="selectColor('sub','#7c3aed',this)"></div>
+                        <div class="color-swatch selected" style="background:#e94560"
+                            onclick="selectColor('sub','#e94560',this)"></div>
+                        <div class="color-swatch" style="background:#ffffff;border:1.5px solid #ddd"
+                            onclick="selectColor('sub','#ffffff',this)"></div>
+                    </div>
+                    <div class="color-custom-row">
+                        <span style="font-size:12px;color:var(--muted)">カスタムカラー：</span>
+                        <input type="color" id="sub-color-picker" value="#e94560"
+                            oninput="onColorPick('sub',this.value)">
+                        <input type="text" id="sub-hex" class="color-hex" value="#e94560" placeholder="#000000"
+                            oninput="onHexInput('sub',this.value)">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>サイトのイメージ・雰囲気（複数選択可）</label>
+                    <div class="mood-tags" id="mood-tags">
+                        <span class="mood-tag" onclick="toggleTag(this,'シンプル・スッキリ')">シンプル・スッキリ</span>
+                        <span class="mood-tag" onclick="toggleTag(this,'高級感・洗練')">高級感・洗練</span>
+                        <span class="mood-tag" onclick="toggleTag(this,'親しみやすい・温かみ')">親しみやすい・温かみ</span>
+                        <span class="mood-tag" onclick="toggleTag(this,'ポップ・カジュアル')">ポップ・カジュアル</span>
+                        <span class="mood-tag" onclick="toggleTag(this,'プロフェッショナル')">プロフェッショナル</span>
+                        <span class="mood-tag" onclick="toggleTag(this,'信頼感・安心感')">信頼感・安心感</span>
+                        <span class="mood-tag" onclick="toggleTag(this,'自然・ナチュラル')">自然・ナチュラル</span>
+                        <span class="mood-tag" onclick="toggleTag(this,'クリエイティブ')">クリエイティブ</span>
+                        <span class="mood-tag" onclick="toggleTag(this,'医療・クリニック系')">医療・クリニック系</span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>フォントのご希望</label>
+                    <div class="font-grid" id="font-grid">
+                        <div class="font-option" onclick="selectFont(this,'Noto Sans JP（ゴシック系）')">
+                            <div class="font-name">ゴシック体</div>
+                            <div class="font-sub">Noto Sans JP / 明瞭で読みやすい</div>
+                        </div>
+                        <div class="font-option" onclick="selectFont(this,'Noto Serif JP（明朝系）')">
+                            <div class="font-name">明朝体</div>
+                            <div class="font-sub">Noto Serif JP / 上品で格調ある</div>
+                        </div>
+                        <div class="font-option" onclick="selectFont(this,'丸ゴシック系')">
+                            <div class="font-name">丸ゴシック</div>
+                            <div class="font-sub">柔らかく親しみやすい</div>
+                        </div>
+                        <div class="font-option" onclick="selectFont(this,'おまかせ')">
+                            <div class="font-name">おまかせ</div>
+                            <div class="font-sub">デザイナーに一任</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>デザインに関するその他のご要望</label>
+                    <textarea id="design-notes" placeholder="例）競合他社と差別化したい。写真素材は弊社で準備できます。"
+                        oninput="updatePreview()"></textarea>
+                </div>
+
+                <div class="step-buttons">
+                    <button class="btn-prev" onclick="goStep(3)">← 戻る</button>
+                    <button class="btn-next" onclick="goStep(5)">次へ →</button>
+                </div>
+            </div>
+
+            <!-- STEP 5: サーバー・運用 -->
+            <div class="step-content" id="step5">
+                <div class="section-title">サーバー・運用・保守</div>
+                <div class="section-desc">サーバー環境や公開後の運用についてお聞かせください。</div>
+
+                <div class="section-title" style="font-size:14px;margin-bottom:12px;">サーバー関連</div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>ドメイン</label>
+                        <select id="domain-status" onchange="updatePreview()">
+                            <option value="">選択してください</option>
+                            <option>既存のドメインを使用</option>
+                            <option>新規取得が必要</option>
+                            <option>未定</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>ドメイン名（わかる場合）</label>
+                        <input type="text" id="domain-name" placeholder="例）example.com" oninput="updatePreview()">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>レンタルサーバー</label>
+                        <select id="server-status" onchange="updatePreview()">
+                            <option value="">選択してください</option>
+                            <option>既存のサーバーを使用</option>
+                            <option>新規契約が必要</option>
+                            <option>未定</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>サーバー名（わかる場合）</label>
+                        <input type="text" id="server-name" placeholder="例）エックスサーバー、ロリポップ" oninput="updatePreview()">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>CMSの使用</label>
+                    <div class="mood-tags">
+                        <span class="mood-tag" onclick="toggleTag(this,'WordPress')">WordPress</span>
+                        <span class="mood-tag" onclick="toggleTag(this,'Wix')">Wix</span>
+                        <span class="mood-tag" onclick="toggleTag(this,'Squarespace')">Squarespace</span>
+                        <span class="mood-tag" onclick="toggleTag(this,'静的HTML')">静的HTML</span>
+                        <span class="mood-tag" onclick="toggleTag(this,'おまかせ')">おまかせ</span>
+                    </div>
+                </div>
+
+                <hr class="form-divider">
+
+                <div class="section-title" style="font-size:14px;margin-bottom:12px;">運用・保守</div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>公開後の更新担当</label>
+                        <select id="update-who" onchange="updatePreview()">
+                            <option value="">選択してください</option>
+                            <option>自社（クライアント）で更新</option>
+                            <option>制作会社に依頼</option>
+                            <option>両方</option>
+                            <option>未定</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>更新頻度（目安）</label>
+                        <select id="update-freq" onchange="updatePreview()">
+                            <option value="">選択してください</option>
+                            <option>週1回以上</option>
+                            <option>月2〜3回</option>
+                            <option>月1回程度</option>
+                            <option>ほぼ更新なし</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>保守・セキュリティ対応</label>
+                    <div class="mood-tags">
+                        <span class="mood-tag" onclick="toggleTag(this,'月次バックアップ')">月次バックアップ</span>
+                        <span class="mood-tag" onclick="toggleTag(this,'SSL対応')">SSL対応</span>
+                        <span class="mood-tag" onclick="toggleTag(this,'スパム対策')">スパム対策</span>
+                        <span class="mood-tag" onclick="toggleTag(this,'保守契約希望')">保守契約希望</span>
+                        <span class="mood-tag" onclick="toggleTag(this,'特になし')">特になし</span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>アクセス解析</label>
+                    <div class="mood-tags">
+                        <span class="mood-tag" onclick="toggleTag(this,'Googleアナリティクス導入希望')">Googleアナリティクス</span>
+                        <span class="mood-tag" onclick="toggleTag(this,'サーチコンソール設定希望')">サーチコンソール</span>
+                        <span class="mood-tag" onclick="toggleTag(this,'不要')">不要</span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>ご予算（概算）</label>
+                    <select id="budget" onchange="updatePreview()">
+                        <option value="">選択してください</option>
+                        <option>〜30万円</option>
+                        <option>30〜50万円</option>
+                        <option>50〜100万円</option>
+                        <option>100万円以上</option>
+                        <option>要相談</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>その他・特記事項</label>
+                    <textarea id="other-notes" placeholder="例）既存サイトのデータ移行が必要、多言語対応を検討中"
+                        oninput="updatePreview()"></textarea>
+                </div>
+
+                <div class="step-buttons">
+                    <button class="btn-prev" onclick="goStep(4)">← 戻る</button>
+                    <button class="btn-next" style="background:var(--step-done);border-color:var(--step-done);"
+                        onclick="showComplete()">✓ 完了・内容を確認</button>
+                </div>
+            </div>
+
+        </div><!-- /form-panel -->
+
+        <!-- PREVIEW PANEL -->
+        <div class="preview-panel">
+            <div class="preview-tabs">
+                <button class="preview-tab active" onclick="switchTab('visual')">プレビュー</button>
+                <button class="preview-tab" onclick="switchTab('text')">テキストコピー</button>
+                <button class="preview-tab" onclick="switchTab('text');printSheet()">PDF出力</button>
+            </div>
+
+            <div class="preview-visual" id="preview-visual">
+                <div class="preview-card">
+                    <div class="preview-header" id="prev-header" style="background:var(--primary)">
+                        <span id="prev-company">会社名・屋号</span>
+                        <span class="preview-badge" id="prev-type">—</span>
+                    </div>
+                    <div class="preview-body">
+                        <div class="preview-row"><span class="preview-key">担当者</span><span class="preview-val"
+                                id="prev-contact">—</span></div>
+                        <div class="preview-row"><span class="preview-key">メール</span><span class="preview-val"
+                                id="prev-email">—</span></div>
+                        <div class="preview-row"><span class="preview-key">電話</span><span class="preview-val"
+                                id="prev-phone">—</span></div>
+                        <div class="preview-row"><span class="preview-key">現在URL</span><span class="preview-val"
+                                id="prev-url">—</span></div>
+                        <div class="preview-row"><span class="preview-key">SNS</span><span class="preview-val"
+                                id="prev-sns">—</span></div>
+                        <div class="preview-row"><span class="preview-key">連絡方法</span><span class="preview-val"
+                                id="prev-cmethod">—</span></div>
+                    </div>
+                </div>
+
+                <div class="preview-card">
+                    <div class="preview-body">
+                        <div
+                            style="font-size:11px;font-weight:700;color:var(--muted);margin-bottom:10px;letter-spacing:0.06em;">
+                            事業内容</div>
+                        <div class="preview-row"><span class="preview-key">業種</span><span class="preview-val"
+                                id="prev-biz">—</span></div>
+                        <div class="preview-row"><span class="preview-key">依頼内容</span><span class="preview-val"
+                                id="prev-req">—</span></div>
+                        <div class="preview-row"><span class="preview-key">公開希望日</span><span class="preview-val"
+                                id="prev-deadline">—</span></div>
+                        <div class="preview-row"><span class="preview-key">ページ数</span><span class="preview-val"
+                                id="prev-pages">—</span></div>
+                    </div>
+                </div>
+
+                <div class="preview-card">
+                    <div class="preview-body">
+                        <div
+                            style="font-size:11px;font-weight:700;color:var(--muted);margin-bottom:10px;letter-spacing:0.06em;">
+                            目的・ゴール</div>
+                        <div class="preview-row"><span class="preview-key">ターゲット</span><span class="preview-val"
+                                id="prev-target">—</span></div>
+                        <div class="preview-row"><span class="preview-key">Webゴール</span><span class="preview-val"
+                                id="prev-goal">—</span></div>
+                    </div>
+                </div>
+
+                <div class="preview-card">
+                    <div class="preview-body">
+                        <div
+                            style="font-size:11px;font-weight:700;color:var(--muted);margin-bottom:10px;letter-spacing:0.06em;">
+                            デザイン</div>
+                        <div class="preview-row">
+                            <span class="preview-key">配色</span>
+                            <span class="preview-val">
+                                <span class="color-preview-dot" id="prev-main-dot" style="background:#1a1a2e"></span>
+                                <span id="prev-main-hex">#1a1a2e</span>
+                                &nbsp;/&nbsp;
+                                <span class="color-preview-dot" id="prev-sub-dot" style="background:#e94560"></span>
+                                <span id="prev-sub-hex">#e94560</span>
+                            </span>
+                        </div>
+                        <div class="preview-row"><span class="preview-key">雰囲気</span><span class="preview-val"
+                                id="prev-mood">—</span></div>
+                        <div class="preview-row"><span class="preview-key">フォント</span><span class="preview-val"
+                                id="prev-font">—</span></div>
+                    </div>
+                </div>
+
+                <div class="preview-card">
+                    <div class="preview-body">
+                        <div
+                            style="font-size:11px;font-weight:700;color:var(--muted);margin-bottom:10px;letter-spacing:0.06em;">
+                            サーバー・運用</div>
+                        <div class="preview-row"><span class="preview-key">ドメイン</span><span class="preview-val"
+                                id="prev-domain">—</span></div>
+                        <div class="preview-row"><span class="preview-key">サーバー</span><span class="preview-val"
+                                id="prev-server">—</span></div>
+                        <div class="preview-row"><span class="preview-key">更新担当</span><span class="preview-val"
+                                id="prev-updater">—</span></div>
+                        <div class="preview-row"><span class="preview-key">予算</span><span class="preview-val"
+                                id="prev-budget">—</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-view" id="text-view"></div>
+
+            <div class="share-section">
+                <button class="btn-share" onclick="copyText()">📋 この内容でコピーする</button>
+                <button class="btn-pdf" onclick="printSheet()">🖨 PDF出力（印刷）</button>
+                <button class="btn-pdf" style="margin-top:6px" onclick="resetAll()">↺ 入力項目をリセットする</button>
+            </div>
+
+        </div><!-- /preview-panel -->
+    </div><!-- /main -->
+
+    <!-- TOAST -->
+    <div class="toast" id="toast"></div>
+
+    <script>
+        let currentStep = 1;
+        const totalSteps = 5;
+        let state = {
+            mainColor: '#1a1a2e',
+            subColor: '#e94560',
+            selectedFont: '',
+            pageCount: 5,
+            sns: [],
+            goalTags: [],
+            moodTags: [],
+            cmsTags: [],
+            securityTags: [],
+            analyticsTags: [],
+            cmsTag: [],
+            seoTags: []
+        };
+
+        function goStep(n) {
+            document.getElementById('step' + currentStep).classList.remove('active');
+            document.getElementById('snav' + currentStep).classList.remove('active');
+            if (currentStep < n) {
+                document.getElementById('snav' + currentStep).classList.add('done');
+            } else {
+                document.getElementById('snav' + n).classList.remove('done');
+            }
+            currentStep = n;
+            document.getElementById('step' + currentStep).classList.add('active');
+            document.getElementById('snav' + currentStep).classList.add('active');
+            document.getElementById('snav' + currentStep).classList.remove('done');
+            updateProgress();
+            window.scrollTo(0, 0);
+        }
+
+        function updateProgress() {
+            const pct = Math.round((currentStep / totalSteps) * 100);
+            document.getElementById('progress-fill').style.width = pct + '%';
+            document.getElementById('step-pct').textContent = pct + '%';
+            document.getElementById('step-label').textContent = 'Step ' + currentStep + ' / ' + totalSteps;
+        }
+
+        function toggleSns(el, name) {
+            el.classList.toggle('checked');
+            const idx = state.sns.indexOf(name);
+            if (idx === -1) state.sns.push(name);
+            else state.sns.splice(idx, 1);
+            updatePreview();
+        }
+
+        function toggleTag(el, name) {
+            el.classList.toggle('selected');
+            updatePreview();
+        }
+
+        function selectColor(type, hex, el) {
+            const presets = document.getElementById(type + '-presets');
+            presets.querySelectorAll('.color-swatch').forEach(s => s.classList.remove('selected'));
+            el.classList.add('selected');
+            document.getElementById(type + '-color-picker').value = hex;
+            document.getElementById(type + '-hex').value = hex;
+            state[type + 'Color'] = hex;
+            updatePreview();
+            updatePreviewHeader();
+        }
+
+        function onColorPick(type, hex) {
+            document.getElementById(type + '-hex').value = hex;
+            state[type + 'Color'] = hex;
+            document.getElementById(type + '-presets').querySelectorAll('.color-swatch').forEach(s => s.classList.remove('selected'));
+            updatePreview();
+            updatePreviewHeader();
+        }
+
+        function onHexInput(type, val) {
+            if (/^#[0-9a-fA-F]{6}$/.test(val)) {
+                document.getElementById(type + '-color-picker').value = val;
+                state[type + 'Color'] = val;
+                updatePreview();
+                updatePreviewHeader();
+            }
+        }
+
+        function selectFont(el, name) {
+            document.getElementById('font-grid').querySelectorAll('.font-option').forEach(f => f.classList.remove('selected'));
+            el.classList.add('selected');
+            state.selectedFont = name;
+            updatePreview();
+        }
+
+        function changeCount(delta) {
+            state.pageCount = Math.max(1, state.pageCount + delta);
+            document.getElementById('page-count').textContent = state.pageCount;
+            updatePreview();
+        }
+
+        function addUrlField() {
+            const container = document.getElementById('chat-urls');
+            const row = document.createElement('div');
+            row.className = 'url-field-row';
+            row.innerHTML = `<input type="text" placeholder="例）https://..." oninput="updatePreview()"><button class="btn-remove-url" onclick="removeUrlField(this)">×</button>`;
+            container.appendChild(row);
+        }
+
+        function addRefUrl() {
+            const container = document.getElementById('ref-urls');
+            const row = document.createElement('div');
+            row.className = 'url-field-row';
+            row.innerHTML = `<input type="text" placeholder="例）https://..." oninput="updatePreview()"><button class="btn-remove-url" onclick="removeUrlField(this)">×</button>`;
+            container.appendChild(row);
+        }
+
+        function removeUrlField(btn) {
+            const container = btn.parentNode.parentNode;
+            if (container.children.length > 1) {
+                btn.parentNode.remove();
+            }
+        }
+
+        function getSelectedTags(containerId) {
+            const el = document.getElementById(containerId);
+            if (!el) return '';
+            return Array.from(el.querySelectorAll('.mood-tag.selected')).map(t => t.textContent.trim()).join('、');
+        }
+
+        function updatePreviewHeader() {
+            document.getElementById('prev-header').style.background = state.mainColor;
+            document.getElementById('prev-main-dot').style.background = state.mainColor;
+            document.getElementById('prev-sub-dot').style.background = state.subColor;
+            document.getElementById('prev-main-hex').textContent = state.mainColor;
+            document.getElementById('prev-sub-hex').textContent = state.subColor;
+        }
+
+        function updatePreview() {
+            const v = id => document.getElementById(id)?.value || '';
+            const dash = s => s || '—';
+
+            document.getElementById('prev-company').textContent = dash(v('company'));
+            document.getElementById('prev-type').textContent = v('request-type') || '—';
+            document.getElementById('prev-contact').textContent = dash(v('contact'));
+            document.getElementById('prev-email').textContent = dash(v('email'));
+            document.getElementById('prev-phone').textContent = dash(v('phone'));
+            document.getElementById('prev-url').textContent = dash(v('site-url'));
+            document.getElementById('prev-sns').textContent = state.sns.length ? state.sns.join('、') : '—';
+            document.getElementById('prev-cmethod').textContent = dash(v('contact-method'));
+
+            document.getElementById('prev-biz').textContent = dash(v('business-type'));
+            document.getElementById('prev-req').textContent = dash(v('request-type'));
+            document.getElementById('prev-deadline').textContent = dash(v('deadline'));
+            document.getElementById('prev-pages').textContent = state.pageCount + 'ページ';
+
+            document.getElementById('prev-target').textContent = [v('target-age'), v('target-persona')].filter(Boolean).join('｜') || '—';
+            document.getElementById('prev-goal').textContent = getSelectedTags('goal-tags') || '—';
+
+            updatePreviewHeader();
+            document.getElementById('prev-mood').textContent = getSelectedTags('mood-tags') || '—';
+            document.getElementById('prev-font').textContent = state.selectedFont || '—';
+
+            const domainParts = [v('domain-status'), v('domain-name')].filter(Boolean).join('：');
+            document.getElementById('prev-domain').textContent = dash(domainParts);
+            const serverParts = [v('server-status'), v('server-name')].filter(Boolean).join('：');
+            document.getElementById('prev-server').textContent = dash(serverParts);
+            document.getElementById('prev-updater').textContent = dash(v('update-who'));
+            document.getElementById('prev-budget').textContent = dash(v('budget'));
+
+            generateTextView();
+        }
+
+        function generateTextView() {
+            const v = id => document.getElementById(id)?.value || '';
+            let txt = `＝＝＝＝ ヒアリングシート ＝＝＝＝
+
+■ 基本情報
+━━━━━━━━━━━━━━━
+【会社名 / 屋号】${v('company') || '—'}
+【ご担当者名】${v('contact') || '—'}
+【メール】${v('email') || '—'}
+【電話番号】${v('phone') || '—'}
+【現在のWebサイトURL】${v('site-url') || '—'}
+【運用中SNS】${state.sns.join('、') || '—'}
+【連絡方法（優先）】${v('contact-method') || '—'}
+
+■ 事業内容
+━━━━━━━━━━━━━━━
+【主な事業内容】${v('business-type') || '—'}
+【サービス内容】${v('service-detail') || '—'}
+【よくあるお問合せ】${v('inquiries') || '—'}
+【御社の推しポイント】${v('strengths') || '—'}
+
+■ 案件の種別
+━━━━━━━━━━━━━━━
+【依頼内容】${v('request-type') || '—'}
+【希望公開日】${v('deadline') || '—'}
+【制作ページ数】${state.pageCount}ページ
+【メモ・ご要望】${v('memo') || '—'}
+
+■ 目的とゴール
+━━━━━━━━━━━━━━━
+【Webサイトの目的】${v('purpose') || '—'}
+【ターゲット年齢層】${v('target-age') || '—'}
+【ペルソナ】${v('target-persona') || '—'}
+【Webゴール】${getSelectedTags('goal-tags') || '—'}
+【競合・参考サイト】${v('competitors') || '—'}
+
+■ デザイン
+━━━━━━━━━━━━━━━
+【ブランドカラー（メイン）】${state.mainColor}
+【サブカラー（補助）】${state.subColor}
+【サイトの雰囲気】${getSelectedTags('mood-tags') || '—'}
+【フォント】${state.selectedFont || '—'}
+【デザイン備考】${v('design-notes') || '—'}
+
+■ サーバー・運用
+━━━━━━━━━━━━━━━
+【ドメイン】${[v('domain-status'), v('domain-name')].filter(Boolean).join('：') || '—'}
+【サーバー】${[v('server-status'), v('server-name')].filter(Boolean).join('：') || '—'}
+【更新担当】${v('update-who') || '—'}
+【更新頻度】${v('update-freq') || '—'}
+【予算（概算）】${v('budget') || '—'}
+【その他・特記事項】${v('other-notes') || '—'}
+`;
+            document.getElementById('text-view').textContent = txt;
+        }
+
+        function switchTab(type) {
+            document.querySelectorAll('.preview-tab').forEach(t => t.classList.remove('active'));
+            event.target.classList.add('active');
+            if (type === 'visual') {
+                document.getElementById('preview-visual').classList.remove('hidden');
+                document.getElementById('text-view').classList.remove('active');
+            } else {
+                document.getElementById('preview-visual').classList.add('hidden');
+                document.getElementById('text-view').classList.add('active');
+                generateTextView();
+            }
+        }
+
+        function copyText() {
+            generateTextView();
+            const text = document.getElementById('text-view').textContent;
+            navigator.clipboard.writeText(text).then(() => showToast('📋 クリップボードにコピーしました！'));
+        }
+
+        function printSheet() {
+            generateTextView();
+            window.print();
+        }
+
+        function showComplete() {
+            goStep(5);
+            showToast('✅ 全ステップ完了！内容をご確認ください');
+            for (let i = 1; i <= 5; i++) {
+                document.getElementById('snav' + i).classList.add('done');
+            }
+        }
+
+        function showToast(msg) {
+            const t = document.getElementById('toast');
+            t.textContent = msg;
+            t.classList.add('show');
+            setTimeout(() => t.classList.remove('show'), 3000);
+        }
+
+        function resetAll() {
+            if (!confirm('入力内容をすべてリセットしますか？')) return;
+            document.querySelectorAll('input[type=text], input[type=email], input[type=tel], input[type=date], select, textarea').forEach(el => el.value = '');
+            document.querySelectorAll('.sns-option').forEach(el => el.classList.remove('checked'));
+            document.querySelectorAll('.mood-tag').forEach(el => el.classList.remove('selected'));
+            document.querySelectorAll('.font-option').forEach(el => el.classList.remove('selected'));
+            state.sns = [];
+            state.mainColor = '#1a1a2e';
+            state.subColor = '#e94560';
+            state.selectedFont = '';
+            state.pageCount = 5;
+            document.getElementById('page-count').textContent = '5';
+            document.getElementById('main-hex').value = '#1a1a2e';
+            document.getElementById('sub-hex').value = '#e94560';
+            document.getElementById('main-color-picker').value = '#1a1a2e';
+            document.getElementById('sub-color-picker').value = '#e94560';
+            for (let i = 1; i <= 5; i++) {
+                document.getElementById('snav' + i).classList.remove('done', 'active');
+            }
+            goStep(1);
+            updatePreview();
+            showToast('↺ リセットしました');
+        }
+
+        // Initial
+        updateProgress();
+        updatePreview();
+    </script>
+</body>
+
+</html>
