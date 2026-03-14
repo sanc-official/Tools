@@ -1,0 +1,2630 @@
+<!doctype html>
+<html lang="ja">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1" />
+    <title>SaNC｜荒井内科眼科クリニック様 Webヒアリングシート</title>
+    <style>
+        :root {
+            color-scheme: only light;
+            --navy: #0B1B3A;
+            --navy2: #122A52;
+            --orange: #FF6A2A;
+            --orange2: #FF8557;
+            --bg: #ffffff;
+            --card: #fff;
+            --ring: rgba(11, 27, 58, .10);
+            --text: #0f172a;
+            --muted: #64748b;
+            --muted2: #94a3b8;
+            --shadow: 0 10px 24px rgba(2, 6, 23, .07);
+            --radius: 18px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            height: 100%;
+        }
+
+        body {
+            margin: 0;
+            font-family: ui-sans-serif, system-ui, -apple-system, "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Yu Gothic", sans-serif;
+            color: var(--text);
+            background: var(--bg);
+            line-height: 1.8em;
+        }
+
+        .wrap {
+            position: relative;
+            z-index: 1;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 24px 16px 96px;
+        }
+
+        .header {
+            margin-bottom: 12px;
+        }
+
+        .header-inner {
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            width: 100%;
+        }
+
+        .brand {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .logo {
+            width: 44px;
+            height: 44px;
+            border-radius: 16px;
+            background: var(--navy);
+            box-shadow: var(--shadow);
+            display: grid;
+            place-items: center;
+            flex-shrink: 0;
+        }
+
+        .title small {
+            display: block;
+            color: var(--orange);
+            font-weight: 800;
+            font-size: 11px;
+            letter-spacing: .08em;
+            margin-bottom: -4px;
+        }
+
+        .title h1 {
+            margin: 2px 0 0;
+            font-size: 20px;
+            line-height: 1.2;
+            color: var(--navy);
+            font-weight: 900;
+        }
+
+        .header-desc {
+            margin: 6px 0 0 3px;
+            font-size: 13px;
+            color: var(--muted);
+            line-height: 1.6;
+            width: 100%;
+        }
+
+        .chips {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            align-items: center;
+            flex-shrink: 0;
+        }
+
+        .chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 4px 0;
+            background: none;
+            border: none;
+            color: var(--muted);
+            font-size: 10px;
+            font-weight: 700;
+            line-height: 2em;
+        }
+
+        .chip .dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 999px;
+            background: var(--orange);
+        }
+
+        .btn {
+            appearance: none !important;
+            -webkit-appearance: none !important;
+            border: 0 !important;
+            cursor: pointer !important;
+            display: inline-flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            gap: 8px !important;
+            padding: 10px 14px !important;
+            border-radius: 14px !important;
+            font-weight: 800 !important;
+            font-size: 13px !important;
+            transition: transform .05s ease, background .15s ease !important;
+            user-select: none !important;
+            line-height: 1 !important;
+            text-decoration: none !important;
+            width: auto !important;
+            margin: 0 !important;
+            box-shadow: none !important;
+            outline: none !important;
+            font-family: inherit !important;
+        }
+
+        .btn:active {
+            transform: translateY(1px) !important;
+        }
+
+        .btn-outline {
+            background: #fff !important;
+            border: 1px solid var(--ring) !important;
+            color: var(--navy) !important;
+        }
+
+        .btn-outline:hover {
+            background: #f8fafc !important;
+        }
+
+        .btn-solid {
+            background: var(--navy) !important;
+            color: #fff !important;
+        }
+
+        .btn-solid:hover {
+            background: var(--navy2) !important;
+        }
+
+        .btn-orange {
+            background: var(--orange) !important;
+            color: #fff !important;
+        }
+
+        .btn-orange:hover {
+            background: var(--orange2) !important;
+        }
+
+        .btn-ghost {
+            background: transparent !important;
+            color: var(--muted) !important;
+        }
+
+        .btn-ghost:hover {
+            background: #f8fafc !important;
+            color: var(--text) !important;
+        }
+
+        .btn:disabled {
+            opacity: .5 !important;
+            cursor: not-allowed !important;
+        }
+
+        .card {
+            background: var(--card);
+            border: 1px solid var(--ring);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+        }
+
+        .progress-card {
+            padding: 16px;
+        }
+
+        .row {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        .row .meta {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .row .meta .step {
+            font-weight: 800;
+            font-size: 13px;
+        }
+
+        .row .meta .pct {
+            font-weight: 700;
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        .bar {
+            margin-top: 10px;
+            height: 10px;
+            border-radius: 999px;
+            background: #e2e8f0;
+            overflow: hidden;
+        }
+
+        .bar>i {
+            display: block;
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, var(--orange), var(--orange2));
+            border-radius: 999px;
+            transition: width .4s ease;
+        }
+
+        .steps {
+            margin-top: 12px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .step-pill {
+            border: 1px solid var(--ring) !important;
+            background: #fff !important;
+            color: var(--navy) !important;
+            border-radius: 999px !important;
+            padding: 8px 12px !important;
+            display: inline-flex !important;
+            gap: 8px !important;
+            align-items: center !important;
+            font-weight: 800 !important;
+            font-size: 13px !important;
+            cursor: pointer !important;
+            transition: background .15s ease, color .15s ease !important;
+            line-height: 1 !important;
+            box-shadow: none !important;
+            text-transform: none !important;
+            font-family: inherit !important;
+        }
+
+        .step-pill:hover {
+            background: #f8fafc !important;
+        }
+
+        .step-pill[data-active="true"] {
+            background: var(--navy) !important;
+            color: #fff !important;
+            border-color: transparent !important;
+        }
+
+        .step-pill .num {
+            font-size: 11px !important;
+            color: var(--muted2) !important;
+        }
+
+        .step-pill[data-active="true"] .num {
+            color: rgba(255, 255, 255, .7) !important;
+        }
+
+        .step-pill .ok {
+            width: 18px !important;
+            height: 18px !important;
+            border-radius: 999px !important;
+            display: grid !important;
+            place-items: center !important;
+            background: rgba(255, 106, 42, .16) !important;
+            color: var(--orange) !important;
+            font-size: 12px !important;
+        }
+
+        .step-pill[data-active="true"] .ok {
+            background: rgba(255, 255, 255, .18) !important;
+            color: #fff !important;
+        }
+
+        .only-mobile {
+            display: none;
+        }
+
+        @media(max-width:980px) {
+            .only-mobile {
+                display: flex;
+            }
+
+            .sticky {
+                position: static;
+            }
+
+            .wrap {
+                padding-bottom: 24px;
+            }
+        }
+
+        .layout {
+            display: grid;
+            grid-template-columns: 1.25fr .9fr;
+            gap: 18px;
+            margin-top: 18px;
+        }
+
+        @media(max-width:980px) {
+            .layout {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        [data-pane="preview"] .pane-form {
+            display: none;
+        }
+
+        [data-pane="form"] .pane-preview {
+            display: none;
+        }
+
+        @media(min-width:981px) {
+            [data-pane="preview"] .pane-form {
+                display: block;
+            }
+
+            [data-pane="form"] .pane-preview {
+                display: block;
+            }
+        }
+
+        .card-header {
+            padding: 14px 16px 0;
+        }
+
+        .card-title {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 12px;
+        }
+
+        .card-title h2 {
+            margin: 0;
+            font-size: 16px;
+            color: var(--navy);
+            font-weight: 900;
+        }
+
+        .card-title p {
+            margin: 4px 0 0;
+            font-size: 13px;
+            color: var(--muted);
+            line-height: 1.4;
+        }
+
+        .card-body {
+            padding: 14px 16px 16px;
+        }
+
+        .group {
+            border: 1px solid var(--ring);
+            border-radius: 18px;
+            background: #f8fafc;
+            padding: 14px;
+            margin-bottom: 14px;
+        }
+
+        .group-head {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+
+        .group-head .gtitle {
+            font-weight: 900;
+            color: var(--navy);
+            font-size: 14px;
+        }
+
+        .fields {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        @media(max-width:720px) {
+            .fields {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .field {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .field.full {
+            grid-column: 1/-1;
+        }
+
+        .field label {
+            font-size: 13px;
+            font-weight: 800;
+            color: #0f172a;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+        }
+
+        .req {
+            color: #e11d48;
+            font-weight: 900;
+            margin-left: 4px;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="date"],
+        textarea,
+        select {
+            width: 100%;
+            border: 1px solid var(--ring);
+            border-radius: 14px;
+            padding: 10px 12px;
+            font-size: 14px;
+            font-family: inherit;
+            outline: none;
+            background: #fff;
+            transition: border-color .15s ease, box-shadow .15s ease;
+        }
+
+        select {
+            padding-right: 40px;
+            appearance: none;
+            -webkit-appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 12px center;
+        }
+
+        input[type="date"] {
+            max-width: 100%;
+            width: 100%;
+            min-width: 0;
+            -webkit-appearance: none;
+            appearance: none;
+            display: block;
+        }
+
+        ::placeholder {
+            color: #94a3b8;
+            opacity: 1;
+        }
+
+        input:focus,
+        textarea:focus,
+        select:focus {
+            border-color: rgba(255, 106, 42, .45);
+            box-shadow: 0 0 0 4px rgba(255, 106, 42, .18);
+        }
+
+        textarea {
+            min-height: 96px;
+            resize: vertical;
+        }
+
+        .toggle {
+            width: 100%;
+            border: 1px solid var(--ring);
+            border-radius: 14px;
+            padding: 10px 12px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #fff;
+        }
+
+        .toggle .state {
+            font-size: 13px;
+            color: #334155;
+            font-weight: 800;
+        }
+
+        .switch {
+            position: relative;
+            width: 44px;
+            height: 24px;
+        }
+
+        .switch input {
+            display: none;
+        }
+
+        .track {
+            position: absolute;
+            inset: 0;
+            border-radius: 999px;
+            background: #e2e8f0;
+            transition: .2s;
+        }
+
+        .thumb {
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            width: 18px;
+            height: 18px;
+            border-radius: 999px;
+            background: #fff;
+            box-shadow: 0 4px 10px rgba(2, 6, 23, .18);
+            transition: .2s;
+        }
+
+        .switch input:checked+.track {
+            background: rgba(255, 106, 42, .65);
+        }
+
+        .switch input:checked~.thumb {
+            transform: translateX(20px);
+        }
+
+        .divider {
+            height: 1px;
+            background: rgba(2, 6, 23, .08);
+            margin: 16px 0;
+        }
+
+        .navline {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .navline .note {
+            font-size: 12px;
+            color: var(--muted);
+            line-height: 1.5;
+        }
+
+        .navline .actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        /* Color picker */
+        .color-section {
+            display: grid;
+            gap: 14px;
+        }
+
+        .color-section-label {
+            font-size: 13px;
+            font-weight: 800;
+            color: #0f172a;
+            margin-bottom: 6px;
+        }
+
+        .preset-palette {
+            display: grid;
+            grid-template-columns: repeat(8, 1fr);
+            gap: 6px;
+        }
+
+        @media(max-width:720px) {
+            .preset-palette {
+                grid-template-columns: repeat(auto-fill, minmax(48px, 1fr));
+                gap: 5px;
+            }
+        }
+
+        .preset-swatch-wrap {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            cursor: pointer;
+        }
+
+        .preset-swatch {
+            width: 100%;
+            aspect-ratio: 1;
+            border-radius: 10px;
+            border: 2px solid transparent;
+            transition: transform .1s ease, box-shadow .15s ease, border-color .15s ease;
+            position: relative;
+        }
+
+        .preset-swatch:hover {
+            transform: scale(1.1);
+            box-shadow: 0 4px 12px rgba(2, 6, 23, .18);
+        }
+
+        .preset-swatch-wrap[data-active="true"] .preset-swatch {
+            border-color: var(--orange);
+            box-shadow: 0 0 0 3px rgba(255, 106, 42, .3);
+            transform: scale(1.08);
+        }
+
+        .preset-swatch-wrap[data-active="true"] .preset-swatch::after {
+            content: '✓';
+            position: absolute;
+            inset: 0;
+            display: grid;
+            place-items: center;
+            color: #fff;
+            font-size: 14px;
+            font-weight: 900;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, .5);
+        }
+
+        .preset-swatch-name {
+            font-size: 9px;
+            font-weight: 700;
+            color: var(--muted);
+            text-align: center;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 100%;
+        }
+
+        .color-divider {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 12px;
+            color: var(--muted);
+            font-weight: 700;
+            margin-top: 20px;
+        }
+
+        .color-divider::before,
+        .color-divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: rgba(2, 6, 23, .08);
+        }
+
+        .picker-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .picker-label {
+            font-size: 12px;
+            color: var(--muted);
+            font-weight: 700;
+            flex: 1;
+        }
+
+        .picker-custom {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .picker-hex {
+            font-size: 12px;
+            font-weight: 800;
+            color: #334155;
+        }
+
+        /* Mood */
+        .mood-wrap {
+            border: 1px solid var(--ring);
+            border-radius: 16px;
+            padding: 12px;
+            background: #fff;
+        }
+
+        .mood-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .mood-top .mhint {
+            font-size: 12px;
+            color: var(--muted);
+        }
+
+        .mood-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 12px;
+        }
+
+        .mood-option {
+            flex: 1;
+            min-width: 80px;
+            border: 1px solid var(--ring);
+            border-radius: 12px;
+            background: #fff;
+            padding: 10px 8px;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+            transition: border-color .15s, box-shadow .15s, background .15s;
+            user-select: none;
+            font-family: inherit;
+        }
+
+        .mood-option:hover {
+            background: #f8fafc;
+        }
+
+        .mood-option[data-selected="true"] {
+            border-color: var(--orange);
+            box-shadow: 0 0 0 3px rgba(255, 106, 42, .18);
+            background: #fff8f5;
+        }
+
+        .mood-option .mood-dot {
+            width: 20px;
+            height: 20px;
+            border-radius: 999px;
+            border: 2px solid var(--ring);
+            background: #fff;
+            display: grid;
+            place-items: center;
+            transition: border-color .15s, background .15s;
+        }
+
+        .mood-option[data-selected="true"] .mood-dot {
+            border-color: var(--orange);
+            background: var(--orange);
+        }
+
+        .mood-option[data-selected="true"] .mood-dot::after {
+            content: '';
+            width: 8px;
+            height: 8px;
+            border-radius: 999px;
+            background: #fff;
+        }
+
+        .mood-option .mood-name {
+            font-size: 12px;
+            font-weight: 800;
+            color: var(--navy);
+            text-align: center;
+        }
+
+        /* Font picker */
+        .font-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        @media(max-width:720px) {
+            .font-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .pick {
+            border: 1px solid var(--ring);
+            background: #fff;
+            border-radius: 16px;
+            padding: 10px;
+            cursor: pointer;
+            transition: box-shadow .15s ease, border-color .15s ease, transform .05s ease;
+            display: grid;
+            gap: 10px;
+        }
+
+        .pick:active {
+            transform: translateY(1px);
+        }
+
+        .pick[data-selected="true"] {
+            border-color: rgba(255, 106, 42, .55);
+            box-shadow: 0 0 0 4px rgba(255, 106, 42, .18);
+        }
+
+        .pick .ptitle {
+            font-weight: 900;
+            font-size: 13px;
+            color: #0f172a;
+        }
+
+        .pick .pdesc {
+            font-size: 12px;
+            color: var(--muted);
+            line-height: 1.4;
+        }
+
+        .font-sample {
+            border: 1px solid rgba(2, 6, 23, .08);
+            background: #f8fafc;
+            border-radius: 14px;
+            padding: 10px;
+            line-height: 1.4;
+        }
+
+        .mincho {
+            font-family: "Hiragino Mincho ProN", "Yu Mincho", "Noto Serif JP", serif;
+        }
+
+        .gothic {
+            font-family: "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Yu Gothic", sans-serif;
+        }
+
+        /* SNS */
+        .sns-list {
+            display: grid !important;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+        }
+
+        .sns-item {
+            display: block !important;
+            border: 1px solid var(--ring) !important;
+            border-radius: 14px !important;
+            background: #fff !important;
+            overflow: hidden !important;
+            transition: border-color .15s;
+        }
+
+        .sns-item[data-checked="true"] {
+            border-color: var(--orange) !important;
+        }
+
+        .sns-check-row {
+            display: flex !important;
+            align-items: center !important;
+            gap: 10px !important;
+            padding: 8px 14px !important;
+            cursor: pointer !important;
+            user-select: none !important;
+        }
+
+        input[type="checkbox"] {
+            accent-color: var(--orange);
+            width: 16px;
+            height: 16px;
+            flex-shrink: 0;
+            cursor: pointer;
+            margin: 0;
+        }
+
+        .sns-check-label {
+            font-weight: 800;
+            font-size: 12px;
+            flex: 1;
+        }
+
+        .sns-url-wrap {
+            overflow: hidden;
+            max-height: 0;
+            transition: max-height .25s ease, padding .25s ease;
+            padding: 0 12px;
+        }
+
+        .sns-item[data-checked="true"] .sns-url-wrap {
+            max-height: 120px;
+            padding: 0 12px 10px;
+        }
+
+        .sns-item[data-checked="true"] .sns-url-wrap.wrap-lg {
+            max-height: 800px;
+            padding: 0 12px 10px;
+        }
+
+        /* URL list */
+        .urllist {
+            display: grid;
+            gap: 8px;
+        }
+
+        .urllist-row {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .urllist-row input {
+            flex: 1;
+        }
+
+        .urllist-row .btn-del {
+            all: unset;
+            box-sizing: border-box !important;
+            flex-shrink: 0 !important;
+            width: 32px !important;
+            height: 32px !important;
+            border-radius: 10px !important;
+            border: 1px solid var(--ring) !important;
+            background: #fff !important;
+            color: var(--muted) !important;
+            font-size: 16px !important;
+            display: grid !important;
+            place-items: center !important;
+            cursor: pointer !important;
+            transition: background .15s, color .15s !important;
+        }
+
+        .urllist-row .btn-del:hover {
+            background: #fee2e2 !important;
+            color: #dc2626 !important;
+            border-color: #fca5a5 !important;
+        }
+
+        .urllist-add {
+            all: unset;
+            box-sizing: border-box !important;
+            display: inline-flex !important;
+            align-items: center !important;
+            gap: 6px !important;
+            padding: 8px 14px !important;
+            border-radius: 12px !important;
+            border: 1px dashed rgba(11, 27, 58, .25) !important;
+            background: #fff !important;
+            color: var(--navy) !important;
+            font-size: 13px !important;
+            font-weight: 800 !important;
+            cursor: pointer !important;
+            transition: background .15s, border-color .15s !important;
+            width: 100% !important;
+            justify-content: center !important;
+            font-family: inherit !important;
+        }
+
+        .urllist-add:hover {
+            background: #f0f4ff !important;
+            border-color: var(--navy) !important;
+        }
+
+        .urllist-add .plus {
+            font-size: 18px;
+            line-height: 1;
+        }
+
+        /* Ref list */
+        .reflist-block {
+            border: 1px solid var(--ring);
+            border-radius: 14px;
+            padding: 12px;
+            margin-bottom: 10px;
+            background: #f8fafc;
+            display: grid;
+            gap: 0;
+        }
+
+        .reflist-label {
+            font-size: 12px;
+            font-weight: 800;
+            color: var(--muted);
+            margin: 8px 0 2px;
+            line-height: 1.8;
+        }
+
+        .reflist-label:first-child {
+            margin-top: 0;
+        }
+
+        /* Preview */
+        .sticky {
+            position: sticky;
+            top: 16px;
+        }
+
+        .pdf-logo-header {
+            display: none;
+        }
+
+        .summary {
+            background: linear-gradient(135deg, var(--navy) 55%, var(--navy2) 100%);
+            color: #fff;
+            border-radius: 18px;
+            padding: 14px;
+            border: 1px solid rgba(255, 255, 255, .10);
+        }
+
+        .summary .top {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 10px;
+        }
+
+        .summary .auto {
+            font-size: 11px;
+            font-weight: 900;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 106, 42, .18);
+            padding: 6px 10px;
+            border-radius: 999px;
+        }
+
+        .summary .auto .dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 999px;
+            background: var(--orange);
+        }
+
+        .summary .name {
+            font-size: 18px;
+            font-weight: 900;
+            margin-top: 4px;
+        }
+
+        .summary-sub-wrap {
+            text-align: right;
+            padding: 6px 2px 2px;
+        }
+
+        .summary-sub-wrap .sub {
+            font-size: 12px;
+            color: var(--orange);
+            font-weight: 700;
+        }
+
+        .preview-box {
+            margin-top: 10px;
+            border: 1px solid var(--ring);
+            border-radius: 18px;
+            background: #fff;
+            padding: 12px;
+            max-height: 52vh;
+            overflow: auto;
+        }
+
+        .p-sec {
+            margin-bottom: 12px;
+        }
+
+        .p-sec-head {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            margin-bottom: 8px;
+        }
+
+        .p-sec-head .t {
+            font-weight: 900;
+            color: var(--navy);
+            font-size: 13px;
+        }
+
+        .p-group {
+            background: #f8fafc;
+            border-radius: 14px;
+            padding: 10px;
+            margin-bottom: 8px;
+        }
+
+        .p-group .gt {
+            font-size: 12px;
+            font-weight: 900;
+            color: #334155;
+            margin-bottom: 8px;
+        }
+
+        .p-row {
+            display: flex;
+            justify-content: space-between;
+            gap: 12px;
+            align-items: flex-start;
+            margin: 6px 0;
+        }
+
+        .p-row .k {
+            min-width: 40%;
+            color: #64748b;
+            font-size: 12px;
+        }
+
+        .p-row .v {
+            text-align: right;
+            font-weight: 800;
+            font-size: 12px;
+        }
+
+        .p-row .v.empty {
+            color: #94a3b8;
+            font-weight: 700;
+        }
+
+        .sanc-footer {
+            margin-top: 12px;
+            padding: 10px 12px;
+            background: var(--navy);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .sanc-footer .sf-brand {
+            font-size: 12px;
+            font-weight: 900;
+            color: #fff;
+        }
+
+        .sanc-footer .sf-info {
+            font-size: 11px;
+            color: rgba(255, 255, 255, .7);
+        }
+
+        details {
+            border: 1px solid var(--ring);
+            border-radius: 18px;
+            background: #fff;
+            padding: 12px;
+        }
+
+        summary {
+            cursor: pointer;
+            font-weight: 900;
+            color: #1f2937;
+            font-size: 16px;
+        }
+
+        pre {
+            margin: 10px 0 0;
+            background: #f8fafc;
+            border-radius: 14px;
+            padding: 10px;
+            font-size: 11px;
+            overflow: auto;
+            white-space: pre-wrap;
+            word-break: break-all;
+            max-width: 100%;
+            line-height: 1.4;
+        }
+
+        /* domain/server checklist helpers */
+        .opt-item {
+            display: block !important;
+            border-radius: 14px !important;
+            background: #fff !important;
+            overflow: hidden !important;
+        }
+
+        @media(max-width:720px) {
+            body {
+                line-height: 1.4em;
+            }
+
+            .step-pill {
+                padding: 6px 9px !important;
+                font-size: 11px !important;
+                gap: 5px !important;
+            }
+
+            .step-pill .num {
+                font-size: 10px !important;
+            }
+
+            .step-pill .ok {
+                width: 15px !important;
+                height: 15px !important;
+                font-size: 10px !important;
+            }
+
+            .steps {
+                column-gap: 5px;
+                row-gap: 10px;
+                margin-top: 8px;
+            }
+        }
+
+        @media print {
+            @page {
+                margin: 15mm 12mm;
+                size: A4;
+            }
+
+            * {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+
+            body {
+                background: #fff;
+            }
+
+            .steps,
+            .chips,
+            .pane-form,
+            details,
+            #btn-copy,
+            #btn-pdf,
+            #btn-consult,
+            #btn-clear,
+            .header,
+            .progress-card,
+            .only-mobile {
+                display: none !important;
+            }
+
+            .pane-preview {
+                display: block !important;
+            }
+
+            .pdf-logo-header {
+                display: flex !important;
+                align-items: center !important;
+                gap: 8px !important;
+                margin-bottom: 12px !important;
+            }
+
+            .pdf-logo-header span {
+                font-size: 13px;
+                font-weight: 900;
+                color: #0B1B3A;
+                letter-spacing: .04em;
+            }
+
+            .wrap {
+                max-width: 100%;
+                padding: 0;
+            }
+
+            .layout {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
+
+            .card {
+                box-shadow: none;
+                border: 0;
+                padding: 0;
+                background: transparent;
+            }
+
+            .card-header {
+                display: none;
+            }
+
+            .card-body {
+                padding: 0;
+            }
+
+            .summary {
+                color: #fff !important;
+                border-radius: 10px !important;
+                padding: 18px 24px !important;
+                margin-bottom: 4px !important;
+                border: 0 !important;
+                display: block !important;
+                width: 100% !important;
+            }
+
+            .summary .top,
+            .summary .auto,
+            .summary .dot {
+                display: none !important;
+            }
+
+            .summary .name {
+                color: #fff !important;
+                font-size: 22px !important;
+                font-weight: 900 !important;
+                margin: 0 !important;
+            }
+
+            .summary-sub-wrap {
+                text-align: right !important;
+                padding: 6px 0 12px !important;
+            }
+
+            .preview-box {
+                max-height: none !important;
+                overflow: visible !important;
+                border: 0 !important;
+                padding: 0 !important;
+            }
+
+            .p-group {
+                margin-bottom: 12px !important;
+                break-inside: avoid;
+            }
+
+            .p-row {
+                display: grid !important;
+                grid-template-columns: 38% 62% !important;
+                gap: 0 !important;
+                padding: 5px 0 !important;
+                border-bottom: 1px solid #f0f0f0 !important;
+                align-items: start !important;
+            }
+
+            .p-row .k {
+                font-size: 10px !important;
+                color: #64748b !important;
+                font-weight: 700 !important;
+                padding-right: 8px !important;
+                line-height: 1.5 !important;
+            }
+
+            .p-row .v {
+                font-size: 11px !important;
+                color: #0B1B3A !important;
+                font-weight: 600 !important;
+                line-height: 1.6 !important;
+                white-space: pre-wrap !important;
+                text-align: left !important;
+            }
+
+            .p-row .v.empty {
+                color: #ccc !important;
+                font-style: italic !important;
+            }
+
+            .divider {
+                display: none !important;
+            }
+
+            .sanc-footer {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+                background: #0B1B3A !important;
+                border-radius: 8px !important;
+                margin-top: 16px !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrap" id="app" data-pane="form">
+        <div class="header">
+            <div class="header-inner">
+                <div class="brand">
+                    <div class="logo" aria-hidden>
+                        <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+                            <path d="M14 4C8.477 4 4 8.477 4 14C4 19.523 8.477 24 14 24C19.523 24 24 19.523 24 14"
+                                stroke="white" stroke-width="2.5" stroke-linecap="round" />
+                            <path d="M14 4C14 4 20 7 20 14" stroke="#FF6A2A" stroke-width="2.5"
+                                stroke-linecap="round" />
+                            <circle cx="14" cy="14" r="3" fill="white" />
+                        </svg>
+                    </div>
+                    <div class="title">
+                        <small>SaNC / 佐々木｜荒井内科眼科クリニック様向け</small>
+                        <h1>Webヒアリングシート</h1>
+                    </div>
+                </div>
+                <div class="chips">
+                    <div class="chip" id="chip-save"><span class="dot"></span><span>自動保存</span></div>
+                    <button class="btn btn-outline" id="btn-reset" type="button"
+                        style="font-size:11px!important;padding-top:8px!important;padding-bottom:8px!important;">リセット</button>
+                </div>
+            </div>
+            <p class="header-desc">荒井内科眼科クリニック様のWebサイトリニューアル専用ヒアリングシートです。入力内容は自動保存・PDF出力に対応しています。</p>
+        </div>
+
+        <div class="card progress-card">
+            <div class="row">
+                <div class="meta">
+                    <div class="step" id="step-label">Step 1 / 6</div>
+                    <div class="pct" id="pct-label">進捗 0%</div>
+                </div>
+            </div>
+            <div class="bar" aria-hidden><i id="bar"></i></div>
+            <div class="steps" id="step-pills"></div>
+            <div style="margin-top:20px;justify-content:center;" class="only-mobile">
+                <div id="tab-switcher"
+                    style="display:inline-flex;width:100%;max-width:280px;padding:4px;border-radius:999px;background:#fff;border:1px solid var(--ring);position:relative;">
+                    <button class="btn" id="tab-form" type="button"
+                        style="flex:1;padding:10px 0;border-radius:999px;font-size:13px;">入力</button>
+                    <button class="btn" id="tab-preview" type="button"
+                        style="flex:1;padding:10px 0;border-radius:999px;font-size:13px;">プレビュー</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="layout">
+            <div class="pane-form">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">
+                            <div>
+                                <h2 id="form-step-title">基本情報</h2>
+                                <p id="form-step-desc"></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body" id="form-groups"></div>
+                </div>
+            </div>
+
+            <div class="pane-preview">
+                <div class="sticky">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-title" style="align-items:center;">
+                                <div>
+                                    <h2 style="margin:0;">プレビュー</h2>
+                                </div>
+                                <div style="display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end;">
+                                    <button class="btn btn-outline" id="btn-copy" type="button">テキストコピー</button>
+                                    <button class="btn btn-outline" id="btn-pdf" type="button">PDF出力</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="pdf-logo-header">
+                                <svg width="32" height="32" viewBox="0 0 28 28" fill="none">
+                                    <rect width="28" height="28" rx="8" fill="#0B1B3A" />
+                                    <path
+                                        d="M14 6C9.582 6 6 9.582 6 14C6 18.418 9.582 22 14 22C18.418 22 22 18.418 22 14"
+                                        stroke="white" stroke-width="2" stroke-linecap="round" />
+                                    <path d="M14 6C14 6 19 8.5 19 14" stroke="#FF6A2A" stroke-width="2"
+                                        stroke-linecap="round" />
+                                    <circle cx="14" cy="14" r="2.5" fill="white" />
+                                </svg>
+                                <span>SaNC / 佐々木｜荒井内科眼科クリニック様 Webヒアリングシート</span>
+                            </div>
+                            <div class="summary" id="summary">
+                                <div class="top">
+                                    <div class="auto"><span class="dot"></span>Auto preview</div>
+                                </div>
+                                <div class="name" id="summary-name">（医院名未入力）</div>
+                            </div>
+                            <div class="summary-sub-wrap">
+                                <div class="sub" id="summary-sub">依頼：—</div>
+                            </div>
+                            <div class="preview-box" id="preview-box"></div>
+                            <div class="sanc-footer">
+                                <div class="sf-brand">SaNC / 佐々木</div>
+                                <div class="sf-info">Web集患コンサル｜クリニック特化</div>
+                            </div>
+                            <div class="divider"></div>
+                            <div style="display:grid;gap:10px;">
+                                <button class="btn btn-orange" type="button" id="btn-consult"
+                                    style="padding-top:13px!important;padding-bottom:13px!important;font-size:15px!important;">
+                                    この内容でPDF出力する
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                                        stroke-linejoin="round" style="vertical-align:-2px">
+                                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                                        <polyline points="14 2 14 8 20 8" />
+                                        <line x1="16" y1="13" x2="8" y2="13" />
+                                        <line x1="16" y1="17" x2="8" y2="17" />
+                                    </svg>
+                                </button>
+                                <button class="btn btn-ghost" type="button" id="btn-clear">入力項目をリセットする</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="margin-top:12px;">
+                        <details>
+                            <summary>テキスト形式として表示（AI用）</summary>
+                            <pre id="preview-text"></pre>
+                        </details>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const STORAGE_KEY = "sanc_arai_hearing_v2";
+
+        const GOAL_ACTIONS = [
+            { value: "phone", label: "電話予約・問い合わせ", desc: "電話番号へ発信", inputLabel: "電話番号", placeholder: "例）03-xxxx-xxxx" },
+            { value: "web_rsv", label: "Web予約", desc: "予約システム・フォーム", inputLabel: "予約システムのURL（任意）", placeholder: "例）https://example.reserva.be" },
+            { value: "line", label: "LINE相談・予約", desc: "LINE公式への誘導", inputLabel: "LINEのURL", placeholder: "例）https://lin.ee/xxxx" },
+            { value: "inquiry", label: "問い合わせフォーム", desc: "メール問い合わせ", inputLabel: "メールアドレス（任意）", placeholder: "例）info@example.com" },
+            { value: "recruit", label: "採用応募", desc: "スタッフ募集", inputLabel: "採用ページURL（任意）", placeholder: "例）https://example.com/recruit" },
+            { value: "other", label: "その他", desc: "自由に記載", inputLabel: "内容・URL", placeholder: "例）Instagramへ誘導" },
+        ];
+
+        const MOOD_STOPS = [
+            { value: -25, label: "シンプル" },
+            { value: 0, label: "クール" },
+            { value: 25, label: "きれいめ" },
+            { value: 50, label: "ナチュラル" },
+            { value: 75, label: "あたたかみ" },
+            { value: 100, label: "やさしい" },
+        ];
+
+        const QUESTIONNAIRE = [
+            {
+                stepId: "basic", title: "基本情報",
+                description: "医院・担当者・案件の基本情報をご確認・入力ください。",
+                groups: [
+                    {
+                        title: "医院・担当者情報",
+                        fields: [
+                            { key: "clinicName", label: "正式な医院名（決定後）", type: "text", placeholder: "例）荒井内科眼科クリニック", required: true },
+                            { key: "clinicNameKana", label: "医院名（フリガナ）", type: "text", placeholder: "例）アライナイカガンカクリニック" },
+                            { key: "directorName_naika", label: "内科担当医師名", type: "text", placeholder: "例）荒井 研 先生", required: true },
+                            { key: "directorName_ganka", label: "眼科担当医師名", type: "text", placeholder: "例）荒井 陽夏 先生", required: true },
+                            { key: "personName", label: "連絡窓口ご担当者名", type: "text", placeholder: "例）荒井 陽夏 先生", required: true },
+                            { key: "email", label: "メールアドレス（主窓口）", type: "email", placeholder: "honeybann2@gmail.com", required: true },
+                            { key: "email2", label: "研先生のメールアドレス", type: "email", placeholder: "例）ken@arai-cl.net（取得後）" },
+                            { key: "phoneNumber", label: "電話番号（クリニック）", type: "text", placeholder: "例）03-xxxx-xxxx" },
+                            { key: "address", label: "所在地（自由が丘周辺）", type: "text", placeholder: "例）東京都世田谷区奥沢〇丁目〇-〇" },
+                            { key: "currentHpUrl", label: "現在のWebサイトURL", type: "text", placeholder: "https://arai-cl.net/" },
+                            {
+                                key: "activeSns", label: "運用中・開設済みのSNS（複数選択可）", type: "sns_checklist",
+                                options: [
+                                    { value: "instagram", label: "Instagram", placeholder: "例）https://www.instagram.com/xxx" },
+                                    { value: "x", label: "X（旧Twitter）", placeholder: "例）https://x.com/xxx" },
+                                    { value: "line", label: "LINE公式", placeholder: "例）https://lin.ee/xxx" },
+                                    { value: "youtube", label: "YouTube", placeholder: "例）https://www.youtube.com/@xxx" },
+                                    { value: "other_sns", label: "その他", placeholder: "例）https://..." },
+                                ]
+                            },
+                            {
+                                key: "contactMethod", label: "今後の主な連絡方法", type: "select",
+                                options: [
+                                    { value: "email", label: "メール" },
+                                    { value: "line", label: "LINE" },
+                                    { value: "lineworks", label: "LINE WORKS" },
+                                    { value: "other", label: "その他" },
+                                ]
+                            },
+                            { key: "contactUrls", label: "LINE / Chatwork のURL（あれば）", type: "urllist", placeholder: "例）https://lin.ee/xxx" },
+                        ]
+                    },
+                    {
+                        title: "案件の種別・スケジュール",
+                        fields: [
+                            {
+                                key: "projectType", label: "ご依頼内容", type: "select", required: true,
+                                options: [
+                                    { value: "hp_reform", label: "HP リニューアル（新ドメイン）" },
+                                    { value: "hp_new", label: "HP 新規制作" },
+                                ]
+                            },
+                            { key: "reopenDate", label: "リニューアルオープン予定時期", type: "text", placeholder: "例）2027年5月頃" },
+                            { key: "sitePhase1", label: "先行サイト公開希望時期（フェーズ1）", type: "text", placeholder: "例）2026年秋頃（準備中サイト）" },
+                            { key: "deadline", label: "本番サイト公開希望日（フェーズ2）", type: "date" },
+                            {
+                                key: "budget", label: "ご予算感（制作費）", type: "select",
+                                options: [
+                                    { value: "under30", label: "〜30万" },
+                                    { value: "30_50", label: "30〜50万" },
+                                    { value: "50_80", label: "50〜80万" },
+                                    { value: "80_100", label: "80〜100万" },
+                                    { value: "unknown", label: "未定・相談したい" },
+                                ]
+                            },
+                            { key: "request", label: "現時点でのご要望・メモ", type: "textarea", placeholder: "例）SEO/MEOを早めに進めたい・新ドメイン取得予定 など" },
+                        ]
+                    }
+                ]
+            },
+            {
+                stepId: "clinic", title: "クリニック体制",
+                description: "診療体制・医師情報・既存クリニックの移行についてお聞かせください。",
+                groups: [
+                    {
+                        title: "診療科目と医師体制",
+                        fields: [
+                            { key: "deptNaika", label: "内科（リニューアル後）", type: "toggle" },
+                            { key: "deptGanka", label: "眼科（リニューアル後）", type: "toggle" },
+                            { key: "deptShika", label: "歯科（継続 or 閉院）", type: "toggle" },
+                            { key: "parentDoctors", label: "お父様・お母様の今後の関わり方", type: "textarea", placeholder: "例）お父様：内科として継続サポート予定、お母様：歯科担当（閉院後は撤退予定）" },
+                        ]
+                    },
+                    {
+                        title: "内科について（荒井研先生）",
+                        fields: [
+                            { key: "naikaHistory", label: "ご経歴・専門領域", type: "textarea", placeholder: "例）循環器内科専門、カテーテル治療経験30年以上 など", required: true },
+                            { key: "naikaStrength", label: "内科の強み・推しポイント", type: "textarea", placeholder: "例）循環器疾患の早期発見・管理、大病院との連携紹介 など", required: true },
+                            { key: "naikaTarget", label: "来てほしい患者層・ターゲット", type: "textarea", placeholder: "例）新規の初診患者、高血圧・糖尿病などの生活習慣病管理、循環器を専門に診てもらいたい高齢者 など" },
+                            { key: "naikaService", label: "提供したい検査・治療", type: "textarea", placeholder: "例）心電図・心エコー、循環器外来、禁煙外来、予防接種 など" },
+                            { key: "naika_cert", label: "専門医資格・認定", type: "text", placeholder: "例）日本循環器学会専門医 など" },
+                            { key: "naikaMessage", label: "院長メッセージ・患者さんへの想い", type: "textarea", placeholder: "例）30年地域に根付いた医療を続けてきました。これからも〇〇を大切に..." },
+                        ]
+                    },
+                    {
+                        title: "眼科について（荒井陽夏先生）",
+                        fields: [
+                            { key: "gankaHistory", label: "ご経歴・専門領域", type: "textarea", placeholder: "例）白内障・緑内障・近視診療 など", required: true },
+                            { key: "gankaStrength", label: "眼科の強み・推しポイント", type: "textarea", placeholder: "例）近視（学童）対応、コンタクトレンズ処方、緑内障早期発見 など", required: true },
+                            { key: "gankaTarget", label: "来てほしい患者層・ターゲット", type: "textarea", placeholder: "例）全年代・子どもの近視を心配するお母さん・40〜50代の緑内障検診希望者 など" },
+                            { key: "gankaService", label: "提供したい検査・治療", type: "textarea", placeholder: "例）近視抑制、コンタクト処方、緑内障検診、白内障（手術は行わず紹介） など" },
+                            {
+                                key: "gankaSurgery", label: "手術の対応（白内障など）", type: "select",
+                                options: [
+                                    { value: "none", label: "手術なし（当院では行わない）" },
+                                    { value: "referral", label: "提携病院に紹介する" },
+                                    { value: "consider", label: "将来的に検討" },
+                                    { value: "yes", label: "当院で行う" },
+                                ]
+                            },
+                            { key: "ganka_cert", label: "専門医資格・認定", type: "text", placeholder: "例）日本眼科学会専門医 など" },
+                            { key: "gankaMessage", label: "院長メッセージ・患者さんへの想い", type: "textarea", placeholder: "例）お子様の視力から高齢者の目の健康まで、丁寧に診療いたします..." },
+                        ]
+                    },
+                    {
+                        title: "既存サイト・移行方針",
+                        fields: [
+                            { key: "shikaCloseSchedule", label: "歯科の閉院予定時期", type: "text", placeholder: "例）2026年9月頃（スタッフへの告知は閉院6ヶ月前予定）" },
+                            { key: "shikaAnnouncePolicy", label: "歯科閉院のWeb上での告知方針", type: "textarea", placeholder: "例）閉院3ヶ月前にお知らせを掲載予定 など" },
+                            { key: "oldSiteAssets", label: "現在のサイトで残したいコンテンツ", type: "textarea", placeholder: "例）地図・電話番号は継続。基本的にはすべてリニューアルでOK" },
+                            { key: "oldSiteIssues", label: "現在のサイトの課題・改善したい点", type: "textarea", placeholder: "例）SEO・MEOが全くできていない、スマホ表示が見づらい、歯科情報しかない など" },
+                        ]
+                    }
+                ]
+            },
+            {
+                stepId: "purpose", title: "目的・ゴール",
+                description: "Webサイトを通して何を実現したいか整理します。",
+                groups: [
+                    {
+                        title: "優先目標",
+                        fields: [
+                            {
+                                key: "primaryGoal", label: "最優先のゴール", type: "select", required: true,
+                                options: [
+                                    { value: "recognition", label: "リニューアル前の早期認知獲得（SEO基盤構築）" },
+                                    { value: "new_patient", label: "新患・初診患者を増やしたい" },
+                                    { value: "branding", label: "「内科眼科」のブランド確立" },
+                                    { value: "multi", label: "集患＋認知向上 両方" },
+                                ]
+                            },
+                            { key: "kpi", label: "達成したい数値目標", type: "text", placeholder: "例）月10件の眼科新患・内科外来の定着 など" },
+                            { key: "successImage", label: "理想の状態（自由記述）", type: "textarea", placeholder: "例）「自由が丘 眼科」で検索上位に表示される状態を2027年5月に実現したい" },
+                        ]
+                    },
+                    {
+                        title: "Webサイトのゴールアクション",
+                        fields: [
+                            { key: "webGoalActions", label: "サイトで最終的に何に繋げますか？（複数選択可）", type: "goal_checklist", options: GOAL_ACTIONS },
+                        ]
+                    },
+                    {
+                        title: "Web環境の現状確認",
+                        fields: [
+                            {
+                                key: "gbpStatus", label: "Googleビジネスプロフィール（マップ）の状況", type: "select",
+                                options: [
+                                    { value: "managed", label: "あり・自分で管理している" },
+                                    { value: "unmanaged", label: "あり・管理できていない" },
+                                    { value: "none", label: "ない" },
+                                    { value: "unknown", label: "わからない" },
+                                ]
+                            },
+                            {
+                                key: "ga4Status", label: "Google アナリティクス（GA4）の設定", type: "select",
+                                options: [
+                                    { value: "yes", label: "設定済み" },
+                                    { value: "no", label: "未設定" },
+                                    { value: "unknown", label: "わからない" },
+                                ]
+                            },
+                            {
+                                key: "lineOfficial", label: "LINE公式アカウントの状況", type: "select",
+                                options: [
+                                    { value: "exists", label: "すでにある" },
+                                    { value: "planning", label: "新規開設予定" },
+                                    { value: "none", label: "予定なし" },
+                                    { value: "unknown", label: "未定" },
+                                ]
+                            },
+                            {
+                                key: "reserveSystem", label: "Web予約システムの予定", type: "select",
+                                options: [
+                                    { value: "existing", label: "すでに使っているシステムあり" },
+                                    { value: "new", label: "新たに導入予定" },
+                                    { value: "phone", label: "電話予約のみ（予定）" },
+                                    { value: "unknown", label: "未定" },
+                                ]
+                            },
+                        ]
+                    },
+                    {
+                        title: "コンテンツ素材の確認",
+                        fields: [
+                            { key: "hasPhotos", label: "院内・外観写真（撮影済み or 撮影予定）", type: "toggle" },
+                            { key: "hasLogo", label: "ロゴデータ（新規作成 or 既存）", type: "toggle" },
+                            { key: "hasStaffPic", label: "医師・スタッフ写真（撮影済み or 予定）", type: "toggle" },
+                            { key: "materialNotes", label: "素材・コンテンツの補足", type: "textarea", placeholder: "例）写真は2027年春に撮影予定・ロゴは新規デザイン希望 など" },
+                        ]
+                    }
+                ]
+            },
+            {
+                stepId: "design", title: "デザイン",
+                description: "ご希望のデザインテイストについてお伺いします。",
+                groups: [
+                    {
+                        title: "配色",
+                        fields: [
+                            { key: "brandColor", label: "ブランドカラー（メイン）", type: "color", default: "#0B1B3A", required: true },
+                            { key: "subColor", label: "サブカラー（補助）", type: "color", default: "#FF6A2A", required: true },
+                            { key: "designMood", label: "サイトの雰囲気（2つまで選択）", type: "mood", default: 50 },
+                        ]
+                    },
+                    {
+                        title: "TOPページ構成",
+                        fields: [
+                            {
+                                key: "topPageStructure", label: "TOPページの入口イメージ", type: "select",
+                                options: [
+                                    { value: "split", label: "内科・眼科を2分割で入口を分ける（sawagucci.com参考）" },
+                                    { value: "doctor", label: "先生ごとにセクションを分ける" },
+                                    { value: "unified", label: "一体型（両科をシームレスに紹介）" },
+                                    { value: "unknown", label: "まだ決まっていない（SaNCに任せる）" },
+                                ]
+                            },
+                            { key: "colorPerDept", label: "内科・眼科それぞれに異なるカラーを使いたい", type: "toggle" },
+                        ]
+                    },
+                    {
+                        title: "フォント",
+                        fields: [
+                            {
+                                key: "fontStyle", label: "フォントの雰囲気はどちらが近いですか？", type: "font",
+                                options: [
+                                    { value: "gothic", label: "ゴシック体", meta: { desc: "読みやすくモダンな印象" } },
+                                    { value: "mincho", label: "明朝体", meta: { desc: "上品で信頼感のある印象" } },
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        title: "その他",
+                        fields: [
+                            { key: "designNotes", label: "デザインの希望・NG事項", type: "textarea", placeholder: "例）清潔感・白を基調に・写真を大きく使いたい・派手すぎるのはNG など" },
+                        ]
+                    },
+                    {
+                        title: "参考サイト",
+                        fields: [
+                            { key: "referenceSites", label: "参考サイト（URLと好きなポイント）", type: "reflist", required: true },
+                        ]
+                    }
+                ]
+            },
+            {
+                stepId: "server", title: "ドメイン・サーバー",
+                description: "新規ドメインの取得・サーバー環境について確認します。",
+                groups: [
+                    {
+                        title: "ドメイン移行方針",
+                        fields: [
+                            {
+                                key: "domainPolicy", label: "ドメインの移行方針", type: "select", required: true,
+                                options: [
+                                    { value: "new_only", label: "新規取得（arai-cl.netは使わない）" },
+                                    { value: "new_redirect", label: "新規取得＋旧ドメインからリダイレクト" },
+                                    { value: "keep", label: "arai-cl.netを継続利用" },
+                                    { value: "unknown", label: "まだ決まっていない" },
+                                ]
+                            },
+                            { key: "hasDomain", label: "新ドメインの現状", type: "domain_checklist", required: true },
+                        ]
+                    },
+                    {
+                        title: "サーバー",
+                        fields: [
+                            { key: "hasServer", label: "サーバーの状況", type: "server_checklist", required: true },
+                        ]
+                    },
+                    {
+                        title: "機能要件",
+                        fields: [
+                            { key: "funcBlog", label: "お知らせ・院長ブログ（無料）", type: "toggle" },
+                            { key: "funcReserve", label: "Web予約システム連携（有料）", type: "toggle" },
+                            { key: "funcRecruit", label: "採用ページ（スタッフ募集）", type: "toggle" },
+                            { key: "funcLine", label: "LINE公式との連携", type: "toggle" },
+                            { key: "funcOnline", label: "オンライン診療ページ", type: "toggle" },
+                        ]
+                    }
+                ]
+            },
+            {
+                stepId: "operation", title: "運用・予算",
+                description: "公開後の運用体制と月額予算についてお聞かせください。",
+                groups: [
+                    {
+                        title: "運用体制",
+                        fields: [
+                            {
+                                key: "updateOwner", label: "更新担当", required: true, type: "select",
+                                options: [
+                                    { value: "client", label: "自院スタッフで更新する" },
+                                    { value: "support", label: "SaNCに運用サポートをお任せしたい" },
+                                    { value: "both", label: "基本は自院で・サポートも活用したい" },
+                                    { value: "unknown", label: "未定" },
+                                ]
+                            },
+                            { key: "snsManager", label: "SNS担当者", type: "text", placeholder: "例）スタッフ担当・先生自身 など" },
+                            {
+                                key: "meoImportance", label: "MEO（Googleマップ口コミ）対策の優先度", type: "select",
+                                options: [
+                                    { value: "high", label: "高（早めに着手したい）" },
+                                    { value: "mid", label: "中（サイト公開後に進めたい）" },
+                                    { value: "low", label: "低（様子見でいい）" },
+                                    { value: "unknown", label: "未定" },
+                                ]
+                            },
+                        ]
+                    },
+                    {
+                        title: "月額予算",
+                        fields: [
+                            {
+                                key: "monthlyBudget", label: "Webマーケ・保守への月額予算感", type: "select",
+                                options: [
+                                    { value: "under1", label: "〜1万円" },
+                                    { value: "1_2", label: "1〜2万円" },
+                                    { value: "2_3", label: "2〜3万円" },
+                                    { value: "3_5", label: "3〜5万円" },
+                                    { value: "over5", label: "5万円以上" },
+                                    { value: "unknown", label: "未定・相談したい" },
+                                ]
+                            },
+                            {
+                                key: "consultNeeds", label: "Webコンサル（月次MTG・MEO・SEO等）への希望度", type: "select",
+                                options: [
+                                    { value: "high", label: "積極的に活用したい" },
+                                    { value: "mid", label: "必要に応じてお願いしたい" },
+                                    { value: "low", label: "まずは様子見" },
+                                    { value: "unknown", label: "未定" },
+                                ]
+                            },
+                        ]
+                    },
+                    {
+                        title: "補足・ご質問",
+                        fields: [
+                            { key: "notes", label: "補足・気になっていること・質問事項", type: "textarea", placeholder: "例）競合クリニックの情報が知りたい・予算の相談がしたい・フェーズ1の内容をもっと詳しく聞きたい など" },
+                        ]
+                    }
+                ]
+            },
+        ];
+
+        // ===== default state with pre-fills =====
+        const defaultState = {
+            // pre-fill known info
+            clinicName: "荒井内科眼科クリニック（仮）",
+            currentHpUrl: "https://arai-cl.net/",
+            directorName_naika: "荒井 研 先生",
+            directorName_ganka: "荒井 陽夏 先生",
+            personName: "荒井 陽夏 先生",
+            projectType: "hp_reform",
+            reopenDate: "2027年5月頃",
+            primaryGoal: "recognition",
+            domainPolicy: "new_only",
+            deptNaika: true, deptGanka: true, deptShika: true,
+            funcBlog: false, funcReserve: false, funcRecruit: false, funcLine: false, funcOnline: false,
+            hasPhotos: false, hasLogo: false, hasStaffPic: false,
+            colorPerDept: false,
+            activeSns: [], snsUrls: {},
+            webGoalActions: [], goalInputs: {},
+            referenceSites: [{ url: "https://sawagucci.com/", note: "内科・整形外科の2分割入口デザイン参考" }],
+            domainData: { status: "", name: "", company: "", companyOther: "", id: "", pass: "", memo: "", candidate: "" },
+            serverData: { status: "", name: "", nameOther: "", id: "", pass: "", memo: "", plan: "", domainCandidate: "", noMemo: "", unknownMemo: "" },
+            designMood: [],
+        };
+
+        function safeParse(s) { try { return JSON.parse(s); } catch (e) { return null; } }
+        function loadState() {
+            const raw = localStorage.getItem(STORAGE_KEY);
+            const parsed = raw ? safeParse(raw) : null;
+            return (parsed && parsed.value) ? { ...defaultState, ...parsed.value } : { ...defaultState };
+        }
+        let state = loadState();
+        let stepIndex = 0;
+
+        function ensureDefaults() {
+            if (!state.brandColor) state.brandColor = '#0B1B3A';
+            if (!state.subColor) state.subColor = '#FF6A2A';
+            if (!Array.isArray(state.designMood)) state.designMood = [];
+            if (!Array.isArray(state.webGoalActions)) state.webGoalActions = [];
+            if (!Array.isArray(state.activeSns)) state.activeSns = [];
+        }
+        ensureDefaults();
+
+        let saveTimer = null;
+        function autosave() {
+            if (saveTimer) clearTimeout(saveTimer);
+            saveTimer = setTimeout(() => {
+                try {
+                    localStorage.setItem(STORAGE_KEY, JSON.stringify({ value: state, savedAt: Date.now() }));
+                    const chip = document.getElementById('chip-save');
+                    chip.innerHTML = '<span class="dot"></span><span>保存済み</span>';
+                } catch (e) { }
+            }, 450);
+        }
+
+        function isFilled(field, value) {
+            if (field.type === 'toggle') return typeof value === 'boolean';
+            if (field.type === 'sns_checklist') return Array.isArray(state.activeSns) && state.activeSns.length > 0;
+            if (field.type === 'goal_checklist') return Array.isArray(state.webGoalActions) && state.webGoalActions.length > 0;
+            if (field.type === 'domain_checklist') return !!(state.domainData && state.domainData.status);
+            if (field.type === 'server_checklist') return !!(state.serverData && state.serverData.status);
+            if (field.type === 'reflist') return Array.isArray(value) && value.some(v => v.url && v.url.trim());
+            if (field.type === 'mood') return Array.isArray(value) && value.length > 0;
+            if (field.type === 'color') return value !== undefined && value !== null && String(value).trim() !== '';
+            return value !== undefined && value !== null && String(value).trim() !== '';
+        }
+
+        function allFields() {
+            const out = [];
+            QUESTIONNAIRE.forEach(s => s.groups.forEach(g => g.fields.forEach(f => out.push({ ...f, stepId: s.stepId }))));
+            return out;
+        }
+        function progress() {
+            const fields = allFields();
+            const required = fields.filter(f => f.required);
+            const requiredDone = required.filter(f => isFilled(f, state[f.key])).length;
+            return { requiredTotal: required.length, requiredDone };
+        }
+
+        function moodLabel(num) {
+            const n = Number(num); let best = MOOD_STOPS[0], bestD = Infinity;
+            MOOD_STOPS.forEach(s => { const d = Math.abs(s.value - n); if (d < bestD) { bestD = d; best = s; } });
+            return best.label;
+        }
+
+        function prettyValue(field, value) {
+            if (value === undefined || value === null || String(value).trim() === '') return '—';
+            if (field.type === 'toggle') return value ? 'あり' : 'なし';
+            if (field.type === 'urllist') {
+                const vals = Array.isArray(value) ? value.filter(v => v.trim()) : [];
+                return vals.length ? vals.join('\n') : '—';
+            }
+            if (field.type === 'reflist') {
+                const vals = Array.isArray(value) ? value.filter(v => v.url || v.note) : [];
+                if (!vals.length) return '—';
+                return vals.map((v, i) => `[${i + 1}] ${v.url || '（URL未入力）'}${v.note ? '\n　好き：' + v.note : ''}`).join('\n');
+            }
+            if (field.type === 'select') {
+                const opt = (field.options || []).find(o => o.value === value);
+                return opt ? opt.label : String(value);
+            }
+            if (field.type === 'font') {
+                const opt = (field.options || []).find(o => o.value === value);
+                return opt ? opt.label : String(value);
+            }
+            if (field.type === 'mood') {
+                if (!Array.isArray(value) || value.length === 0) return '—';
+                return value.map(v => moodLabel(v)).join('、');
+            }
+            if (field.type === 'color') return String(value).toUpperCase();
+            if (field.type === 'sns_checklist') {
+                const vals = Array.isArray(state.activeSns) ? state.activeSns : [];
+                if (!vals.length) return '—';
+                return vals.map(v => {
+                    const opt = (field.options || []).find(o => o.value === v);
+                    const label = opt ? opt.label : v;
+                    const url = (state.snsUrls || {})[v];
+                    return url ? `${label}：${url}` : label;
+                }).join('\n');
+            }
+            if (field.type === 'goal_checklist') {
+                const vals = Array.isArray(state.webGoalActions) ? state.webGoalActions : [];
+                if (!vals.length) return '—';
+                return vals.map(v => {
+                    const opt = (field.options || []).find(o => o.value === v);
+                    const label = opt ? opt.label : v;
+                    const input = (state.goalInputs || {})[v];
+                    return input ? `${label}：${input}` : label;
+                }).join('\n');
+            }
+            if (field.type === 'domain_checklist') {
+                const d = state.domainData || {};
+                const sm = { yes: '取得済み', no: '未取得', unknown: 'わからない' };
+                if (!d.status) return '—';
+                if (d.status === 'yes') {
+                    const company = d.company === 'その他' ? (d.companyOther || 'その他') : (d.company || '');
+                    return [`状況：${sm[d.status]}`, d.name ? `ドメイン名：${d.name}` : '', company ? `ドメイン会社：${company}` : '', d.id ? `ID：${d.id}` : '', d.pass ? `パス：${d.pass}` : '', d.memo ? `メモ：${d.memo}` : ''].filter(Boolean).join('\n');
+                }
+                if (d.status === 'no') return [`状況：${sm[d.status]}`, d.candidate ? `ドメイン候補：${d.candidate}` : ''].filter(Boolean).join('\n');
+                return [`状況：${sm[d.status]}`, d.memo ? `メモ：${d.memo}` : ''].filter(Boolean).join('\n');
+            }
+            if (field.type === 'server_checklist') {
+                const d = state.serverData || {};
+                const sm = { yes: '持っている', no: '持っていない', unknown: 'わからない' };
+                if (!d.status) return '—';
+                if (d.status === 'yes') {
+                    const name = d.name === 'その他' ? (d.nameOther || 'その他') : (d.name || '');
+                    return [`状況：${sm[d.status]}`, name ? `サーバー名：${name}` : '', d.id ? `ID：${d.id}` : '', d.pass ? `パス：${d.pass}` : '', d.memo ? `メモ：${d.memo}` : ''].filter(Boolean).join('\n');
+                }
+                if (d.status === 'no') {
+                    const pm = { self: '新しく契約する', ask: '契約からお任せしたい', undecided: 'まだ未定' };
+                    return [`状況：${sm[d.status]}`, d.plan ? `今後：${pm[d.plan]}` : '', d.domainCandidate ? `サーバー候補：${d.domainCandidate}` : '', d.noMemo ? `メモ：${d.noMemo}` : ''].filter(Boolean).join('\n');
+                }
+                return [`状況：${sm[d.status]}`, d.unknownMemo ? `メモ：${d.unknownMemo}` : ''].filter(Boolean).join('\n');
+            }
+            return String(value);
+        }
+
+        function exportAsText() {
+            let out = '【SaNC 荒井内科眼科クリニック様 Webヒアリングシート】\n' + '='.repeat(36) + '\n';
+            QUESTIONNAIRE.forEach(s => {
+                out += `\n■ ${s.title}\n${'-'.repeat(20)}\n`;
+                s.groups.forEach(g => {
+                    out += `\n【${g.title}】\n`;
+                    g.fields.forEach(f => {
+                        let val;
+                        if (f.type === 'domain_checklist') val = prettyValue(f, state.domainData);
+                        else if (f.type === 'server_checklist') val = prettyValue(f, state.serverData);
+                        else if (f.type === 'sns_checklist') val = prettyValue(f, state.activeSns);
+                        else if (f.type === 'goal_checklist') val = prettyValue(f, state.webGoalActions);
+                        else val = prettyValue(f, state[f.key]);
+                        if (val === '—') return;
+                        const lines = val.split('\n');
+                        out += lines.length <= 1 ? `${f.label}：${val}\n` : `${f.label}：\n${val}\n`;
+                    });
+                });
+            });
+            out += '\n' + '='.repeat(36) + '\nSaNC / 佐々木｜Web集患コンサル・クリニック特化\n';
+            return out.trim();
+        }
+
+        function pdfByPrint() {
+            renderPreview();
+            const brand = state.brandColor || '#0B1B3A';
+            const sub = state.subColor || '#FF6A2A';
+            const sum = document.getElementById('summary');
+            if (sum) sum.style.setProperty('background', `linear-gradient(135deg,${brand} 55%,${sub} 100%)`, 'important');
+            setPane('preview');
+            setTimeout(() => { window.print(); setTimeout(() => { setPane('form'); renderPreview(); }, 500); }, 300);
+        }
+
+        function completedStepIds() {
+            const set = new Set();
+            QUESTIONNAIRE.forEach(s => {
+                const fields = s.groups.flatMap(g => g.fields);
+                const req = fields.filter(f => f.required);
+                const done = req.filter(f => isFilled(f, state[f.key]));
+                if (req.length > 0 && done.length === req.length) set.add(s.stepId);
+            });
+            return set;
+        }
+
+        function renderStepPills() {
+            const host = document.getElementById('step-pills');
+            host.innerHTML = '';
+            const doneSet = completedStepIds();
+            QUESTIONNAIRE.forEach((s, idx) => {
+                const btn = document.createElement('button');
+                btn.type = 'button'; btn.className = 'step-pill';
+                btn.dataset.active = String(idx === stepIndex);
+                btn.innerHTML = `<span class="num">${idx + 1}</span><span>${s.title}</span>${doneSet.has(s.stepId) ? '<span class="ok">✓</span>' : ''}`;
+                btn.addEventListener('click', () => { stepIndex = idx; rerender(); });
+                host.appendChild(btn);
+            });
+        }
+
+        // ===== Color =====
+        const COLOR_PRESETS = [
+            { hex: '#f9fafb', label: 'ホワイト' }, { hex: '#111827', label: 'ブラック' }, { hex: '#9ca3af', label: 'グレー' },
+            { hex: '#FF3B5C', label: 'レッド' }, { hex: '#FF6A2A', label: 'オレンジ' }, { hex: '#FFD000', label: 'イエロー' },
+            { hex: '#1a9e3f', label: 'グリーン' }, { hex: '#00AAFF', label: '水色' }, { hex: '#1A6FFF', label: 'ブルー' },
+            { hex: '#0B1B3A', label: 'ネイビー' }, { hex: '#7B2FFF', label: 'パープル' }, { hex: '#FF2D9B', label: 'ピンク' },
+            { hex: '#e8d5b7', label: 'ベージュ' }, { hex: '#92634a', label: 'ブラウン' }, { hex: '#e2e8f0', label: '未定' },
+        ];
+        function renderColorPair() {
+            const wrap = document.createElement('div'); wrap.className = 'color-section';
+            const make = (key, title) => {
+                const card = document.createElement('div'); card.className = 'group'; card.style.marginBottom = '0';
+                const lbl = document.createElement('div'); lbl.className = 'color-section-label'; lbl.textContent = title;
+                card.appendChild(lbl);
+                const palette = document.createElement('div'); palette.className = 'preset-palette';
+                const swatches = [];
+                COLOR_PRESETS.forEach(preset => {
+                    const swWrap = document.createElement('div'); swWrap.className = 'preset-swatch-wrap';
+                    swWrap.dataset.active = String((state[key] || '').toLowerCase() === preset.hex.toLowerCase());
+                    const sw = document.createElement('div'); sw.className = 'preset-swatch'; sw.style.background = preset.hex;
+                    if (preset.hex === '#f9fafb') sw.style.border = '2px solid #e2e8f0';
+                    const nameLbl = document.createElement('div'); nameLbl.className = 'preset-swatch-name'; nameLbl.textContent = preset.label;
+                    swWrap.appendChild(sw); swWrap.appendChild(nameLbl);
+                    swWrap.addEventListener('click', () => {
+                        state[key] = preset.hex; autosave(); rerenderPreviewOnly(); rerenderProgressOnly();
+                        swatches.forEach(s => s.dataset.active = 'false'); swWrap.dataset.active = 'true';
+                        picker.value = preset.hex; hexLabel.textContent = preset.hex.toUpperCase();
+                    });
+                    swatches.push(swWrap); palette.appendChild(swWrap);
+                });
+                card.appendChild(palette);
+                const divider = document.createElement('div'); divider.className = 'color-divider'; divider.textContent = 'または、カスタムカラーを選ぶ'; card.appendChild(divider);
+                const pickerRow = document.createElement('div'); pickerRow.className = 'picker-row';
+                const pickerLabel = document.createElement('div'); pickerLabel.className = 'picker-label'; pickerLabel.textContent = 'ロゴカラーなどをカラーピッカーで指定';
+                const pickerCustom = document.createElement('div'); pickerCustom.className = 'picker-custom';
+                const picker = document.createElement('input'); picker.type = 'color';
+                picker.value = state[key] || (key === 'brandColor' ? '#0B1B3A' : '#FF6A2A');
+                picker.style.cssText = 'width:36px;height:36px;border:0;padding:0;background:transparent;cursor:pointer;border-radius:8px;overflow:hidden;';
+                const hexLabel = document.createElement('div'); hexLabel.className = 'picker-hex';
+                hexLabel.textContent = (state[key] || (key === 'brandColor' ? '#0B1B3A' : '#FF6A2A')).toUpperCase();
+                picker.addEventListener('input', () => { state[key] = picker.value; hexLabel.textContent = picker.value.toUpperCase(); autosave(); rerenderPreviewOnly(); rerenderProgressOnly(); });
+                pickerCustom.appendChild(picker); pickerCustom.appendChild(hexLabel);
+                pickerRow.appendChild(pickerLabel); pickerRow.appendChild(pickerCustom); card.appendChild(pickerRow);
+                return card;
+            };
+            wrap.appendChild(make('brandColor', 'ブランドカラー（メイン）'));
+            wrap.appendChild(make('subColor', 'サブカラー（補助）'));
+            return wrap;
+        }
+
+        // ===== Ref List =====
+        function renderRefList(field) {
+            if (!Array.isArray(state[field.key]) || state[field.key].length === 0) state[field.key] = [{ url: '', note: '' }];
+            const wrap = document.createElement('div'); wrap.className = 'urllist';
+            const addRow = idx => {
+                const block = document.createElement('div'); block.className = 'reflist-block';
+                const urlLabel = document.createElement('div'); urlLabel.className = 'reflist-label'; urlLabel.textContent = `参考URL ${idx + 1}`;
+                const urlRow = document.createElement('div'); urlRow.className = 'urllist-row';
+                const urlInput = document.createElement('input'); urlInput.type = 'text'; urlInput.placeholder = '例）https://...';
+                urlInput.value = state[field.key][idx]?.url ?? '';
+                urlInput.addEventListener('input', () => { state[field.key][idx].url = urlInput.value; autosave(); rerenderPreviewOnly(); rerenderProgressOnly(); });
+                const delBtn = document.createElement('button'); delBtn.type = 'button'; delBtn.className = 'btn-del'; delBtn.innerHTML = '×';
+                delBtn.addEventListener('click', () => { state[field.key].splice(idx, 1); if (state[field.key].length === 0) state[field.key] = [{ url: '', note: '' }]; autosave(); rerenderPreviewOnly(); rerenderProgressOnly(); refreshList(); });
+                urlRow.appendChild(urlInput); urlRow.appendChild(delBtn);
+                const noteLabel = document.createElement('div'); noteLabel.className = 'reflist-label'; noteLabel.textContent = '好きなポイント';
+                const noteInput = document.createElement('textarea'); noteInput.placeholder = '例）2分割デザイン / 清潔感 / 先生の写真が大きい';
+                noteInput.style.cssText = 'min-height:64px;margin-top:6px;';
+                noteInput.value = state[field.key][idx]?.note ?? '';
+                noteInput.addEventListener('input', () => { state[field.key][idx].note = noteInput.value; autosave(); rerenderPreviewOnly(); rerenderProgressOnly(); });
+                block.appendChild(urlLabel); block.appendChild(urlRow); block.appendChild(noteLabel); block.appendChild(noteInput);
+                wrap.insertBefore(block, addBtn);
+            };
+            const addBtn = document.createElement('button'); addBtn.type = 'button'; addBtn.className = 'urllist-add';
+            addBtn.innerHTML = '<span class="plus">＋</span><span>URLの入力欄を追加する</span>';
+            addBtn.addEventListener('click', () => { state[field.key].push({ url: '', note: '' }); autosave(); refreshList(); });
+            wrap.appendChild(addBtn);
+            const refreshList = () => { [...wrap.querySelectorAll('.reflist-block')].forEach(r => r.remove()); state[field.key].forEach((_, i) => addRow(i)); };
+            refreshList();
+            return wrap;
+        }
+
+        // ===== Domain Checklist =====
+        function renderDomainChecklist(field) {
+            if (!state.domainData || typeof state.domainData !== 'object') state.domainData = { status: '', name: '', company: '', companyOther: '', id: '', pass: '', memo: '', candidate: '' };
+            const DOMAIN_COMPANIES = ['お名前.com', 'ムームードメイン', 'エックスサーバードメイン', 'その他'];
+            const OPTIONS = [{ value: 'yes', label: '取得済み' }, { value: 'no', label: 'まだ取得していない' }, { value: 'unknown', label: 'わからない' }];
+            const wrap = document.createElement('div');
+            wrap.style.cssText = 'display:flex!important;flex-direction:column!important;gap:8px!important;width:100%!important;';
+            const makeLabel = t => { const l = document.createElement('div'); l.style.cssText = 'font-size:12px;font-weight:800;color:var(--muted);margin-bottom:4px;'; l.textContent = t; return l; };
+            OPTIONS.forEach(opt => {
+                const item = document.createElement('div');
+                item.style.cssText = `display:block!important;border:1px solid ${state.domainData.status === opt.value ? 'var(--orange)' : 'var(--ring)'}!important;border-radius:14px!important;background:#fff!important;overflow:hidden!important;`;
+                item.dataset.checked = String(state.domainData.status === opt.value);
+                const checkRow = document.createElement('div');
+                checkRow.style.cssText = 'display:flex!important;align-items:center!important;gap:10px!important;padding:10px 14px!important;cursor:pointer!important;user-select:none!important;';
+                const dot = document.createElement('div'); dot.dataset.radioDot = '1';
+                dot.style.cssText = `width:18px!important;height:18px!important;min-width:18px!important;border-radius:50%!important;border:2px solid ${state.domainData.status === opt.value ? 'var(--orange)' : '#cbd5e1'}!important;background:${state.domainData.status === opt.value ? 'var(--orange)' : '#fff'}!important;display:flex!important;align-items:center!important;justify-content:center!important;box-sizing:border-box!important;flex-shrink:0!important;`;
+                const dotInner = document.createElement('div');
+                dotInner.style.cssText = `width:6px!important;height:6px!important;border-radius:50%!important;background:#fff!important;opacity:${state.domainData.status === opt.value ? '1' : '0'}!important;`;
+                dot.appendChild(dotInner);
+                const lbl = document.createElement('div'); lbl.style.cssText = 'font-size:13px!important;font-weight:800!important;color:var(--navy)!important;'; lbl.textContent = opt.label;
+                checkRow.appendChild(dot); checkRow.appendChild(lbl); item.appendChild(checkRow);
+                if (opt.value === 'yes') {
+                    const inputWrap = document.createElement('div'); inputWrap.className = 'sns-url-wrap wrap-lg';
+                    inputWrap.style.maxHeight = state.domainData.status === 'yes' ? '800px' : '0';
+                    const nameInput = document.createElement('input'); nameInput.type = 'text'; nameInput.placeholder = '例）arai-naika-ganka.com'; nameInput.value = state.domainData.name || ''; nameInput.style.marginBottom = '8px'; nameInput.addEventListener('input', () => { state.domainData.name = nameInput.value; autosave(); rerenderPreviewOnly(); });
+                    const companySelect = document.createElement('select'); companySelect.style.marginBottom = '8px';
+                    const opt0 = document.createElement('option'); opt0.value = ''; opt0.textContent = '選択してください'; companySelect.appendChild(opt0);
+                    DOMAIN_COMPANIES.forEach(c => { const o = document.createElement('option'); o.value = c; o.textContent = c; if (state.domainData.company === c) o.selected = true; companySelect.appendChild(o); });
+                    const otherWrap = document.createElement('div'); otherWrap.style.cssText = `display:${state.domainData.company === 'その他' ? 'block' : 'none'};margin-bottom:8px;`;
+                    const otherInput = document.createElement('input'); otherInput.type = 'text'; otherInput.placeholder = 'ドメイン会社名を入力'; otherInput.value = state.domainData.companyOther || ''; otherInput.addEventListener('input', () => { state.domainData.companyOther = otherInput.value; autosave(); rerenderPreviewOnly(); }); otherWrap.appendChild(otherInput);
+                    companySelect.addEventListener('change', function () { state.domainData.company = this.value; otherWrap.style.display = this.value === 'その他' ? 'block' : 'none'; autosave(); rerenderPreviewOnly(); });
+                    const memoInput = document.createElement('textarea'); memoInput.placeholder = '例）ドメイン候補：arai-cl.com など'; memoInput.style.minHeight = '64px'; memoInput.value = state.domainData.memo || ''; memoInput.addEventListener('input', () => { state.domainData.memo = memoInput.value; autosave(); rerenderPreviewOnly(); });
+                    inputWrap.appendChild(makeLabel('ドメイン名')); inputWrap.appendChild(nameInput);
+                    inputWrap.appendChild(makeLabel('ドメイン会社')); inputWrap.appendChild(companySelect); inputWrap.appendChild(otherWrap);
+                    inputWrap.appendChild(makeLabel('その他メモ')); inputWrap.appendChild(memoInput);
+                    item.appendChild(inputWrap);
+                }
+                if (opt.value === 'no') {
+                    const inputWrap = document.createElement('div'); inputWrap.className = 'sns-url-wrap'; inputWrap.style.maxHeight = state.domainData.status === 'no' ? '200px' : '0';
+                    const candidateInput = document.createElement('input'); candidateInput.type = 'text'; candidateInput.placeholder = '例）arai-naika-ganka.com、arai-clinic.jp など'; candidateInput.value = state.domainData.candidate || ''; candidateInput.addEventListener('input', () => { state.domainData.candidate = candidateInput.value; autosave(); rerenderPreviewOnly(); });
+                    inputWrap.appendChild(makeLabel('ドメイン候補')); inputWrap.appendChild(candidateInput); item.appendChild(inputWrap);
+                }
+                if (opt.value === 'unknown') {
+                    const inputWrap = document.createElement('div'); inputWrap.className = 'sns-url-wrap'; inputWrap.style.maxHeight = state.domainData.status === 'unknown' ? '200px' : '0';
+                    const memoInput = document.createElement('textarea'); memoInput.placeholder = '例）確認中 など'; memoInput.style.minHeight = '64px'; memoInput.value = state.domainData.memo || ''; memoInput.addEventListener('input', () => { state.domainData.memo = memoInput.value; autosave(); rerenderPreviewOnly(); });
+                    inputWrap.appendChild(makeLabel('メモ・補足')); inputWrap.appendChild(memoInput); item.appendChild(inputWrap);
+                }
+                checkRow.addEventListener('click', () => {
+                    state.domainData.status = opt.value;
+                    wrap.querySelectorAll('div[data-checked]').forEach(el => { el.dataset.checked = 'false'; el.style.borderColor = 'var(--ring)'; const w = el.querySelector('.sns-url-wrap'); if (w) w.style.maxHeight = '0'; const d = el.querySelector('[data-radio-dot]'); if (d) { d.style.setProperty('border-color', '#cbd5e1', 'important'); d.style.setProperty('background', '#fff', 'important'); const inner = d.querySelector('div'); if (inner) inner.style.setProperty('opacity', '0', 'important'); } });
+                    item.dataset.checked = 'true'; item.style.borderColor = 'var(--orange)';
+                    dot.style.setProperty('border-color', 'var(--orange)', 'important'); dot.style.setProperty('background', 'var(--orange)', 'important'); dotInner.style.setProperty('opacity', '1', 'important');
+                    const thisWrap = item.querySelector('.sns-url-wrap'); if (thisWrap) thisWrap.style.maxHeight = opt.value === 'yes' ? '800px' : '200px';
+                    autosave(); rerenderPreviewOnly();
+                });
+                wrap.appendChild(item);
+            });
+            return wrap;
+        }
+
+        // ===== Server Checklist =====
+        function renderServerChecklist(field) {
+            if (!state.serverData || typeof state.serverData !== 'object') state.serverData = { status: '', name: '', nameOther: '', id: '', pass: '', memo: '', plan: '' };
+            const SERVER_OPTIONS = [{ value: 'yes', label: '持っている' }, { value: 'no', label: '持っていない' }, { value: 'unknown', label: 'わからない' }];
+            const SERVER_NAMES = ['エックスサーバー', 'ConoHa WING', 'さくらインターネット', 'ロリポップ！', 'その他'];
+            const NO_PLANS = [{ value: 'self', label: '新しく契約する' }, { value: 'ask', label: '契約からお任せしたい' }, { value: 'undecided', label: 'まだ未定' }];
+            const wrap = document.createElement('div');
+            wrap.style.cssText = 'display:flex!important;flex-direction:column!important;gap:8px!important;width:100%!important;';
+            SERVER_OPTIONS.forEach(opt => {
+                const item = document.createElement('div');
+                item.style.cssText = `display:block!important;border:1px solid ${state.serverData.status === opt.value ? 'var(--orange)' : 'var(--ring)'}!important;border-radius:14px!important;background:#fff!important;overflow:hidden!important;`;
+                item.dataset.checked = String(state.serverData.status === opt.value);
+                const checkRow = document.createElement('div');
+                checkRow.style.cssText = 'display:flex!important;align-items:center!important;gap:10px!important;padding:10px 14px!important;cursor:pointer!important;user-select:none!important;';
+                const dot = document.createElement('div'); dot.dataset.radioDot = '1';
+                dot.style.cssText = `width:18px!important;height:18px!important;min-width:18px!important;border-radius:50%!important;border:2px solid ${state.serverData.status === opt.value ? 'var(--orange)' : '#cbd5e1'}!important;background:${state.serverData.status === opt.value ? 'var(--orange)' : '#fff'}!important;display:flex!important;align-items:center!important;justify-content:center!important;box-sizing:border-box!important;flex-shrink:0!important;`;
+                const dotInner = document.createElement('div');
+                dotInner.style.cssText = `width:6px!important;height:6px!important;border-radius:50%!important;background:#fff!important;opacity:${state.serverData.status === opt.value ? '1' : '0'}!important;`;
+                dot.appendChild(dotInner);
+                const lbl = document.createElement('div'); lbl.style.cssText = 'font-size:13px!important;font-weight:800!important;color:var(--navy)!important;'; lbl.textContent = opt.label;
+                checkRow.appendChild(dot); checkRow.appendChild(lbl); item.appendChild(checkRow);
+                const makeLabel = t => { const l = document.createElement('div'); l.style.cssText = 'font-size:12px;font-weight:800;color:var(--muted);margin-bottom:4px;'; l.textContent = t; return l; };
+                if (opt.value === 'yes') {
+                    const inputWrap = document.createElement('div'); inputWrap.className = 'sns-url-wrap'; inputWrap.style.maxHeight = state.serverData.status === 'yes' ? '600px' : '0';
+                    const nameSelect = document.createElement('select'); nameSelect.style.marginBottom = '8px';
+                    const opt0 = document.createElement('option'); opt0.value = ''; opt0.textContent = '選択してください'; nameSelect.appendChild(opt0);
+                    SERVER_NAMES.forEach(n => { const o = document.createElement('option'); o.value = n; o.textContent = n; if (state.serverData.name === n) o.selected = true; nameSelect.appendChild(o); });
+                    const otherWrap = document.createElement('div'); otherWrap.style.cssText = `display:${state.serverData.name === 'その他' ? 'block' : 'none'};margin-bottom:8px;`;
+                    const otherInput = document.createElement('input'); otherInput.type = 'text'; otherInput.placeholder = 'サーバー名を入力'; otherInput.value = state.serverData.nameOther || ''; otherInput.addEventListener('input', () => { state.serverData.nameOther = otherInput.value; autosave(); rerenderPreviewOnly(); }); otherWrap.appendChild(otherInput);
+                    nameSelect.addEventListener('change', function () { state.serverData.name = this.value; otherWrap.style.display = this.value === 'その他' ? 'block' : 'none'; autosave(); rerenderPreviewOnly(); });
+                    const memoInput = document.createElement('textarea'); memoInput.placeholder = '例）WordPressインストール済み など'; memoInput.style.minHeight = '64px'; memoInput.value = state.serverData.memo || ''; memoInput.addEventListener('input', () => { state.serverData.memo = memoInput.value; autosave(); rerenderPreviewOnly(); });
+                    inputWrap.appendChild(makeLabel('サーバー名')); inputWrap.appendChild(nameSelect); inputWrap.appendChild(otherWrap);
+                    inputWrap.appendChild(makeLabel('その他メモ')); inputWrap.appendChild(memoInput); item.appendChild(inputWrap);
+                }
+                if (opt.value === 'no') {
+                    const planWrap = document.createElement('div'); planWrap.className = 'sns-url-wrap'; planWrap.style.maxHeight = state.serverData.status === 'no' ? '1000px' : '0';
+                    const planLabel = document.createElement('div'); planLabel.style.cssText = 'font-size:12px;font-weight:800;color:var(--muted);margin-bottom:8px;'; planLabel.textContent = '今後どうしていきますか？';
+                    const planOptions = document.createElement('div'); planOptions.style.cssText = 'display:grid;gap:6px;margin-bottom:12px;';
+                    NO_PLANS.forEach(plan => {
+                        const planItem = document.createElement('label'); planItem.style.cssText = 'display:flex;align-items:center;gap:8px;padding:8px 10px;border:1px solid var(--ring);border-radius:10px;cursor:pointer;background:#fff;';
+                        const planRadio = document.createElement('input'); planRadio.type = 'radio'; planRadio.name = 'server_plan'; planRadio.value = plan.value; planRadio.checked = state.serverData.plan === plan.value; planRadio.style.cssText = 'width:16px;height:16px;accent-color:var(--orange);flex-shrink:0;';
+                        planRadio.addEventListener('change', () => { if (planRadio.checked) { state.serverData.plan = plan.value; autosave(); rerenderPreviewOnly(); } });
+                        const planLbl = document.createElement('div'); planLbl.style.cssText = 'font-size:13px;font-weight:800;'; planLbl.textContent = plan.label;
+                        planItem.appendChild(planRadio); planItem.appendChild(planLbl); planOptions.appendChild(planItem);
+                    });
+                    const noMemoLabel = makeLabel('その他メモ・ご要望');
+                    const noMemoInput = document.createElement('textarea'); noMemoInput.placeholder = '例）費用を抑えたい など'; noMemoInput.style.minHeight = '64px'; noMemoInput.value = state.serverData.noMemo || ''; noMemoInput.addEventListener('input', () => { state.serverData.noMemo = noMemoInput.value; autosave(); rerenderPreviewOnly(); });
+                    planWrap.appendChild(planLabel); planWrap.appendChild(planOptions); planWrap.appendChild(noMemoLabel); planWrap.appendChild(noMemoInput); item.appendChild(planWrap);
+                }
+                if (opt.value === 'unknown') {
+                    const unknownWrap = document.createElement('div'); unknownWrap.className = 'sns-url-wrap'; unknownWrap.style.maxHeight = state.serverData.status === 'unknown' ? '200px' : '0';
+                    const ukLabel = makeLabel('メモ・補足');
+                    const ukMemo = document.createElement('textarea'); ukMemo.placeholder = '例）確認中、担当者が変わって詳細不明 など'; ukMemo.style.minHeight = '64px'; ukMemo.value = state.serverData.unknownMemo || ''; ukMemo.addEventListener('input', () => { state.serverData.unknownMemo = ukMemo.value; autosave(); rerenderPreviewOnly(); });
+                    unknownWrap.appendChild(ukLabel); unknownWrap.appendChild(ukMemo); item.appendChild(unknownWrap);
+                }
+                checkRow.addEventListener('click', () => {
+                    state.serverData.status = opt.value;
+                    if (opt.value !== 'no') state.serverData.plan = '';
+                    wrap.querySelectorAll('div[data-checked]').forEach(el => { el.dataset.checked = 'false'; el.style.borderColor = 'var(--ring)'; const w = el.querySelector('.sns-url-wrap'); if (w) w.style.maxHeight = '0'; const d = el.querySelector('[data-radio-dot]'); if (d) { d.style.setProperty('border-color', '#cbd5e1', 'important'); d.style.setProperty('background', '#fff', 'important'); const inner = d.querySelector('div'); if (inner) inner.style.setProperty('opacity', '0', 'important'); } });
+                    item.dataset.checked = 'true'; item.style.borderColor = 'var(--orange)';
+                    dot.style.setProperty('border-color', 'var(--orange)', 'important'); dot.style.setProperty('background', 'var(--orange)', 'important'); dotInner.style.setProperty('opacity', '1', 'important');
+                    const thisWrap = item.querySelector('.sns-url-wrap'); if (thisWrap) thisWrap.style.maxHeight = opt.value === 'yes' ? '600px' : opt.value === 'no' ? '1000px' : '300px';
+                    autosave(); rerenderPreviewOnly();
+                });
+                wrap.appendChild(item);
+            });
+            return wrap;
+        }
+
+        // ===== Goal Checklist =====
+        function renderGoalChecklist(field) {
+            if (!Array.isArray(state[field.key])) state[field.key] = [];
+            if (!state.goalInputs || typeof state.goalInputs !== 'object') state.goalInputs = {};
+            const box = document.createElement('div'); box.style.cssText = 'display:grid;gap:6px;';
+            (field.options || []).forEach(opt => {
+                const item = document.createElement('div');
+                const isChecked = state[field.key].includes(opt.value);
+                item.style.cssText = `border-radius:14px;overflow:hidden;border:1px solid ${isChecked ? 'var(--orange)' : 'var(--ring)'};background:#fff;`;
+                item.dataset.checked = String(isChecked);
+                const checkRow = document.createElement('label');
+                checkRow.style.cssText = 'display:flex;align-items:flex-start;gap:10px;padding:8px 14px;cursor:pointer;user-select:none;';
+                const checkbox = document.createElement('input'); checkbox.type = 'checkbox'; checkbox.checked = isChecked;
+                checkbox.style.cssText = 'width:16px;height:16px;accent-color:var(--orange);cursor:pointer;flex-shrink:0;margin:0;vertical-align:middle;margin-top:2px;';
+                const texts = document.createElement('div'); texts.style.cssText = 'flex:1;display:flex;flex-direction:column;gap:0;line-height:1.8;';
+                const lbl = document.createElement('div'); lbl.style.cssText = 'font-weight:900;font-size:13px;'; lbl.textContent = opt.label;
+                const desc = document.createElement('div'); desc.style.cssText = 'font-size:11px;font-weight:400;color:var(--muted2);line-height:1.4;'; desc.textContent = opt.desc || '';
+                texts.appendChild(lbl); if (opt.desc) texts.appendChild(desc);
+                checkRow.appendChild(checkbox); checkRow.appendChild(texts);
+                const inputWrap = document.createElement('div');
+                inputWrap.style.cssText = `overflow:hidden;max-height:${isChecked ? '120px' : '0'};transition:max-height .25s ease,padding .25s ease;padding:${isChecked ? '0 14px 10px' : '0 14px'};`;
+                const inputLabel = document.createElement('div'); inputLabel.style.cssText = 'font-size:12px;font-weight:800;color:var(--muted);margin-bottom:2px;line-height:1.8;'; inputLabel.textContent = opt.inputLabel || '';
+                const inputEl = opt.value === 'other' ? document.createElement('textarea') : document.createElement('input');
+                if (inputEl.tagName === 'INPUT') inputEl.type = 'text'; else inputEl.style.minHeight = '64px';
+                inputEl.placeholder = opt.placeholder || ''; inputEl.value = state.goalInputs[opt.value] || '';
+                inputEl.addEventListener('input', () => { state.goalInputs[opt.value] = inputEl.value; autosave(); rerenderPreviewOnly(); rerenderProgressOnly(); });
+                inputWrap.appendChild(inputLabel); inputWrap.appendChild(inputEl);
+                item.appendChild(checkRow); item.appendChild(inputWrap);
+                checkbox.addEventListener('change', () => {
+                    const next = new Set(Array.isArray(state[field.key]) ? state[field.key] : []);
+                    if (checkbox.checked) next.add(opt.value); else next.delete(opt.value);
+                    state[field.key] = Array.from(next);
+                    item.dataset.checked = String(checkbox.checked);
+                    item.style.borderColor = checkbox.checked ? 'var(--orange)' : 'var(--ring)';
+                    inputWrap.style.maxHeight = checkbox.checked ? '120px' : '0';
+                    inputWrap.style.padding = checkbox.checked ? '0 14px 10px' : '0 14px';
+                    autosave(); rerenderPreviewOnly(); rerenderProgressOnly();
+                });
+                box.appendChild(item);
+            });
+            return box;
+        }
+
+        // ===== SNS Checklist =====
+        function renderSnsChecklist(field) {
+            if (!Array.isArray(state[field.key])) state[field.key] = [];
+            if (!state.snsUrls || typeof state.snsUrls !== 'object') state.snsUrls = {};
+            const wrap = document.createElement('div'); wrap.className = 'sns-list';
+            (field.options || []).forEach(opt => {
+                const item = document.createElement('div'); item.className = 'sns-item';
+                const isChecked = state[field.key].includes(opt.value);
+                item.dataset.checked = String(isChecked);
+                const checkRow = document.createElement('label'); checkRow.className = 'sns-check-row';
+                const checkbox = document.createElement('input'); checkbox.type = 'checkbox'; checkbox.checked = isChecked;
+                const lbl = document.createElement('div'); lbl.className = 'sns-check-label'; lbl.textContent = opt.label;
+                checkRow.appendChild(checkbox); checkRow.appendChild(lbl);
+                const urlWrap = document.createElement('div'); urlWrap.className = 'sns-url-wrap';
+                const urlInput = document.createElement('input'); urlInput.type = 'text'; urlInput.placeholder = opt.placeholder || 'https://...';
+                urlInput.value = state.snsUrls[opt.value] || '';
+                urlInput.addEventListener('input', () => { state.snsUrls[opt.value] = urlInput.value; autosave(); rerenderPreviewOnly(); rerenderProgressOnly(); });
+                urlWrap.appendChild(urlInput); item.appendChild(checkRow); item.appendChild(urlWrap);
+                checkbox.addEventListener('change', () => {
+                    const next = new Set(Array.isArray(state[field.key]) ? state[field.key] : []);
+                    if (checkbox.checked) next.add(opt.value); else next.delete(opt.value);
+                    state[field.key] = Array.from(next);
+                    item.dataset.checked = String(checkbox.checked);
+                    autosave(); rerenderPreviewOnly(); rerenderProgressOnly();
+                });
+                wrap.appendChild(item);
+            });
+            return wrap;
+        }
+
+        // ===== URL List =====
+        function renderUrlList(field) {
+            if (!Array.isArray(state[field.key])) state[field.key] = [''];
+            const wrap = document.createElement('div'); wrap.className = 'urllist';
+            const addRow = idx => {
+                const row = document.createElement('div'); row.className = 'urllist-row';
+                const input = document.createElement('input'); input.type = 'text'; input.placeholder = field.placeholder || 'https://...'; input.value = state[field.key][idx] ?? '';
+                input.addEventListener('input', () => { state[field.key][idx] = input.value; autosave(); rerenderPreviewOnly(); rerenderProgressOnly(); });
+                const delBtn = document.createElement('button'); delBtn.type = 'button'; delBtn.className = 'btn-del'; delBtn.innerHTML = '×';
+                delBtn.addEventListener('click', () => { state[field.key].splice(idx, 1); if (state[field.key].length === 0) state[field.key] = ['']; autosave(); rerenderPreviewOnly(); rerenderProgressOnly(); refreshList(); });
+                row.appendChild(input); row.appendChild(delBtn); wrap.insertBefore(row, addBtn);
+            };
+            const addBtn = document.createElement('button'); addBtn.type = 'button'; addBtn.className = 'urllist-add';
+            addBtn.innerHTML = '<span class="plus">＋</span><span>入力項目を追加する</span>';
+            addBtn.addEventListener('click', () => { state[field.key].push(''); autosave(); refreshList(); });
+            wrap.appendChild(addBtn);
+            const refreshList = () => { [...wrap.querySelectorAll('.urllist-row')].forEach(r => r.remove()); state[field.key].forEach((_, i) => addRow(i)); };
+            refreshList(); return wrap;
+        }
+
+        // ===== Mood =====
+        function renderMoodSlider(field) {
+            const wrap = document.createElement('div'); wrap.className = 'mood-wrap';
+            const top = document.createElement('div'); top.className = 'mood-top';
+            const hint = document.createElement('div'); hint.className = 'mhint'; hint.textContent = '2つまで選べます';
+            top.appendChild(hint); wrap.appendChild(top);
+            const options = document.createElement('div'); options.className = 'mood-options';
+            if (!Array.isArray(state[field.key])) state[field.key] = [];
+            MOOD_STOPS.forEach(stop => {
+                const opt = document.createElement('div'); opt.className = 'mood-option';
+                opt.dataset.selected = String(state[field.key].includes(stop.value));
+                const dot = document.createElement('div'); dot.className = 'mood-dot';
+                const name = document.createElement('div'); name.className = 'mood-name'; name.textContent = stop.label;
+                opt.appendChild(dot); opt.appendChild(name);
+                opt.addEventListener('click', () => {
+                    const vals = Array.isArray(state[field.key]) ? [...state[field.key]] : [];
+                    if (vals.includes(stop.value)) {
+                        state[field.key] = vals.filter(v => v !== stop.value); opt.dataset.selected = 'false';
+                    } else {
+                        if (vals.length >= 2) { const removed = vals.shift(); options.querySelectorAll('.mood-option').forEach(el => { const s = MOOD_STOPS.find(m => m.label === el.querySelector('.mood-name').textContent); if (s && s.value === removed) el.dataset.selected = 'false'; }); }
+                        vals.push(stop.value); state[field.key] = vals; opt.dataset.selected = 'true';
+                    }
+                    autosave(); rerenderPreviewOnly(); rerenderProgressOnly();
+                });
+                options.appendChild(opt);
+            });
+            wrap.appendChild(options); return wrap;
+        }
+
+        // ===== Font Picker =====
+        function renderFontPicker(field) {
+            const wrap = document.createElement('div'); const grid = document.createElement('div'); grid.className = 'font-grid';
+            (field.options || []).forEach(opt => {
+                const btn = document.createElement('div'); btn.className = 'pick'; btn.dataset.selected = String(state[field.key] === opt.value);
+                const t = document.createElement('div'); t.className = 'ptitle'; t.textContent = opt.label;
+                const p = document.createElement('div'); p.className = 'pdesc'; p.textContent = (opt.meta && opt.meta.desc) ? opt.meta.desc : '';
+                const sample = document.createElement('div'); sample.className = 'font-sample ' + (opt.value === 'mincho' ? 'mincho' : 'gothic');
+                sample.innerHTML = `<div style="font-weight:900;font-size:16px;">患者様に選ばれるクリニックへ</div><div style="margin-top:6px;font-size:12px;color:#334155;">清潔感・信頼感・読みやすさが伝わります</div>`;
+                btn.appendChild(t); btn.appendChild(p); btn.appendChild(sample);
+                btn.addEventListener('click', () => { state[field.key] = opt.value; autosave(); rerenderPreviewOnly(); rerenderProgressOnly(); grid.querySelectorAll('.pick').forEach(el => el.dataset.selected = 'false'); btn.dataset.selected = 'true'; });
+                grid.appendChild(btn);
+            });
+            wrap.appendChild(grid); return wrap;
+        }
+
+        // ===== Render Form =====
+        function renderForm() {
+            const step = QUESTIONNAIRE[stepIndex];
+            document.getElementById('form-step-title').textContent = step.title;
+            document.getElementById('form-step-desc').textContent = step.description;
+            const host = document.getElementById('form-groups'); host.innerHTML = '';
+            step.groups.forEach(group => {
+                const g = document.createElement('div'); g.className = 'group';
+                g.innerHTML = `<div class="group-head"><div class="gtitle">${group.title}</div></div><div class="fields"></div>`;
+                const fieldsWrap = g.querySelector('.fields');
+                group.fields.forEach(field => {
+                    if (field.type === 'color' && field.key === 'subColor') return;
+                    if (field.type === 'color' && field.key === 'brandColor') {
+                        const f = document.createElement('div'); f.className = 'field full';
+                        const label = document.createElement('label'); label.innerHTML = `<span>ブランドカラー（メイン）＋サブカラー（補助）</span>`;
+                        f.appendChild(label); f.appendChild(renderColorPair()); fieldsWrap.appendChild(f); return;
+                    }
+                    const f = document.createElement('div');
+                    const isFull = ['textarea', 'font', 'mood', 'urllist', 'reflist', 'sns_checklist', 'goal_checklist', 'server_checklist', 'domain_checklist'].includes(field.type);
+                    f.className = 'field' + (isFull ? ' full' : '');
+                    const req = field.required ? '<span class="req">*</span>' : '';
+                    const label = document.createElement('label'); label.innerHTML = `<span>${field.label}${req}</span>`;
+                    let control;
+                    const onAnyChange = () => { autosave(); rerenderPreviewOnly(); rerenderProgressOnly(); };
+                    if (field.type === 'font') control = renderFontPicker(field);
+                    else if (field.type === 'mood') control = renderMoodSlider(field);
+                    else if (field.type === 'sns_checklist') control = renderSnsChecklist(field);
+                    else if (field.type === 'goal_checklist') control = renderGoalChecklist(field);
+                    else if (field.type === 'server_checklist') control = renderServerChecklist(field);
+                    else if (field.type === 'domain_checklist') control = renderDomainChecklist(field);
+                    else if (field.type === 'urllist') control = renderUrlList(field);
+                    else if (field.type === 'reflist') control = renderRefList(field);
+                    else if (field.type === 'textarea') {
+                        control = document.createElement('textarea'); control.placeholder = field.placeholder || ''; control.value = state[field.key] ?? '';
+                        control.addEventListener('input', e => { state[field.key] = e.target.value; onAnyChange(); });
+                    } else if (field.type === 'select') {
+                        control = document.createElement('select');
+                        const opt0 = document.createElement('option'); opt0.value = ''; opt0.textContent = '選択してください'; control.appendChild(opt0);
+                        (field.options || []).forEach(o => { const opt = document.createElement('option'); opt.value = o.value; opt.textContent = o.label; control.appendChild(opt); });
+                        control.value = state[field.key] ?? '';
+                        control.addEventListener('change', function () { state[field.key] = this.value; autosave(); rerender(); });
+                    } else if (field.type === 'toggle') {
+                        control = document.createElement('div'); control.className = 'toggle';
+                        const checked = typeof state[field.key] === 'boolean' ? state[field.key] : false;
+                        control.innerHTML = `<div class="state">${checked ? 'あり' : 'なし'}</div><label class="switch"><input type="checkbox" ${checked ? 'checked' : ''}/><span class="track"></span><span class="thumb"></span></label>`;
+                        const inp = control.querySelector('input');
+                        inp.addEventListener('change', () => { state[field.key] = inp.checked; control.querySelector('.state').textContent = inp.checked ? 'あり' : 'なし'; onAnyChange(); });
+                    } else if (field.type === 'date') {
+                        control = document.createElement('input'); control.type = 'date'; control.value = state[field.key] ?? '';
+                        control.addEventListener('change', e => { state[field.key] = e.target.value; onAnyChange(); });
+                    } else {
+                        control = document.createElement('input');
+                        control.type = field.type === 'email' ? 'email' : 'text';
+                        control.placeholder = field.placeholder || ''; control.value = state[field.key] ?? '';
+                        control.addEventListener('input', e => { state[field.key] = e.target.value; onAnyChange(); });
+                    }
+                    f.appendChild(label); f.appendChild(control); fieldsWrap.appendChild(f);
+                });
+                host.appendChild(g);
+            });
+            const divider = document.createElement('div'); divider.className = 'divider'; host.appendChild(divider);
+            const nav = document.createElement('div'); nav.className = 'navline';
+            nav.innerHTML = `<div class="note">わからない項目は空欄で大丈夫です！ヒアリングしながら一緒に埋めていきましょう。</div><div class="actions"><button class="btn btn-outline" type="button" id="btn-prev">← 戻る</button><button class="btn btn-solid" type="button" id="btn-next">次へ →</button></div>`;
+            host.appendChild(nav);
+            const btnPrev = nav.querySelector('#btn-prev'); const btnNext = nav.querySelector('#btn-next');
+            btnPrev.disabled = stepIndex <= 0;
+            const isLast = stepIndex >= QUESTIONNAIRE.length - 1;
+            btnNext.style.setProperty('display', isLast ? 'none' : 'inline-flex', 'important');
+            btnPrev.addEventListener('click', () => { stepIndex = Math.max(0, stepIndex - 1); rerender(); softScrollTop(); });
+            btnNext.addEventListener('click', () => { stepIndex = Math.min(QUESTIONNAIRE.length - 1, stepIndex + 1); rerender(); softScrollTop(); });
+        }
+
+        // ===== Render Preview =====
+        function renderPreview() {
+            const name = state.clinicName ? String(state.clinicName).trim() : '';
+            document.getElementById('summary-name').textContent = name || '（医院名未入力）';
+            const projectField = QUESTIONNAIRE[0].groups.find(g => g.title === '案件の種別・スケジュール').fields.find(f => f.key === 'projectType');
+            const projectLabel = state.projectType ? prettyValue(projectField, state.projectType) : '—';
+            document.getElementById('summary-sub').textContent = `リニューアルオープン予定：${state.reopenDate || '—'}｜依頼：${projectLabel}`;
+            const brand = state.brandColor || '#0B1B3A'; const sub = state.subColor || '#FF6A2A';
+            document.getElementById('summary').style.background = `linear-gradient(135deg,${brand} 55%,${sub} 100%)`;
+            const box = document.getElementById('preview-box'); box.innerHTML = '';
+            QUESTIONNAIRE.forEach(step => {
+                const sec = document.createElement('div'); sec.className = 'p-sec';
+                sec.innerHTML = `<div class="p-sec-head"><div class="t">${step.title}</div></div>`;
+                step.groups.forEach(group => {
+                    const pg = document.createElement('div'); pg.className = 'p-group';
+                    const gt = document.createElement('div'); gt.className = 'gt'; gt.textContent = group.title; pg.appendChild(gt);
+                    group.fields.forEach(field => {
+                        if (field.type === 'color' && field.key === 'subColor') return;
+                        if (field.type === 'color' && field.key === 'brandColor') {
+                            const bc = (state.brandColor || '').toUpperCase(); const sc = (state.subColor || '').toUpperCase();
+                            const v2 = document.createElement('div'); v2.className = 'v'; v2.style.cssText = 'display:flex;align-items:center;gap:8px;justify-content:flex-end;flex-wrap:wrap;';
+                            if (bc) { const s1 = document.createElement('span'); s1.style.cssText = `display:inline-block;width:16px;height:16px;border-radius:4px;background:${bc};border:1px solid rgba(0,0,0,.12);flex-shrink:0;`; const t1 = document.createElement('span'); t1.textContent = bc; v2.appendChild(s1); v2.appendChild(t1); }
+                            if (bc && sc) { const sep = document.createElement('span'); sep.textContent = '/'; sep.style.color = '#94a3b8'; v2.appendChild(sep); }
+                            if (sc) { const s2 = document.createElement('span'); s2.style.cssText = `display:inline-block;width:16px;height:16px;border-radius:4px;background:${sc};border:1px solid rgba(0,0,0,.12);flex-shrink:0;`; const t2 = document.createElement('span'); t2.textContent = sc; v2.appendChild(s2); v2.appendChild(t2); }
+                            const row2 = document.createElement('div'); row2.className = 'p-row';
+                            const k2 = document.createElement('div'); k2.className = 'k'; k2.textContent = 'ブランドカラー＋サブカラー';
+                            row2.appendChild(k2); row2.appendChild(v2); pg.appendChild(row2); return;
+                        }
+                        let pv;
+                        if (field.type === 'server_checklist') pv = prettyValue(field, state.serverData);
+                        else if (field.type === 'domain_checklist') pv = prettyValue(field, state.domainData);
+                        else if (field.type === 'sns_checklist') pv = prettyValue(field, state.activeSns);
+                        else if (field.type === 'goal_checklist') pv = prettyValue(field, state.webGoalActions);
+                        else pv = prettyValue(field, state[field.key]);
+                        const row = document.createElement('div'); row.className = 'p-row';
+                        const k = document.createElement('div'); k.className = 'k'; k.textContent = field.label;
+                        const v = document.createElement('div'); v.className = 'v' + (pv === '—' ? ' empty' : ''); v.textContent = pv;
+                        row.appendChild(k); row.appendChild(v); pg.appendChild(row);
+                    });
+                    sec.appendChild(pg);
+                });
+                box.appendChild(sec);
+                const sep = document.createElement('div'); sep.className = 'divider'; box.appendChild(sep);
+            });
+            document.getElementById('preview-text').textContent = exportAsText();
+        }
+
+        function renderProgress() {
+            const p = progress();
+            const pct = p.requiredTotal ? Math.round((p.requiredDone / p.requiredTotal) * 100) : 0;
+            document.getElementById('step-label').textContent = `Step ${stepIndex + 1} / ${QUESTIONNAIRE.length}`;
+            document.getElementById('pct-label').textContent = `進捗 ${pct}%`;
+            document.getElementById('bar').style.width = pct + '%';
+            renderStepPills();
+        }
+
+        function rerenderPreviewOnly() { renderPreview(); }
+        function rerenderProgressOnly() { renderProgress(); }
+        function rerender() {
+            ensureDefaults();
+            document.getElementById('chip-save').innerHTML = '<span class="dot"></span><span>自動保存</span>';
+            renderProgress(); renderForm(); renderPreview();
+        }
+        function softScrollTop() { try { window.scrollTo({ top: 0, behavior: 'smooth' }); } catch (e) { window.scrollTo(0, 0); } }
+
+        function setPane(pane) {
+            const app = document.getElementById('app'); app.dataset.pane = pane;
+            const tabForm = document.getElementById('tab-form'); const tabPrev = document.getElementById('tab-preview');
+            if (pane === 'form') {
+                tabForm.style.cssText = 'flex:1;padding:10px 0;border-radius:999px;font-size:13px;font-weight:800;z-index:1;background:var(--navy)!important;color:#fff!important;box-shadow:0 2px 8px rgba(11,27,58,.18)!important;';
+                tabPrev.style.cssText = 'flex:1;padding:10px 0;border-radius:999px;font-size:13px;font-weight:800;z-index:1;background:transparent!important;color:var(--muted)!important;box-shadow:none!important;';
+            } else {
+                tabForm.style.cssText = 'flex:1;padding:10px 0;border-radius:999px;font-size:13px;font-weight:800;z-index:1;background:transparent!important;color:var(--muted)!important;box-shadow:none!important;';
+                tabPrev.style.cssText = 'flex:1;padding:10px 0;border-radius:999px;font-size:13px;font-weight:800;z-index:1;background:var(--orange)!important;color:#fff!important;box-shadow:0 2px 8px rgba(255,106,42,.3)!important;';
+            }
+        }
+
+        // Events
+        document.getElementById('btn-reset').addEventListener('click', () => {
+            if (!confirm('入力内容をリセットします。よろしいですか？')) return;
+            state = { ...defaultState }; stepIndex = 0;
+            try { localStorage.removeItem(STORAGE_KEY); } catch (e) { }
+            rerender();
+        });
+        document.getElementById('btn-clear').addEventListener('click', () => {
+            if (!confirm('入力内容を全消しします。よろしいですか？')) return;
+            state = { ...defaultState }; stepIndex = 0;
+            try { localStorage.removeItem(STORAGE_KEY); } catch (e) { }
+            rerender();
+        });
+        document.getElementById('btn-copy').addEventListener('click', async () => {
+            const text = exportAsText(); const btn = document.getElementById('btn-copy'); const orig = btn.textContent;
+            const ok = () => { btn.innerHTML = '✓ コピーしました！'; btn.style.setProperty('background', 'var(--navy)', 'important'); btn.style.setProperty('color', '#fff', 'important'); btn.style.setProperty('border-color', 'transparent', 'important'); setTimeout(() => { btn.textContent = orig; btn.style.removeProperty('background'); btn.style.removeProperty('color'); btn.style.removeProperty('border-color'); }, 1800); };
+            try { await navigator.clipboard.writeText(text); ok(); }
+            catch (e) { const ta = document.createElement('textarea'); ta.value = text; document.body.appendChild(ta); ta.select(); try { document.execCommand('copy'); ok(); } catch (err) { alert('コピーに失敗しました'); } ta.remove(); }
+        });
+        document.getElementById('btn-pdf').addEventListener('click', () => pdfByPrint());
+        document.getElementById('btn-consult').addEventListener('click', () => pdfByPrint());
+        document.getElementById('tab-form').addEventListener('click', () => setPane('form'));
+        document.getElementById('tab-preview').addEventListener('click', () => setPane('preview'));
+
+        document.addEventListener('touchstart', e => { const el = e.target; if (!el) return; const tag = el.tagName; if (tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT') { const meta = document.querySelector('meta[name="viewport"]'); if (meta) meta.setAttribute('content', 'width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no'); } }, { passive: true });
+        const vv = window.visualViewport;
+        if (vv) { vv.addEventListener('resize', () => document.documentElement.style.setProperty('--vvh', `${vv.height}px`)); window.addEventListener('focusin', e => { const el = e.target; if (!el) return; const tag = el.tagName; if (tag === 'INPUT' || tag === 'TEXTAREA') setTimeout(() => { try { el.scrollIntoView({ block: 'center', behavior: 'smooth' }); } catch (err) { } }, 60); }); }
+
+        setPane('form');
+        rerender();
+    </script>
+</body>
+
+</html>
