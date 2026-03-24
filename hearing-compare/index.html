@@ -1,1 +1,628 @@
+<!DOCTYPE html>
+<html lang="ja">
 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ヒアリングシート比較ツール | SaNC</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=DM+Mono:wght@400;500&display=swap');
+
+        :root {
+            --bg: #f4f5f7;
+            --surface: #ffffff;
+            --border: #e2e5ea;
+            --text: #1a1d23;
+            --text-muted: #6b7280;
+            --accent: #3b5bdb;
+            --accent-light: #eef2ff;
+            --diff-a: #fff3cd;
+            --diff-b: #d1fae5;
+            --diff-both: #fee2e2;
+            --empty: #f8fafc;
+            --tag-match: #10b981;
+            --tag-diff: #f59e0b;
+            --tag-empty: #ef4444;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+        }
+
+        header {
+            background: var(--surface);
+            border-bottom: 1px solid var(--border);
+            padding: 16px 32px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-family: 'DM Mono', monospace;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--accent);
+            background: var(--accent-light);
+            padding: 4px 10px;
+            border-radius: 4px;
+            letter-spacing: 0.05em;
+        }
+
+        header h1 {
+            font-size: 15px;
+            font-weight: 500;
+            color: var(--text);
+        }
+
+        .main {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 32px 24px;
+        }
+
+        /* Input Section */
+        .input-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .input-card {
+            background: var(--surface);
+            border: 1.5px solid var(--border);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: border-color 0.2s;
+        }
+
+        .input-card:focus-within {
+            border-color: var(--accent);
+        }
+
+        .input-header {
+            padding: 14px 18px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .input-badge {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 13px;
+            font-weight: 700;
+            color: white;
+        }
+
+        .badge-a {
+            background: var(--accent);
+        }
+
+        .badge-b {
+            background: #10b981;
+        }
+
+        .input-header label {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text);
+        }
+
+        .input-hint {
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-left: auto;
+        }
+
+        textarea {
+            width: 100%;
+            height: 160px;
+            border: none;
+            outline: none;
+            resize: vertical;
+            padding: 14px 18px;
+            font-family: 'DM Mono', monospace;
+            font-size: 12px;
+            line-height: 1.7;
+            color: var(--text);
+            background: var(--empty);
+        }
+
+        textarea::placeholder {
+            color: #b0b8c4;
+        }
+
+        /* Actions */
+        .actions {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 28px;
+        }
+
+        .btn-compare {
+            background: var(--accent);
+            color: white;
+            border: none;
+            padding: 12px 32px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 700;
+            font-family: 'Noto Sans JP', sans-serif;
+            cursor: pointer;
+            transition: all 0.15s;
+            letter-spacing: 0.02em;
+        }
+
+        .btn-compare:hover {
+            background: #2f4ac7;
+            transform: translateY(-1px);
+        }
+
+        .btn-clear {
+            background: transparent;
+            color: var(--text-muted);
+            border: 1.5px solid var(--border);
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-family: 'Noto Sans JP', sans-serif;
+            cursor: pointer;
+            transition: all 0.15s;
+        }
+
+        .btn-clear:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        /* Stats */
+        .stats {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .stat-chip {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 500;
+            border: 1.5px solid transparent;
+        }
+
+        .stat-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+        }
+
+        .chip-match {
+            background: #f0fdf4;
+            border-color: #a7f3d0;
+            color: #065f46;
+        }
+
+        .chip-match .stat-dot {
+            background: var(--tag-match);
+        }
+
+        .chip-diff {
+            background: #fffbeb;
+            border-color: #fde68a;
+            color: #92400e;
+        }
+
+        .chip-diff .stat-dot {
+            background: var(--tag-diff);
+        }
+
+        .chip-empty {
+            background: #fef2f2;
+            border-color: #fecaca;
+            color: #991b1b;
+        }
+
+        .chip-empty .stat-dot {
+            background: var(--tag-empty);
+        }
+
+        /* Compare Table */
+        .compare-section {
+            background: var(--surface);
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            overflow: hidden;
+        }
+
+        .compare-header {
+            display: grid;
+            grid-template-columns: 220px 1fr 1fr 80px;
+            background: #f8f9fb;
+            border-bottom: 1.5px solid var(--border);
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--text-muted);
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+        }
+
+        .compare-header div {
+            padding: 12px 16px;
+        }
+
+        .section-label {
+            grid-column: 1 / -1;
+            background: #f0f3fa;
+            padding: 8px 16px;
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--accent);
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .section-label::before {
+            content: '';
+            width: 3px;
+            height: 14px;
+            background: var(--accent);
+            border-radius: 2px;
+        }
+
+        .compare-row {
+            display: grid;
+            grid-template-columns: 220px 1fr 1fr 80px;
+            border-bottom: 1px solid var(--border);
+            transition: background 0.1s;
+            font-size: 13px;
+        }
+
+        .compare-row:last-child {
+            border-bottom: none;
+        }
+
+        .compare-row:hover {
+            background: #fafbfc;
+        }
+
+        .col-key {
+            padding: 12px 16px;
+            color: var(--text-muted);
+            font-size: 12px;
+            font-weight: 500;
+            border-right: 1px solid var(--border);
+            display: flex;
+            align-items: flex-start;
+            line-height: 1.5;
+        }
+
+        .col-val {
+            padding: 12px 16px;
+            border-right: 1px solid var(--border);
+            line-height: 1.6;
+            white-space: pre-wrap;
+            word-break: break-word;
+            font-size: 13px;
+        }
+
+        .col-val.empty-val {
+            color: #c0c7d0;
+            font-style: italic;
+            font-size: 12px;
+        }
+
+        .col-status {
+            padding: 12px 16px;
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+        }
+
+        .status-tag {
+            font-size: 10px;
+            font-weight: 700;
+            padding: 3px 8px;
+            border-radius: 10px;
+            letter-spacing: 0.04em;
+            white-space: nowrap;
+        }
+
+        .tag-match {
+            background: #d1fae5;
+            color: #065f46;
+        }
+
+        .tag-diff {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .tag-a-only {
+            background: #e0e7ff;
+            color: #3730a3;
+        }
+
+        .tag-b-only {
+            background: #d1fae5;
+            color: #065f46;
+        }
+
+        .tag-empty {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        /* Row bg by status */
+        .row-diff .col-val:nth-child(2) {
+            background: #fffbf0;
+        }
+
+        .row-diff .col-val:nth-child(3) {
+            background: #f0fff8;
+        }
+
+        .row-empty {
+            opacity: 0.7;
+        }
+
+        .empty-placeholder {
+            text-align: center;
+            padding: 60px 24px;
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+
+        .empty-icon {
+            font-size: 40px;
+            margin-bottom: 12px;
+        }
+
+        @media (max-width: 768px) {
+            .input-section {
+                grid-template-columns: 1fr;
+            }
+
+            .compare-header,
+            .compare-row {
+                grid-template-columns: 140px 1fr;
+            }
+
+            .compare-header div:nth-child(3),
+            .compare-header div:nth-child(4),
+            .compare-row .col-val:nth-child(3),
+            .compare-row .col-status {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="logo">SaNC</div>
+        <h1>ヒアリングシート 比較ツール</h1>
+    </header>
+
+    <div class="main">
+
+        <div class="input-section">
+            <div class="input-card">
+                <div class="input-header">
+                    <div class="input-badge badge-a">A</div>
+                    <label>先生（陽夏先生）の入力内容</label>
+                    <span class="input-hint">テキストコピーで貼り付け</span>
+                </div>
+                <textarea id="textA" placeholder="ヒアリングシートの「テキストコピー」ボタンで取得したテキストを貼り付けてください。"></textarea>
+            </div>
+            <div class="input-card">
+                <div class="input-header">
+                    <div class="input-badge badge-b">B</div>
+                    <label>研先生の入力内容</label>
+                    <span class="input-hint">テキストコピーで貼り付け</span>
+                </div>
+                <textarea id="textB" placeholder="ヒアリングシートの「テキストコピー」ボタンで取得したテキストを貼り付けてください。"></textarea>
+            </div>
+        </div>
+
+        <div class="actions">
+            <button class="btn-compare" onclick="compare()">比較する</button>
+            <button class="btn-clear" onclick="clearAll()">クリア</button>
+        </div>
+
+        <div id="stats" class="stats" style="display:none;"></div>
+
+        <div id="result" class="compare-section">
+            <div class="empty-placeholder">
+                <div class="empty-icon">📋</div>
+                2つのテキストを貼り付けて「比較する」を押してください
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        function parseText(text) {
+            const lines = text.split('\n').map(l => l.trim()).filter(l => l);
+            const result = [];
+            let currentSection = '';
+            let currentCategory = '';
+
+            for (const line of lines) {
+                // セクション（■ で始まる行）
+                if (line.startsWith('■')) {
+                    currentSection = line.replace(/^■\s*/, '').replace(/-+$/, '').trim();
+                    currentCategory = '';
+                    continue;
+                }
+                // 区切り線スキップ
+                if (/^[-=]+$/.test(line)) continue;
+                // カテゴリ（【...】）
+                if (line.startsWith('【') && line.endsWith('】')) {
+                    currentCategory = line.slice(1, -1);
+                    continue;
+                }
+                // ヘッダー行スキップ
+                if (line === '【SaNC' || line.startsWith('SaNC') || line.startsWith('=')) continue;
+
+                // キー：バリュー形式
+                const colonIdx = line.indexOf('：');
+                if (colonIdx > 0) {
+                    const key = line.slice(0, colonIdx).trim();
+                    const val = line.slice(colonIdx + 1).trim();
+                    const sectionKey = currentSection + (currentCategory ? ' / ' + currentCategory : '');
+                    result.push({ section: sectionKey, key, val });
+                }
+            }
+            return result;
+        }
+
+        function groupBySection(items) {
+            const map = {};
+            for (const item of items) {
+                if (!map[item.section]) map[item.section] = {};
+                map[item.section][item.key] = item.val;
+            }
+            return map;
+        }
+
+        function compare() {
+            const textA = document.getElementById('textA').value.trim();
+            const textB = document.getElementById('textB').value.trim();
+
+            if (!textA && !textB) {
+                alert('テキストを貼り付けてください。');
+                return;
+            }
+
+            const itemsA = parseText(textA);
+            const itemsB = parseText(textB);
+            const mapA = groupBySection(itemsA);
+            const mapB = groupBySection(itemsB);
+
+            // 全セクション・全キーを統合
+            const allSections = [...new Set([...Object.keys(mapA), ...Object.keys(mapB)])];
+            const rows = [];
+
+            for (const section of allSections) {
+                const secA = mapA[section] || {};
+                const secB = mapB[section] || {};
+                const allKeys = [...new Set([...Object.keys(secA), ...Object.keys(secB)])];
+                const sectionRows = [];
+
+                for (const key of allKeys) {
+                    const valA = secA[key] ?? '';
+                    const valB = secB[key] ?? '';
+                    let status;
+                    if (!valA && !valB) status = 'empty';
+                    else if (!valA) status = 'b-only';
+                    else if (!valB) status = 'a-only';
+                    else if (valA === valB) status = 'match';
+                    else status = 'diff';
+                    sectionRows.push({ section, key, valA, valB, status });
+                }
+                if (sectionRows.length) rows.push({ section, rows: sectionRows });
+            }
+
+            // Stats
+            let cntMatch = 0, cntDiff = 0, cntEmpty = 0;
+            for (const s of rows) for (const r of s.rows) {
+                if (r.status === 'match') cntMatch++;
+                else if (r.status === 'diff' || r.status === 'a-only' || r.status === 'b-only') cntDiff++;
+                else cntEmpty++;
+            }
+
+            document.getElementById('stats').style.display = 'flex';
+            document.getElementById('stats').innerHTML = `
+    <div class="stat-chip chip-match"><span class="stat-dot"></span>一致 ${cntMatch}件</div>
+    <div class="stat-chip chip-diff"><span class="stat-dot"></span>差異あり ${cntDiff}件</div>
+    <div class="stat-chip chip-empty"><span class="stat-dot"></span>未入力 ${cntEmpty}件</div>
+  `;
+
+            // Build table
+            let html = `
+    <div class="compare-header">
+      <div>項目</div>
+      <div>🅰 陽夏先生</div>
+      <div>🅱 研先生</div>
+      <div>状態</div>
+    </div>
+  `;
+
+            const statusLabel = {
+                match: ['tag-match', '一致'],
+                diff: ['tag-diff', '差異'],
+                'a-only': ['tag-a-only', 'Aのみ'],
+                'b-only': ['tag-b-only', 'Bのみ'],
+                empty: ['tag-empty', '未入力'],
+            };
+
+            for (const { section, rows: sRows } of rows) {
+                html += `<div class="section-label">${section || '基本情報'}</div>`;
+                for (const r of sRows) {
+                    const [cls, label] = statusLabel[r.status];
+                    const rowCls = r.status === 'diff' ? 'row-diff' : (r.status === 'empty' ? 'row-empty' : '');
+                    const valAHtml = r.valA ? r.valA : '<span class="empty-val">（未入力）</span>';
+                    const valBHtml = r.valB ? r.valB : '<span class="empty-val">（未入力）</span>';
+                    html += `
+        <div class="compare-row ${rowCls}">
+          <div class="col-key">${r.key}</div>
+          <div class="col-val ${!r.valA ? 'empty-val' : ''}">${r.valA || '（未入力）'}</div>
+          <div class="col-val ${!r.valB ? 'empty-val' : ''}">${r.valB || '（未入力）'}</div>
+          <div class="col-status"><span class="status-tag ${cls}">${label}</span></div>
+        </div>
+      `;
+                }
+            }
+
+            if (!rows.length) {
+                html = `<div class="empty-placeholder"><div class="empty-icon">⚠️</div>テキストを正しく読み取れませんでした。<br>ヒアリングシートの「テキストコピー」ボタンで取得したテキストを貼り付けてください。</div>`;
+            }
+
+            document.getElementById('result').innerHTML = html;
+            document.getElementById('result').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        function clearAll() {
+            document.getElementById('textA').value = '';
+            document.getElementById('textB').value = '';
+            document.getElementById('stats').style.display = 'none';
+            document.getElementById('result').innerHTML = `
+    <div class="empty-placeholder">
+      <div class="empty-icon">📋</div>
+      2つのテキストを貼り付けて「比較する」を押してください
+    </div>
+  `;
+        }
+    </script>
+</body>
+
+</html>
