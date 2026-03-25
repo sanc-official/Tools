@@ -381,13 +381,8 @@
         }
 
         /* Row bg by status */
-        .row-diff .col-val:nth-child(2) {
-            background: #fffbf0;
-        }
-
-        .row-diff .col-val:nth-child(3) {
-            background: #f0fff8;
-        }
+        .diff-a { background: #fff3cd !important; border-left: 3px solid #f59e0b; }
+        .diff-b { background: #d1fae5 !important; border-left: 3px solid #10b981; }
 
         .row-empty {
             opacity: 0.7;
@@ -590,13 +585,14 @@
                 for (const r of sRows) {
                     const [cls, label] = statusLabel[r.status];
                     const rowCls = r.status === 'diff' ? 'row-diff' : (r.status === 'empty' ? 'row-empty' : '');
-                    const valAHtml = r.valA ? r.valA : '<span class="empty-val">（未入力）</span>';
-                    const valBHtml = r.valB ? r.valB : '<span class="empty-val">（未入力）</span>';
+                    const isDiff = (r.status === 'diff' || r.status === 'a-only' || r.status === 'b-only');
+                    const clsA = isDiff ? 'diff-a' : (!r.valA ? 'empty-val' : '');
+                    const clsB = isDiff ? 'diff-b' : (!r.valB ? 'empty-val' : '');
                     html += `
         <div class="compare-row ${rowCls}">
           <div class="col-key">${r.key}</div>
-          <div class="col-val ${!r.valA ? 'empty-val' : ''}">${r.valA || '（未入力）'}</div>
-          <div class="col-val ${!r.valB ? 'empty-val' : ''}">${r.valB || '（未入力）'}</div>
+          <div class="col-val ${clsA}">${r.valA || '（未入力）'}</div>
+          <div class="col-val ${clsB}">${r.valB || '（未入力）'}</div>
           <div class="col-status"><span class="status-tag ${cls}">${label}</span></div>
         </div>
       `;
